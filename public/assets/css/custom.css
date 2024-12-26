@@ -1,0 +1,77 @@
+.green-heading {
+    color: rgb(44, 237, 141);
+    font-weight: 600;
+    font-size: 21px;
+
+}
+
+.sort-heading {
+    font-size: 21px;
+    color: black;
+}
+
+.searching-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+.search-bar input {
+    height: 50px;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 5px;
+    flex: 1;
+}
+.search-btn .btn {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+    color: #28a745;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.search-btn .btn:hover {
+    background-color: #28a745;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    .search-bar {
+        flex-direction: row; /* Row layout for larger screens */
+    }
+}
+
+@media (max-width: 767px) {
+    .search-bar {
+        flex-direction: column; /* Column layout for small screens */
+        width: 100%; /* Full width for small screens */
+    }
+
+    .search-bar input,
+    .search-btn .btn {
+        width: 100%; /* Full width for inputs and button */
+    }
+}
