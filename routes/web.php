@@ -25,11 +25,13 @@ Route::get('/candidate', function(){
 Route::get('/login', function(){
     return view('candidate.login');
 });
+
+Route:get('/jobs', function(){
+    return view('candidate.jobs');
+});
 Route::get('/signup', function(){
     return view('candidate.signup');
 });
 Route::post('/register',[UserController::class,'user_signup']);
 Route::post('/user_login',[UserController::class,'user_login']);
-
-
 
