@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,3 +29,9 @@ Route::get('/login', function(){
 Route:get('/jobs', function(){
     return view('candidate.jobs');
 });
+Route::get('/signup', function(){
+    return view('candidate.signup');
+});
+Route::post('/register',[UserController::class,'user_signup']);
+Route::post('/user_login',[UserController::class,'user_login']);
+
