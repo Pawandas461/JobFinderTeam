@@ -26,7 +26,7 @@ Route::get('/login', function(){
     return view('candidate.login');
 });
 
-Route:get('/jobs', function(){
+Route::get('/jobs', function(){
     return view('candidate.jobs');
 });
 Route::get('/signup', function(){
