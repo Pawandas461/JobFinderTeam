@@ -24,3 +24,7 @@ Route::get('/candidate', function(){
 Route::get('/login', function(){
     return view('candidate.login');
 });
+
+Route:get('/jobs', function(){
+    return view('candidate.jobs');
+});
