@@ -107,36 +107,41 @@
               <p class="mb-0">Enter your credentials to create your account</p>
 
               <div class="form-body mt-4">
-                <form class="row g-3" action="auth-cover-login.html">
+                <form class="row g-3" action="{{url('/register')}}" method="post">
+                  @csrf
                   <div class="col-6">
                     <label for="inputFirstname" class="form-label">Firstname</label>
-                    <input type="email" class="form-control" id="inputUsername" placeholder="Jhon">
+                    <input type="text" class="form-control" id="inputUsername" name="fname" placeholder="name">
                   </div>
                   <div class="col-6">
                     <label for="inputLastname" class="form-label">Lastname</label>
-                    <input type="email" class="form-control" id="inputUsername" placeholder="Deo">
+                    <input type="text" class="form-control" id="inputUsername" name="lname" placeholder="sername">
                   </div>
                   <div class="col-6">
                     <label for="inputEmailAddress" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="inputEmailAddress" placeholder="example@user.com">
+                    <input type="email" class="form-control" id="inputEmailAddress" name="email" placeholder="example@user.com">
                   </div>
                   <div class="col-6">
                     <label for="inputContact" class="form-label">Contact No.</label>
-                    <input type="tel" class="form-control" id="inputContact" placeholder="XXXXXXXXXX">
+                    <input type="tel" class="form-control" id="inputContact" name="phone" placeholder="XXXXXXXXXX">
+                  </div>
+                  <div class="col-6">
+                    <label for="inputContact" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="inputContact" name="dob" placeholder="Date">
                   </div>
                   <div class="col-12">
                     <label class="form-label">Gender</label>
                     <div class="radio-group d-flex">
                       <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="options" id="option1" value="option1">
+                        <input class="form-check-input" type="radio" name="gender" id="option1" value="male">
                         <label class="form-check-label" for="option1">Male</label>
                       </div>
                       <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="options" id="option2" value="option2">
+                        <input class="form-check-input" type="radio" name="gender" id="option2" value="female">
                         <label class="form-check-label" for="option2">Female</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="options" id="option3" value="option3">
+                        <input class="form-check-input" type="radio" name="gender" id="option3" value="other">
                         <label class="form-check-label" for="option3">Other</label>
                       </div>
                     </div>
@@ -145,7 +150,7 @@
                   <div class="col-12">
                     <label for="inputChoosePassword" class="form-label">Password</label>
                     <div class="input-group" id="show_hide_password">
-                      <input type="password" class="form-control" id="inputChoosePassword" value="12345678"
+                      <input type="password" class="form-control" id="inputChoosePassword" name="password"
                         placeholder="Enter Password">
                       <a href="javascript:;" class="input-group-text bg-transparent"><i
                           class="bi bi-eye-slash-fill"></i></a>
@@ -154,14 +159,14 @@
 
                   <div class="col-12">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="terms_conditions">
                       <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms &amp;
                         Conditions</label>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-                      <button type="submit" class="btn btn-primary">Register Now</button>
+                      <button type="submit" class="btn btn-primary" name="register">Register Now</button>
                     </div>
                   </div>
                   <div class="col-12">
