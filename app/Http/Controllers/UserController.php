@@ -10,13 +10,13 @@ class UserController extends Controller
 { 
     public function user_signup(Request $req)
     {
-        $req->validate([
-            'name' => "required|regex:/^[A-Za-z ]{3,40}$/",
-            'email' => "required|regex:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/",
-            'phone' => "required|regex:/^[6789][0-9]{9}$/",
-            'dob' => "required",
-            'password' => "required|between:4,16",
-        ]); 
+        // $req->validate([
+        //     'name' => "required|regex:/^[A-Za-z ]{3,40}$/",
+        //     'email' => "required|regex:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/",
+        //     'phone' => "required|regex:/^[6789][0-9]{9}$/",
+        //     'dob' => "required",
+        //     'password' => "required",
+        // ]);
         $fname = $req->input('fname');
         $lname = $req->input('lname');
         $name= $fname.' '.$lname;
@@ -50,7 +50,7 @@ class UserController extends Controller
          $req->session()->put('email',$email);
          $req->session()->put('user_id',$user_id);
 
-        return redirect('signup');
+        return redirect('candidate');
     
 }
  public function user_login( Request $req)

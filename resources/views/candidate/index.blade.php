@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Metoxi | Bootstrap 5 Admin Dashboard Template</title>
+    <title>Home Page</title>
     <!--favicon-->
 
     <!--plugins-->

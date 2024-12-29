@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - Speakachoo</title>
+  <title>Login Page</title>
   <!--favicon-->
 	<link rel="icon" href="assets/images/favicon.png" type="image/png">
 
@@ -53,7 +53,7 @@
       font-size: 19px !important;
     }
     .get-started-heading {
-    color:rgb(135, 31, 31) !important;
+    color:rgb(95, 31, 135) !important;
     }
 
     .wd-logo-icon{
@@ -62,7 +62,7 @@
 
     
     a{
-      color:rgb(147, 43, 45);
+      color:rgb(124, 184, 27);
     }
 
   </style>
@@ -113,7 +113,7 @@
                   </div>
           
                   </div>
-                  <div class="col-md-6 text-end">	<a href="{{url('/forgot_pass')}}">Forgot Password ?</a>
+                  <div class="col-md-6 text-start">	<a href="{{url('/forgot_pass')}}">Forgot Password</a>
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
