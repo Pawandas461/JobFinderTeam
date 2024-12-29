@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 { 
     public function user_signup(Request $req)
-    { 
+    {
+        $req->validate([
+            'name' => "required|regex:/^[A-Za-z ]{3,40}$/",
+            'email' => "required|regex:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/",
+            'phone' => "required|regex:/^[6789][0-9]{9}$/",
+            'dob' => "required",
+            'password' => "required|between:4,16",
+        ]); 
         $fname = $req->input('fname');
         $lname = $req->input('lname');
         $name= $fname.' '.$lname;
@@ -68,5 +76,9 @@ class UserController extends Controller
             return redirect('/login')->with('message', "User not found");
         }
     }
+     public function forgot_pass(Request $req)
+     {
+        return View('forgotPassword');
+     }
  }
 

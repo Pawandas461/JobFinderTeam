@@ -171,7 +171,7 @@
                   </div>
                   <div class="col-12">
                     <div class="text-start">
-                      <p class="mb-0">Already have an account? <a href="auth-cover-login.html">Sign in here</a></p>
+                      <p class="mb-0">Already have an account? <a href="{{url('/login')}}">login in here</a></p>
                     </div>
                   </div>
                 </form>
