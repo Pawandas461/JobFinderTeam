@@ -16,7 +16,9 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <!--main css-->
     <link href="{{ asset('assets/css/bootstrap-extended.css') }}" rel="stylesheet">
     <link href="{{ asset('sass/main.css') }}" rel="stylesheet">
@@ -44,6 +46,42 @@
         .navbar-brand {
             font-weight: 500;
         }
+
+        .range-container {
+            margin-top: 20px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .range-container input[type="range"] {
+            width: 100%;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .range-value {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-label {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .material-symbols-outlined {
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -68,7 +106,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="{{url('candidate')}}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Products</a>
@@ -117,13 +155,13 @@
                             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
                                 <span class="material-symbols-outlined">
                                     login
-                                    </span> Login</a>
+                                </span> Login</a>
 
                             <hr class="dropdown-divider">
                             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
                                 <span class="material-symbols-outlined">
 
-                                    </span>Logout</a>
+                                </span>Logout</a>
                         </div>
                     </div>
                 </div>
@@ -137,19 +175,14 @@
     <div class="">
         <div class="container">
             <!--end breadcrumb-->
-            <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
-
-                <div class="container-fuild col-md-8 d-flex flex-column align-items-center">
-
-
-                    <div class="searching-header">
+            <div class="row  pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
+                
+                    <div class="searching-header justify-content-end align-items-end col-md-4">
                         <div>
-                            <div class="green-heading">INDIA’S #1 JOB PLATFORM</div>
-                            <h1 style="font-weight: 600">Your job search ends here</h1>
-                            <div class="sort-heading">Discover 50 lakh+ career opportunities</div>
+                            <h1 style="font-weight: 600">Find Jobs ....</h1>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="col-md-8">
                         <form action="" method="post">
                             <div class="search-box">
                                 <div class="search-bar">
@@ -169,97 +202,120 @@
                             </div>
                         </form>
                     </div>
-
-                </div>
-                <div class="col-md-4">
-                    <img src="assets/images/Searching.png" width="250px" alt="">
-                </div>
             </div>
         </div>
 
         {{-- JOB CATAGORIES SECTION --}}
         <div class="container mt-5">
-            <h1 style="font-weight: 600" class="text-center">JOB CATAGORIES</h1>
-            <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
-                <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
-                            <img src="assets/images/tech_job.png" class="position-absolute end-0 bottom-0"
-                                width="140" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none bg-success mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Creative Jobs</h5>
-                            <img src="assets/images/creative_job.png" class="position-absolute end-0 bottom-0"
-                                width="130" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 145);">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Healthcare Jobs</h5>
-                            <img src="assets/images/helth.png" class="position-absolute end-0 bottom-0"
-                                width="120" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(224, 234, 21);">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Finance and Business</h5>
-                            <img src="assets/images/Finance_job.png" class="position-absolute end-0 bottom-0 m-2"
-                                width="130" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 216);">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Education and Training</h5>
-                            <img src="assets/images/education_job.png" class="position-absolute end-0 bottom-0"
-                                width="130" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <div class="card shadow-none bg-orange mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Sales and Marketing</h5>
-                            <img src="assets/images/sales_job.png" class="position-absolute end-0 bottom-0"
-                                width="130" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <div class="card shadow-none bg-danger mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Logistics and Operations</h5>
-                            <img src="assets/images/logical_job.png" class="position-absolute end-0 bottom-0 m-2"
-                                width="130" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <div class="card shadow-none bg-indigo mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Engineering Jobs</h5>
-                            <img src="assets/images/engineering_job.png" class="position-absolute end-0 bottom-0 m-2"
-                                width="130" alt="">
-                        </div>
-                    </div>
-                </div>
 
+            <div class="row ">
+                <div class="col-md-4 border-end">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title  d-flex align-items-start justify-content-center">
+                                <span class="material-symbols-outlined text-primary">
+                                    filter_alt
+                                </span> <strong>Filter</strong>
+                            </h5>
+
+                            <div class="mt-3 mb-5">
+                                <label for="job_role" class="form-label  d-flex "><span
+                                        class="material-symbols-outlined">
+                                        category_search
+                                    </span>Select Job Role</label>
+                                <input type="text" name="job_role" id="job_role" class="form-control">
+                            </div>
+                            <div class="mt-3 mb-5">
+                                <label for="location" class="form-label  d-flex align-items-center"><span
+                                        class="material-symbols-outlined">
+                                        location_on
+                                    </span>Select Location</label>
+                                <input type="text" name="location" id="location" class="form-control">
+                            </div>
+                            <div class="mt-3 mb-5">
+                                <div class="range-container">
+                                    <label for="location" class="form-label  d-flex align-items-center"> <span
+                                            class="material-symbols-outlined">
+                                            currency_rupee
+                                        </span>Salary Range (per month)</label>
+                                    <input type="range" name="salary" id="salary" min="0"
+                                        max="100" step="5" value="50" class="form-range">
+                                    <div class="range-labels">
+                                        <span>0k</span>
+                                        <span>10k</span>
+                                        <span>20k</span>
+                                        <span>30k</span>
+                                        <span>40k</span>
+                                        <span>50k</span>
+                                        <span>60k</span>
+                                        <span>70k</span>
+                                        <span>80k</span>
+                                        <span>90k</span>
+                                        <span>100k</span>
+                                    </div>
+                                    {{-- <div class="range-value">Selected Value: <span id="value">50k</span></div> --}}
+                                </div>
+                            </div>
+
+                            <div class="mt-3 mb-5 d-flex flex-column">
+                                <label for="location" class="form-label  d-flex align-items-center"> <span
+                                        class="material-symbols-outlined">
+                                        model_training
+                                    </span>Work Mode</label>
+                                <div class="WFH">
+                                    <input type="checkbox" class="me-2" name="work_mode" id=""
+                                        value="WFH">Work from home
+                                </div>
+                                <div class="WFO">
+                                    <input type="checkbox" class="me-2" name="" id=""
+                                        value="WFO">Work from office
+                                </div>
+                                <div class="WFF">
+                                    <input type="checkbox" class="me-2" name="" id=""
+                                        value="WFF">Work from field
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row row-cols-1">
+                        <div class="col">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Web Development</h5>
+                                    <p class="card-text">OyeLabs</p>
+                                    <div class="title-info d-flex align-items-center">
+                                        <div class="location d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
+                                            location_on
+                                            </span> Indore</div>
+                                        <div class="experience  d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
+                                            trip
+                                            </span>0-1 Year</div>
+                                        <div class="salary  d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
+                                            payments
+                                            </span> <span class="material-symbols-outlined">
+                                                currency_rupee
+                                                </span> 10000-20000</div>
+                                    </div>
+                                    <div class="mt-4 d-flex align-items-center justify-content-between">
+                                        <button class="btn btn-primary d-flex gap-2 px-3"><span class="material-symbols-outlined">
+                                            approval_delegation
+                                            </span>Apply Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
-
         {{-- TOP COMPANIES --}}
-        <div class="container mt-5 mb-5">
+        {{-- <div class="container mt-5 mb-5">
             <h1 style="font-weight: 600" class="text-center">TOP COMPANIES</h1>
             <div class="owl-carousel owl-theme"
                 style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
@@ -324,7 +380,7 @@
                     <h5 class="mt-3 text-dark">Technical/IT Jobs</h5>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--end main wrapper-->
 
         <!--start overlay-->
@@ -454,6 +510,12 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
 
         <script>
+            const salaryInput = document.getElementById('salary');
+            const salaryValue = document.getElementById('value');
+
+            salaryInput.addEventListener('input', () => {
+                salaryValue.textContent = salaryInput.value + 'k';
+            });
             $(document).ready(function() {
                 $('.owl-carousel').owlCarousel({
                     loop: true,
