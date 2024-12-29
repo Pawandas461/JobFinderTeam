@@ -26,9 +26,19 @@ Route::get('/login', function(){
     return view('candidate.login');
 });
 
+// /Pawan Route
 Route::get('/jobs', function(){
     return view('candidate.jobs');
 });
+Route::get('/admin', function(){
+    return view('admin.index');
+});
+Route::get('/company/register', function(){
+    return view('company.register');
+});
+
+
+//Debashis Route
 Route::get('/signup', function(){
     return view('candidate.signup');
 });

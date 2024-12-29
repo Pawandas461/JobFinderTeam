@@ -337,13 +337,13 @@ chart.render();
   // chart 6
 
   var options = {
-    series: [12, 6, 9, 20, 15, 18],
+    series: [12, 6, 9, 20, 15],
     chart: {
         foreColor: "#9ba7b2",
         height: 350,
         type: 'pie',
     },
-    labels: ['Service 1', 'Service 2', 'Service 3', 'Service 4', 'Service 5', 'Service 6'],
+    labels: ['Company 1', 'Company 2', 'Company 3', 'Company 4', 'Company 5'],
     legend: {
   position: "bottom",
   show: !0
