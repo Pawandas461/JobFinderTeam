@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Create a account - Speakachoo</title>
+  <title>Signup Page</title>
 
   <!--plugins-->
   <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
@@ -171,7 +171,7 @@
                   </div>
                   <div class="col-12">
                     <div class="text-start">
-                      <p class="mb-0">Already have an account? <a href="auth-cover-login.html">Sign in here</a></p>
+                      <p class="mb-0">Already have an account? <a href="{{url('/login')}}">login in here</a></p>
                     </div>
                   </div>
                 </form>

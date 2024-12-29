@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login Page</title>
+  <title>Forgot Page</title>
   <!--favicon-->
 	<link rel="icon" href="assets/images/favicon.png" type="image/png">
 
@@ -53,7 +53,7 @@
       font-size: 19px !important;
     }
     .get-started-heading {
-    color:rgb(95, 31, 135) !important;
+    color:rgb(135, 31, 31) !important;
     }
 
     .wd-logo-icon{
@@ -62,7 +62,7 @@
 
     
     a{
-      color:rgb(124, 184, 27);
+      color:rgb(147, 43, 45);
     }
 
   </style>
@@ -92,39 +92,22 @@
         <div class="col-12 col-xl-5 col-xxl-5 auth-cover-right align-items-center justify-content-center">
           <div class="card rounded border-0 shadow-none m-4 wd-auth-box">
             <div class="card-body p-sm-5">
-              <h1 class="fw-bold">Login</h1>
-              <p class="mb-0">Enter your credentials to login your account</p>
-
-              
-
+              <h3 class="fw-bold">Forgot Password</h3>
               <div class="form-body mt-4">
-                <form class="row g-3" action="{{url('/user_login')}}" method="post">
+                <form class="row g-3" action="{{url('/forgor_pass')}}" method="post">
                   @csrf
                   <div class="col-12">
                     <label for="inputEmailAddress" class="form-label">Email</label>
                     <input type="email" class="form-control" id="inputEmailAddress" name="email" placeholder="jhon@example.com">
                   </div>
                   <div class="col-12">
-                    <label for="inputChoosePassword" class="form-label">Password</label>
-                    <div class="input-group" id="show_hide_password">
-                      <input type="password" class="form-control" id="inputChoosePassword" name="password" placeholder="Enter Password"> 
-                      <a href="javascript:;" class="input-group-text bg-transparent"><i class="bi bi-eye-slash-fill"></i></a>
-                    </div>
-                  </div>
-          
-                  </div>
-                  <div class="col-md-6 text-start">	<a href="{{url('/forgot_pass')}}">Forgot Password</a>
-                  </div>
-                  <div class="col-12">
                     <div class="d-grid">
-                      <button type="submit" name="login" class="btn btn-primary">Login</button>
+                      <button type="submit" name="forgot_pass" class="btn btn-primary">SEND</button>
+                    </div>
+                    <div class="d-grid">
+                      <div  class="btn mt-2" style="background-color: #f7f4ef;" ><a href="{{url('/login')}}">Back To Login</a></div>
                     </div>
                   </div>
-                  <div class="col-12">
-                    <div class="text-start">
-                      <p class="mb-0">Don't have an account yet? <a href="{{url('/signup')}}">Sign up here</a>
-                      </p>
-                    </div>
                   </div>
                 </form>
               </div>
