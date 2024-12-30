@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,6 +33,10 @@ Route::get('/jobs', function(){
 Route::get('/admin', function(){
     return view('admin.index');
 });
+Route::get('/admin/login', function(){
+    return view('admin.login');
+});
+Route::post('/admin_login',[AdminController::class, 'admin_login']);
 Route::get('/company/register', function(){
     return view('company.register');
 });
