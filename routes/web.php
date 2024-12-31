@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CompanyController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,6 +41,7 @@ Route::post('/admin_login',[AdminController::class, 'admin_login']);
 Route::get('/company/register', function(){
     return view('company.register');
 });
+Route::post('register-company',[CompanyController::class, 'company_register']);
 
 
 //Debashis Route
