@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - Speakachoo</title>
+  <title>Dashboard</title>
   <!--favicon-->
   <link rel="icon" href="{{ asset('assets/images/jf_logo.jpg') }}" type="image/png">
 
@@ -615,8 +615,8 @@
                     <img src="../assets/images/avatars/12.png" alt="Placeholder" class="rounded-circle" width="40"
                       alt="">
                     <div class="">
-                      <h5 class="mb-0">Candidate 1</h5>
-                      <p class="mb-0">Delhi</p>
+                      <h5 class="mb-0">Pawan Das</h5>
+                      <p class="mb-0">alipurduhar</p>
                     </div>
                   </div>
                   <div class="">
@@ -753,8 +753,32 @@
               <div class="d-flex flex-column gap-3">
                 <div class="d-flex align-items-center gap-3">
                   <div class="flex-grow-1">
-                    <h5 class="mb-0">Job Title 1</h5>
-                    <p class="mb-0">Company name</p>
+                    <h5 class="mb-0">Developer IT </h5>
+                    <p class="mb-0">NIT Company</p>
+                  </div>
+                  <div class="progress w-25" style="height: 7px;">
+                    <div class="progress-bar" style="width: 68%"></div>
+                  </div>
+                  <div class="">
+                    <p class="mb-0 fs-5">25</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="flex-grow-1">
+                    <h5 class="mb-0">Sale IT </h5>
+                    <p class="mb-0">CNF Company</p>
+                  </div>
+                  <div class="progress w-25" style="height: 7px;">
+                    <div class="progress-bar" style="width: 68%"></div>
+                  </div>
+                  <div class="">
+                    <p class="mb-0 fs-5">25</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="flex-grow-1">
+                    <h5 class="mb-0">marketing </h5>
+                    <p class="mb-0"> ITC Company</p>
                   </div>
                   <div class="progress w-25" style="height: 7px;">
                     <div class="progress-bar" style="width: 68%"></div>
@@ -799,41 +823,7 @@
                     <p class="mb-0 fs-5">25</p>
                   </div>
                 </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="flex-grow-1">
-                    <h5 class="mb-0">Job Title 1</h5>
-                    <p class="mb-0">Company name</p>
-                  </div>
-                  <div class="progress w-25" style="height: 7px;">
-                    <div class="progress-bar" style="width: 68%"></div>
-                  </div>
-                  <div class="">
-                    <p class="mb-0 fs-5">25</p>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="flex-grow-1">
-                    <h5 class="mb-0">Job Title 1</h5>
-                    <p class="mb-0">Company name</p>
-                  </div>
-                  <div class="progress w-25" style="height: 7px;">
-                    <div class="progress-bar" style="width: 68%"></div>
-                  </div>
-                  <div class="">
-                    <p class="mb-0 fs-5">25</p>
-                  </div>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="flex-grow-1">
-                    <h5 class="mb-0">Job Title 1</h5>
-                    <p class="mb-0">Company name</p>
-                  </div>
-                  <div class="progress w-25" style="height: 7px;">
-                    <div class="progress-bar" style="width: 68%"></div>
-                  </div>
-                  <div class="">
-                    <p class="mb-0 fs-5">25</p>
-                  </div>
+
                 </div>  
 
               </div>

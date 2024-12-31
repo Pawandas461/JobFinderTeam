@@ -40,6 +40,12 @@ Route::post('/admin_login',[AdminController::class, 'admin_login']);
 Route::get('/company/register', function(){
     return view('company.register');
 });
+Route::get('/admin/user', function(){
+    return view('admin.userDispaly');
+});
+Route::get('/admin/job', function(){
+    return view('admin.jobDisplay');
+});
 
 
 //Debashis Route
