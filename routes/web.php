@@ -42,6 +42,12 @@ Route::get('/company/register', function(){
     return view('company.register');
 });
 Route::post('register-company',[CompanyController::class, 'company_register']);
+Route::get('/admin/user', function(){
+    return view('admin.userDispaly');
+});
+Route::get('/admin/job', function(){
+    return view('admin.jobDisplay');
+});
 
 
 //Debashis Route
