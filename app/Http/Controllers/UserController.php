@@ -77,7 +77,7 @@ class UserController extends Controller
         }
     }
      public function forgot_pass(Request $req)
-     {
+     { 
         return View('forgotPassword');
      }
  }
