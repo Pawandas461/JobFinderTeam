@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+header('cache-control: no-cache, no-store');
+
 
 class CompanyController extends Controller
 {
@@ -154,6 +156,7 @@ class CompanyController extends Controller
         // Redirect to the company dashboard or another page
         return redirect()->route('company-portal')->with('message', 'Company registered successfully!');
     }
+    
 
     public function company_login(Request $req)
     {

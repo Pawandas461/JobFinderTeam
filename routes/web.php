@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\Controller;
 use Faker\Provider\ar_EG\Company;
 
@@ -31,6 +32,8 @@ Route::get('/login', function(){
 });
 
 // /Pawan Route
+
+
 Route::get('/candidate/jobs', [UserController::class, 'view_jobs']);
 
 Route::get('/admin', [AdminController::class, 'admin_index']);
@@ -50,6 +53,10 @@ Route::post('register-company',[CompanyController::class, 'company_register']);
 //Debashis Route
 Route::get('/signup', function(){
     return view('candidate.signup');
+});
+Route::post('job_Detalis',[JobController::class,'job_Detalis']);
+Route::get('/company/jobDetalis', function(){
+    return view('company.jobDetalis');
 });
 Route::post('/register',[UserController::class,'user_signup']);
 Route::post('/user_login',[UserController::class,'user_login']);

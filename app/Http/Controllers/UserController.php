@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+header('cache-control: no-cache, no-store');
+
 
 class UserController extends Controller
 {

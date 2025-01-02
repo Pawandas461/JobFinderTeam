@@ -33,7 +33,7 @@
         }
 
         .section-authentication-cover {
-            background-image: url(asset{{ 'assets/images/signup_background.png' }});
+            background-image: url(asset{{'assets/images/signup_background.png' }});
             background-size: cover;
             min-height: 100vh !important;
         }
