@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+header('cache-control: no-cache, no-store');
+
 
 class AdminController extends Controller
 {

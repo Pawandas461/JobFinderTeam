@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -37,11 +39,11 @@ Route::get('/admin', function(){
 Route::get('/admin/login', function(){
     return view('admin.login');
 });
-Route::post('/admin_login',[AdminController::class, 'admin_login']);
+Route::post('/admin_login',[AdminController::class,'admin_login']);
 Route::get('/company/register', function(){
     return view('company.register');
 });
-Route::post('register-company',[CompanyController::class, 'company_register']);
+Route::post('register-company',[CompanyController::class,'company_register']);
 Route::get('/admin/user', function(){
     return view('admin.userDispaly');
 });
@@ -53,6 +55,10 @@ Route::get('/admin/job', function(){
 //Debashis Route
 Route::get('/signup', function(){
     return view('candidate.signup');
+});
+Route::post('job_Detalis',[JobController::class,'job_Detalis']);
+Route::get('/company/jobDetalis', function(){
+    return view('company.jobDetalis');
 });
 Route::post('/register',[UserController::class,'user_signup']);
 Route::post('/user_login',[UserController::class,'user_login']);
