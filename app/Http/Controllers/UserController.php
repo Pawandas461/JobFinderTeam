@@ -9,7 +9,7 @@ header('cache-control: no-cache, no-store');
 
 
 class UserController extends Controller
-{ 
+{
     public function user_signup(Request $req)
     {
         // $req->validate([
@@ -21,11 +21,11 @@ class UserController extends Controller
         // ]);
         $fname = $req->input('fname');
         $lname = $req->input('lname');
-        $name= $fname.' '.$lname;
+        $name = $fname . ' ' . $lname;
         $email = $req->input('email');
         $phone = $req->input('phone');
         $age = $req->input('dob');
-        $gender= $req->input('gender');
+        $gender = $req->input('gender');
         $password = $req->input('password');
         $check_user = DB::table('users')->where('email', $email)->orWhere('phone', $phone)->first();
         if (!empty($check_user)) {
@@ -43,21 +43,20 @@ class UserController extends Controller
             'email' => $email,
             'phone' => $phone,
             'dob' => $age,
-            'gender'=> $gender,
+            'gender' => $gender,
             'password' => $password,
 
         ];
-        $user_id=DB::table('users')->insertGetId($data);
-    
-         $req->session()->put('email',$email);
-         $req->session()->put('user_id',$user_id);
+        $user_id = DB::table('users')->insertGetId($data);
+
+        $req->session()->put('email', $email);
+        $req->session()->put('user_id', $user_id);
 
         return redirect('candidate');
-    
-}
- public function user_login( Request $req)
- {
-         $email= $req->input('email');
+    }
+    public function user_login(Request $req)
+    {
+        $email = $req->input('email');
         $password = $req->input('password');
         $loginData = DB::table('users')->where('email', $email)->first();
         // dd($loginData);
@@ -65,11 +64,11 @@ class UserController extends Controller
             $dbPassword = $loginData->password;
             if ($password == $dbPassword) {
                 // dd($password);
-                $uid=$loginData->id;
-                $req->session()->put('user_id',$uid);
-                $req->session()->put('email',$email);
+                $uid = $loginData->id;
+                $req->session()->put('user_id', $uid);
+                $req->session()->put('email', $email);
 
-                return redirect('/candidate')->with('messsage','user login');
+                return redirect('/candidate')->with('messsage', 'user login');
             } else {
 
                 return redirect('/login')->with('messsage', 'Password doesnot matched ');
@@ -78,9 +77,12 @@ class UserController extends Controller
             return redirect('/login')->with('message', "User not found");
         }
     }
-     public function forgot_pass(Request $req)
-     { 
+    public function forgot_pass(Request $req)
+    {
         return View('forgotPassword');
-     }
- }
-
+    }
+    public function view_jobs()
+    {
+        return view('candidate.jobs');
+    }
+}
