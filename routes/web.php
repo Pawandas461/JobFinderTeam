@@ -57,5 +57,7 @@ Route::get('/signup', function(){
 Route::post('/register',[UserController::class,'user_signup']);
 Route::post('/user_login',[UserController::class,'user_login']);
 Route::get('/forgot_pass',[UserController::class,'forgot_pass']);
+Route::get('/profile',[UserController::class,'profile']);
+Route::get('/experiment',[UserController::class,'experiment']);
 
 

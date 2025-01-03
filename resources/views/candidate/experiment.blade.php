@@ -23,7 +23,8 @@
     <link href="{{ asset('sass/semi-dark.css') }}" rel="stylesheet">
     <link href="{{ asset('sass/bordered-theme.css') }}" rel="stylesheet">
     <link href="{{ asset('sass/responsive.css') }}" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
 
@@ -113,40 +114,83 @@
                                     <h5 class="user-name mb-0 fw-bold">{{ session('email') }}</h5>
                                 </div>
                             </a>
+                            <!-- <div class="dropdown"> -->
+                            <!-- Profile Dropdown Option -->
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/profile') }}" >
+                            <a
+                                class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                data-bs-toggle="modal"
+                                data-bs-target="#profileModal">
                                 <i class="material-icons-outlined">person</i>Profile
+                            </a>
+
+                            <!-- Modal Structure -->
+                            <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title" id="profileModalLabel">Profile</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row mb-3">
+                                                <div class="col-md-4 text-center">
+                                                    <!-- User Profile Image -->
+                                                    <img
+                                                        src="https://via.placeholder.com/150"
+                                                        alt="Profile Picture"
+                                                        class="rounded-circle img-thumbnail"
+                                                        style="width: 150px; height: 150px;">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h4>Pawan Das</h4>
+                                                    <p>Email: {{ session('email') }}</p>
+                                                    <p>Joined on: January 1, 2023</p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <h5>Resume</h5>
+                                            <p>No bio available.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="edit-profile.html" class="btn btn-primary">Edit Profile</a>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
-                                    <i class="material-icons-outlined">logout</i>Logout
 
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
+                                <i class="material-icons-outlined">logout</i>Logout
+
+                            </a>
+
+                            @else
+                            <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
+                                <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+                                    <div class="text-center">
+                                        <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                            width="90" height="90" alt="">
+                                        <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                    </div>
                                 </a>
 
-                                @else
-                                <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
-                                    <a class="dropdown-item  gap-2 py-2" href="javascript:;">
-                                        <div class="text-center">
-                                            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
-                                                width="90" height="90" alt="">
-                                            <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
-                                        </div>
-                                    </a>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
+                                    <i class="material-icons-outlined">login</i>Login
+                                </a>
 
-                                    <hr class="dropdown-divider">
-                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                        <i class="material-icons-outlined">login</i>Login
-                                    </a>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/register')}}">
+                                    <i class="material-icons-outlined">person_outline</i>Sign Up
+                                </a>
 
-                                    <hr class="dropdown-divider">
-                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/register')}}">
-                                        <i class="material-icons-outlined">person_outline</i>Sign Up
-                                    </a>
-
-                                    @endif
-                                </div>
+                                @endif
+                            </div>
                         </div>
 
                     </div>
@@ -452,6 +496,8 @@
 
         <!--bootstrap js-->
         <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 
         <!--plugins-->
         {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
