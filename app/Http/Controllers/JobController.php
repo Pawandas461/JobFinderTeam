@@ -35,7 +35,7 @@ class JobController extends Controller
             'mex_salary' => $mex_salary,
             'apply_by' => $apply_by,
         ];
-        $user_id=DB::table('job')->insert($data);
+        $user_id=DB::table('jobs')->insert($data);
         return redirect('candidate');
     
 }
