@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Metoxi | Bootstrap 5 Admin Dashboard Template</title>
+    <title>JobFinder</title>
     <!--favicon-->
 
     <!--plugins-->
@@ -281,24 +281,27 @@
                 </div>
                 <div class="col-md-8">
                     <div class="row row-cols-1">
+                        @foreach ($jobs as $job)
+                            
+                        
                         <div class="col">
                             <div class="card">
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Web Development</h5>
-                                    <p class="card-text">OyeLabs</p>
+                                    <h5 class="card-title">{{$job->job_title}}</h5>
+                                    <p class="card-text">{{ $job->company_name}}</p>
                                     <div class="title-info d-flex align-items-center">
                                         <div class="location d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
                                             location_on
-                                            </span> Indore</div>
+                                            </span> {{ $job->company_address}}</div>
                                         <div class="experience  d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
                                             trip
-                                            </span>0-1 Year</div>
+                                            </span>{{ $job->experience }}</div>
                                         <div class="salary  d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
                                             payments
                                             </span> <span class="material-symbols-outlined">
                                                 currency_rupee
-                                                </span> 10000-20000</div>
+                                                </span> {{ $job->min_salary}} - {{ $job->mex_salary}} RS</div>
                                     </div>
                                     <div class="mt-4 d-flex align-items-center justify-content-between">
                                         <button class="btn btn-primary d-flex gap-2 px-3"><span class="material-symbols-outlined">
@@ -308,6 +311,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
