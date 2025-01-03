@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 header('cache-control: no-cache, no-store');
 
 
@@ -83,6 +84,11 @@ class UserController extends Controller
     }
     public function view_jobs()
     {
-        return view('candidate.jobs');
+        $jobs = DB::table('jobs')
+            ->join('companies', 'jobs.created_by', '=', 'companies.id')
+            ->where('jobs.status', 2)
+            ->select('jobs.*', 'companies.*') // Select all columns from both tables
+            ->get();
+        return view('candidate.jobs', compact('jobs'));
     }
 }
