@@ -58,13 +58,23 @@ class JobController extends Controller
 
     public function approval_request()
     {
-        $requested_jobs = DB::table('jobs')->where('status', 1)->get();
+        $companyId = session()->get('company_id'); 
+
+        $requested_jobs = DB::table('jobs')
+            ->where('status', 1)
+            ->where('created_by', $companyId)
+            ->get();
         return view('company.approval_request', compact('requested_jobs'));
     }
     public function approved_jobs()
     {
-        $requested_jobs = DB::table('jobs')->where('status', 2)->get();
-        return view('company.approval_request', compact('requested_jobs'));
+        $companyId = session()->get('company_id'); 
+
+        $requested_jobs = DB::table('jobs')
+            ->where('status', 2)
+            ->where('created_by', $companyId)
+            ->get();
+        // $requested_jobs = DB::table('jobs')->where('status', 2)->get();
+        return view('company.approved_jobs', compact('requested_jobs'));
     }
-    
 }

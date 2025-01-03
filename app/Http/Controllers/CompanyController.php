@@ -154,7 +154,7 @@ class CompanyController extends Controller
         $req->session()->put('company_id', $companyId);
 
         // Redirect to the company dashboard or another page
-        return redirect()->route('company-portal')->with('message', 'Company registered successfully!');
+        return redirect()->route('/company')->with('message', 'Company registered successfully!');
     }
     
 
