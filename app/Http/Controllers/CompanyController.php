@@ -10,6 +10,18 @@ header('cache-control: no-cache, no-store');
 
 class CompanyController extends Controller
 {
+    public function login_form()
+    {
+        return view('company.login');
+    }
+    public function register_form()
+    {
+        return view('company.register');
+    }
+    public function company_index()
+    {
+        return view('company.index');
+    }
     public function company_register(Request $req)
     {
         // Validation rules
@@ -142,7 +154,39 @@ class CompanyController extends Controller
         $req->session()->put('company_id', $companyId);
 
         // Redirect to the company dashboard or another page
-        return redirect()->route('company-portal')->with('message', 'Company registered successfully!');
+        return redirect()->route('/company')->with('message', 'Company registered successfully!');
     }
     
+
+    public function company_login(Request $req)
+    {
+        $trade_number = $req->input('trade_number');
+        $email = $req->input('email');
+        $password = $req->input('password');
+        $loginData = DB::table('companies')->where('email', $email)->orWhere('trade_number', $trade_number)->orWhere('password', $password)->first();
+        if (!empty($loginData)) {
+            $db_trade_number = $loginData->trade_number;
+            $db_email = $loginData->email;
+            $db_password = $loginData->password;
+            $companyId = $loginData->id;
+            if ($db_trade_number == $trade_number) {
+                if ($db_email == $email) {
+                    if ($db_password == $password) {
+                        $req->session()->put('company_email', $db_email);
+                        $req->session()->put('company_id', $companyId);
+
+                        // Redirect to the company dashboard 
+                        return redirect()->route('/company')->with('message', 'Company registered successfully!');
+                    } else {
+                        return redirect('/company/login')->with('message', "Password Doesnot matched");
+                    }
+                } else {
+                    return redirect('/company/login')->with('message', "Company Email Does not matched");
+                }
+            } else {
+                return redirect('/company/login')->with('message', "Trade Number doesn't matched");
+            }
+        }
+    }
+
 }
