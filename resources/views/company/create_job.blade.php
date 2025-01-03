@@ -532,11 +532,8 @@
                                         <div class="col-md-6">
                                             <label for="bsValidation1" class="form-label">Job Title</label>
                                             <div class="position-relative input-icon">
-                                                <input type="text" class="form-control" id="bsValidation1"
-                                                    name="job_title" placeholder="First Name" value="Jhon"
-                                                    required>
-                                                <span class="position-absolute top-50 translate-middle-y"><i
-                                                        class="material-icons-outlined fs-5">person_outline</i></span>
+                                                <input type="text" class="form-control" id="bsValidation1" name="job_title" placeholder="job Title" required>
+            
                                             </div>
                                             <div class="valid-feedback">
                                                 Looks good!
