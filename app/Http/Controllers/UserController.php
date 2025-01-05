@@ -66,8 +66,10 @@ class UserController extends Controller
             if ($password == $dbPassword) {
                 // dd($password);
                 $uid = $loginData->id;
+                $name = $loginData->name;
                 $req->session()->put('user_id', $uid);
                 $req->session()->put('email', $email);
+                $req->session()->put('name', $name);
 
                 return redirect('/candidate')->with('messsage', 'user login');
             } else {
@@ -115,4 +117,34 @@ class UserController extends Controller
             return view('candidate.my_resume', compact('resume_details'));
         }
     }
+    public function view_jobs_category($category_name)
+    {
+        $jobs = DB::table('categories')
+            ->join('categories', 'jobs', '=', 'category_id')
+            ->where('categories.category_name',$category_name )
+            ->select(
+                'jobs.id as job_id', 
+                'jobs.*', 
+                // 'jobs.job_title', 
+                // 'jobs.job_mode', 
+                // 'jobs.job_role', 
+                // 'jobs.num_of_candidate', 
+                // 'jobs.qualification', 
+                // 'jobs.required_skills', 
+                // 'jobs.experience', 
+                // 'jobs.min_salary', 
+                // 'jobs.mex_salary', 
+                // 'jobs.apply_by', 
+                // 'jobs.created_at', 
+                // 'jobs.status', 
+                'companies.id as company_id', 
+                'companies.company_name', 
+                'companies.company_address'
+            )
+            ->get();
+            $user_id = session('user_id');
+    
+        return view('candidate.jobs', compact('jobs'));
+    }
+    
 }

@@ -25,7 +25,7 @@
     <link href="{{ asset('sass/responsive.css') }}" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login"   />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
 
 
     <!-- Custom CSS File-->
@@ -104,10 +104,6 @@
                             </ul>
                         </li> -->
                     </ul>
-                    @php
-                    session(['email' => 'a@email.com']);
-                    @endphp
-
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
@@ -115,14 +111,13 @@
                                 height="45">
                         </a>
 
-                        @if(session()->has('email1'))
-
-                        <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
+                    @if(session('name') && session('user_id'))
+                    <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                             <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                 <div class="text-center">
                                     <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
                                         width="90" height="90" alt="">
-                                    <h5 class="user-name mb-0 fw-bold">{{ session('email') }}</h5>
+                                    <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                 </div>
                             </a>
 
@@ -132,8 +127,8 @@
 
                             </a>
 
-                            @else
-                            <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
+                    @else
+                    <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
                                         <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
@@ -154,6 +149,7 @@
 
                                 @endif
                             </div>
+                            
                         </div>
 
                     </div>
@@ -210,6 +206,7 @@
             <h1 style="font-weight: 600" class="text-center">JOB CATAGORIES</h1>
             <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
                 <div class="col-lg-3 col-md-4 col-12">
+                    <a href="{{url('/candidate/jobs/technical_it_jobs')}}">
                     <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
                         <div class="card-body">
                             <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
@@ -217,6 +214,7 @@
                                 width="140" alt="">
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="card shadow-none bg-success mb-0" style="height: 160px;">

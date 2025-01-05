@@ -19,9 +19,6 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\Controller;
 use Faker\Provider\ar_EG\Company;
 
-Route::get('/', function () {
-    return view('candidate.index');
-});
 
 Route::get('/candidate', function(){
     return view('candidate.index');
@@ -65,10 +62,17 @@ Route::post('create_job_request',[JobController::class,'create_job_request']);
 Route::post('/register',[UserController::class,'user_signup']);
 Route::post('/user_login',[UserController::class,'user_login']);
 Route::get('/forgot_pass',[UserController::class,'forgot_pass']);
-Route::get('/admin/user', function(){
-    return view('admin.userDispaly');
-});
+Route::get('/candidate/jobs/{category_name}',[UserController::class,'view_jobs_category']);
+
+Route::get('/admin/user',[AdminController::class, 'view_user']);
+Route::get('/admin/users/status/{id}', [AdminController::class, 'updateStatus']);
+
 Route::get('/admin/job', function(){
     return view('admin.jobDisplay');
 });
+Route::get('/admin/job',[AdminController::class, 'view_job']);
+Route::get('/admin/job/status/{id}', [AdminController::class, 'update_jobStatus']);
+
+
+
 

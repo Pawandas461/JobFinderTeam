@@ -272,12 +272,6 @@
             <hr class="dropdown-divider">
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="my_profile.html"><i
                 class="material-icons-outlined">person_outline</i>Profile</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">local_bar</i>Setting</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">dashboard</i>Dashboard</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">redeem</i>Rewards</a>
 
             <hr class="dropdown-divider">
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
@@ -307,14 +301,26 @@
       <ul class="metismenu" id="sidenav">
 
         <li>
-          <a href="index.html">
+          <a href="{{url('/admin')}}">
             <div class="parent-icon"><i class="material-icons-outlined">home</i>
             </div>
             <div class="menu-title">Dashboard</div>
           </a>
         </li>
-
-
+        <li>
+          <a href="{{url('/admin/job')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">work</i>
+            </div>
+            <div class="menu-title">JOB</div>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('/admin/user')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            </div>
+            <div class="menu-title">USER</div>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -338,7 +344,7 @@
         </div>
       </div>
       <!--end breadcrumb-->
-      <h6 class="mb-0 text-uppercase">User Table</h6>
+      <h6 class="mb-0 text-uppercase">Job Table</h6>
 				<hr>
 				<div class="card">
 					<div class="card-body">
@@ -354,25 +360,40 @@
 										<th>Number of candidate</th>
 										<th>Qualification</th>
 										<th>Required skills</th>
-										<th>Min salary / Max salary</th>
+										<th>Min salary</th>
+                     <th> Max salary</th>
 										<th>Apply By (Expire date)</th>
-
+										<th>Status</th>
+										<th>Request</th>
 									</tr>
 								</thead>
 								<tbody>
+                @foreach($jobs as $job)
 									<tr>
-										<td>Developer</td>
-										<td>client handling</td>
-										<td>offline</td>
-										<td>junior Developer</td>
-										<td> 5 years</td>
-										<td>Degree</td>
-										<td>2</td>
-										<td> php , js , .net</td>
-										<td>20000-30000</td>
-										<td>05-01-2025</td>
-									
+										<td>{{$job->job_title}}</td>
+										<td>{{$job->job_responsibilities}}</td>
+										<td>{{$job->job_mode}}</td>
+										<td>{{$job->job_role}}</td>
+										<td>{{$job->experience}}</td>
+										<td>{{$job->num_of_candidate}}</td>
+										<td>{{$job->qualification}}</td>
+										<td>{{$job->required_skills}}</td>
+										<td>{{$job->min_salary}}</td>
+										<td>{{$job->mex_salary}}</td>
+										<td>{{$job->apply_by}}</td>
+										<td>@if ($job->status == 2)
+                     Posts
+                @else
+                   deny
+                @endif</td>
+										<td>
+                    <a href="{{url('admin/job/status', $job->id) }}" class="btn 
+                        {{ $job->status == 2 ? 'btn-warning' : 'btn-success' }} px-5">
+                        {{ $job->status == 2 ? 'Deny' : 'Posts' }}
+                    </a>
+                    </td>
 									</tr>	
+                  @endforeach
 								</tbody>
 						
 							</table>
