@@ -272,8 +272,7 @@
               </div>
             </div>
           </div>
-        </li>
-
+        </li> 
         <li class="nav-item dropdown">
           <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
             <img src="../assets/images/avatars/04.png" class="rounded-circle p-1 border" width="45" height="45">
@@ -307,7 +306,6 @@
   </header>
   <!--end top header-->
 
-
   <!--start sidebar-->
   <aside class="sidebar-wrapper">
     <div class="sidebar-header">
@@ -324,14 +322,26 @@
       <ul class="metismenu" id="sidenav">
 
         <li>
-          <a href="index.html">
+          <a href="{{url('/admin')}}">
             <div class="parent-icon"><i class="material-icons-outlined">home</i>
             </div>
             <div class="menu-title">Dashboard</div>
           </a>
         </li>
-
-
+        <li>
+          <a href="{{url('/admin/job')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">work</i>
+            </div>
+            <div class="menu-title">JOB</div>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('/admin/user')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            </div>
+            <div class="menu-title">USER</div>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -382,7 +392,7 @@
               </div>
               <div class="d-flex align-items-center justify-content-between mt-3">
                 <div class="">
-                  <h4 class="mb-0 fw-bold">100</h4>
+                  <h4 class="mb-0 fw-bold">4</h4>
                   <div class="d-flex align-items-center justify-content-start gap-1 text-success mt-3">
                     <span class="material-icons-outlined fs-6">north</span>
                   </div>
@@ -429,7 +439,6 @@
           </div>
         </div>
       </div><!--end row-->
-
       <div class="row">
         <div class="col-12 col-xl-6">
           <div class="card">
@@ -456,7 +465,6 @@
           </div>
         </div>
       </div><!--end row-->
-
       <div class="row">
         <div class="col-12 col-xl-4 d-flex">
           <div class="card w-100 rounded-4">
@@ -788,7 +796,7 @@
                   </div>
                 </div>
                 <div class="d-flex align-items-center gap-3">
-                  <div class="flex-grow-1">
+                  <div class="flex-grow-1">variant_date_from_timestamp
                     <h5 class="mb-0">Job Title 1</h5>
                     <p class="mb-0">Company name</p>
                   </div>
@@ -823,9 +831,7 @@
                     <p class="mb-0 fs-5">25</p>
                   </div>
                 </div>
-
                 </div>  
-
               </div>
             </div>
           </div>
