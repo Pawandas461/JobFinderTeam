@@ -32,6 +32,7 @@ Route::get('/login', function(){
 
 
 Route::get('/candidate/jobs', [UserController::class, 'view_jobs']);
+Route::get('/candidate/my_resume', [UserController::class, 'my_resume']);
 
 Route::get('/admin', [AdminController::class, 'admin_index']);
 Route::get('/admin/login', [AdminController::class, 'login_form']);
@@ -47,6 +48,7 @@ Route::post('register-company',[CompanyController::class, 'company_register']);
 
 Route::get('/company/approval_request', [JobController::class, 'approval_request']);
 Route::get('/company/approved_jobs', [JobController::class, 'approved_jobs']);
+
 
 
 

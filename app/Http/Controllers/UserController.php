@@ -86,34 +86,37 @@ class UserController extends Controller
     }
     public function view_jobs()
     {
+
         $jobs = DB::table('jobs')
             ->join('companies', 'jobs.created_by', '=', 'companies.id')
+            ->leftJoin('resumes', 'resumes.candidate_id', '=', DB::raw('"' . session('user_id') . '"')) // Join with resumes table
             ->where('jobs.status', 2)
             ->select(
-                'jobs.id as job_id', 
-                'jobs.*', 
-                // 'jobs.job_title', 
-                // 'jobs.job_mode', 
-                // 'jobs.job_role', 
-                // 'jobs.num_of_candidate', 
-                // 'jobs.qualification', 
-                // 'jobs.required_skills', 
-                // 'jobs.experience', 
-                // 'jobs.min_salary', 
-                // 'jobs.mex_salary', 
-                // 'jobs.apply_by', 
-                // 'jobs.created_at', 
-                // 'jobs.status', 
-                'companies.id as company_id', 
-                'companies.company_name', 
-                'companies.company_address'
+                'jobs.id as job_id',
+                'jobs.*',
+                'companies.id as company_id',
+                'companies.company_name',
+                'companies.company_address',
+                'resumes.id as resume_id', // Add resume-specific columns
+                'resumes.pursuing_education_status',
+                'resumes.degree',
+                'resumes.stream',
+                'resumes.skills',
+                'resumes.created_at as resume_created_at'
             )
             ->get();
-            $user_id = session('user_id');
-    
+
         return view('candidate.jobs', compact('jobs'));
     }
 
+    public function my_resume()
+    {
+        $candidate_id = session('user_id');
+        $resume_details = DB::table('resumes')->where('candidate_id', $candidate_id)->first();
+        if ($resume_details) {
+            return view('candidate.my_resume', compact('resume_details'));
+        }
+    }
     public function view_jobs_category($category_name)
     {
         $jobs = DB::table('categories')

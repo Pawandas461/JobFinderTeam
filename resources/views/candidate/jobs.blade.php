@@ -140,22 +140,22 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45"
+                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
                                 height="45">
                         </a>
                         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                             <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                 <div class="text-center">
-                                    <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
                                         width="90" height="90" alt="">
                                     <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
                                 </div>
                             </a>
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{url('/candidate/my_resume')}}">
                                 <span class="material-symbols-outlined">
-                                    login
-                                </span> Login</a>
+                                    task
+                                </span> My Resume</a>
 
                             <hr class="dropdown-divider">
                             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
@@ -431,6 +431,7 @@
 
                                                             <form action="">
                                                                 <div class="text-danger" id="resume_error"></div>
+                                                                @if ($job->resume_id)
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="radio" name="resume_type" value="resume" id="flexRadioDefault1">
                                                                     <label class="form-check-label"
@@ -438,6 +439,16 @@
                                                                         Select Your Resume <a href="#">edit</a>
                                                                     </label>
                                                                 </div>
+                                                                @else
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="resume_type" value="resume" id="flexRadioDefault1">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault1">
+                                                                        Select Your Resume <a href="{{url()}}">Please Create Your Resume </a>
+                                                                    </label>
+                                                                </div>
+                                                                @endif
+                                                               
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="radio" name="resume_type" value="uploaded_resume" id="flexRadioDefault2">
                                                                     <label class="form-check-label"
