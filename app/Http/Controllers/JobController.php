@@ -44,7 +44,7 @@ class JobController extends Controller
             'status' => $status,
         ];
 
-
+        
         // Insert the data into the jobs table
         DB::table('jobs')->insert($data);
 

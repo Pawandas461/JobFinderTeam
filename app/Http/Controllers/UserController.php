@@ -66,8 +66,10 @@ class UserController extends Controller
             if ($password == $dbPassword) {
                 // dd($password);
                 $uid = $loginData->id;
+                $name = $loginData->name;
                 $req->session()->put('user_id', $uid);
                 $req->session()->put('email', $email);
+                $req->session()->put('name', $name);
 
                 return redirect('/candidate')->with('messsage', 'user login');
             } else {

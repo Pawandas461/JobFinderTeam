@@ -266,7 +266,7 @@
               <div class="text-center">
                 <img src="../assets/images/avatars/04.png" class="rounded-circle p-1 shadow mb-3" width="90" height="90"
                   alt="">
-                <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
+                <h5 class="user-name mb-0 fw-bold">Hello, USER</h5>
               </div>
             </a>
             <hr class="dropdown-divider">
@@ -274,11 +274,6 @@
                 class="material-icons-outlined">person_outline</i>Profile</a>
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
                 class="material-icons-outlined">local_bar</i>Setting</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">dashboard</i>Dashboard</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">redeem</i>Rewards</a>
-
             <hr class="dropdown-divider">
             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
                 class="material-icons-outlined">power_settings_new</i>Logout</a>
@@ -307,10 +302,24 @@
       <ul class="metismenu" id="sidenav">
 
         <li>
-          <a href="index.html">
+          <a href="{{url('/admin')}}">
             <div class="parent-icon"><i class="material-icons-outlined">home</i>
             </div>
             <div class="menu-title">Dashboard</div>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('/admin/job')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">work</i>
+            </div>
+            <div class="menu-title">JOB</div>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('/admin/user')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            </div>
+            <div class="menu-title">USER</div>
           </a>
         </li>
 
@@ -358,21 +367,31 @@
 									</tr>
 								</thead>
 								<tbody>
+                  @foreach($users as $user)
+                  
 									<tr>
-										<td>1</td>
-										<td>User@gmail.com</td>
-										<td>user12</td>
-										<td>25</td>
-										<td>male</td>
-										<td>123456789</td>
-										<td>12/12/2024</td>
-										<td>Active</td>
+										<td></td>
+										<td>{{$user->email}}</td>
+										<td>{{$user->name}}</td>
+										<td>{{$user->dob}}</td>
+										<td>{{$user->gender}}</td>
+										<td>{{$user->phone}}</td>
+										<td>{{$user->created_at}}</td>
 										<td>
-                                        <div class="col">
-                                        <div type="button" class="btn btn-success px-5">Button</div>
-                                          </div>
-                                        </td>
+                    @if ($user->auth == 1)
+                     Active
+                @else
+                   Inactive
+                @endif
+            </td>
+										<td>
+                      <a href="{{url('admin/users/status', $user->id) }}" class="btn 
+                        {{ $user->auth == 1 ? 'btn-warning' : 'btn-success' }} px-5">
+                        {{ $user->auth == 1 ? 'Inactivate' : 'Activate' }}
+                    </a>
+                    </td>
 									</tr>	
+                  @endforeach
 								</tbody>
 						
 							</table>
