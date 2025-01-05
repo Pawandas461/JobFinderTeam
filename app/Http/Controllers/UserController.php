@@ -113,5 +113,35 @@ class UserController extends Controller
     
         return view('candidate.jobs', compact('jobs'));
     }
+
+    public function view_jobs_category($category_name)
+    {
+        $jobs = DB::table('categories')
+            ->join('categories', 'jobs', '=', 'category_id')
+            ->where('categories.category_name',$category_name )
+            ->select(
+                'jobs.id as job_id', 
+                'jobs.*', 
+                // 'jobs.job_title', 
+                // 'jobs.job_mode', 
+                // 'jobs.job_role', 
+                // 'jobs.num_of_candidate', 
+                // 'jobs.qualification', 
+                // 'jobs.required_skills', 
+                // 'jobs.experience', 
+                // 'jobs.min_salary', 
+                // 'jobs.mex_salary', 
+                // 'jobs.apply_by', 
+                // 'jobs.created_at', 
+                // 'jobs.status', 
+                'companies.id as company_id', 
+                'companies.company_name', 
+                'companies.company_address'
+            )
+            ->get();
+            $user_id = session('user_id');
+    
+        return view('candidate.jobs', compact('jobs'));
+    }
     
 }

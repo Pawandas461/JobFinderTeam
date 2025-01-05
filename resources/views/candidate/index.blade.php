@@ -149,14 +149,6 @@
 
                                 @endif
                             </div>
-                    
-
-                    
-
-                        
-
-                        
-                            
                             
                         </div>
 
@@ -214,6 +206,7 @@
             <h1 style="font-weight: 600" class="text-center">JOB CATAGORIES</h1>
             <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
                 <div class="col-lg-3 col-md-4 col-12">
+                    <a href="{{url('/candidate/jobs/technical_it_jobs')}}">
                     <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
                         <div class="card-body">
                             <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
@@ -221,6 +214,7 @@
                                 width="140" alt="">
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
                     <div class="card shadow-none bg-success mb-0" style="height: 160px;">
