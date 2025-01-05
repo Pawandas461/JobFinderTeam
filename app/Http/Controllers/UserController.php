@@ -87,8 +87,29 @@ class UserController extends Controller
         $jobs = DB::table('jobs')
             ->join('companies', 'jobs.created_by', '=', 'companies.id')
             ->where('jobs.status', 2)
-            ->select('jobs.*', 'companies.*') // Select all columns from both tables
+            ->select(
+                'jobs.id as job_id', 
+                'jobs.*', 
+                // 'jobs.job_title', 
+                // 'jobs.job_mode', 
+                // 'jobs.job_role', 
+                // 'jobs.num_of_candidate', 
+                // 'jobs.qualification', 
+                // 'jobs.required_skills', 
+                // 'jobs.experience', 
+                // 'jobs.min_salary', 
+                // 'jobs.mex_salary', 
+                // 'jobs.apply_by', 
+                // 'jobs.created_at', 
+                // 'jobs.status', 
+                'companies.id as company_id', 
+                'companies.company_name', 
+                'companies.company_address'
+            )
             ->get();
+            $user_id = session('user_id');
+    
         return view('candidate.jobs', compact('jobs'));
     }
+    
 }

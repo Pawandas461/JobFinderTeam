@@ -442,7 +442,7 @@
 
                 <!-- Approval Requests -->
                 <li>
-                    <a href="{{url('/company/approval_request')}}">
+                    <a href="{{ url('/company/approval_request') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">how_to_reg</i></div>
                         <div class="menu-title">Approval Requests</div>
                     </a>
@@ -530,98 +530,90 @@
                                     @csrf
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="bsValidation1" class="form-label">Job Title</label>
-                                            <div class="position-relative input-icon">
-                                                <input type="text" class="form-control" id="bsValidation1" name="job_title" placeholder="job Title" required>
-            
-                                            </div>
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
+                                            <label for="bsValidation1" class="form-label fw-bold">Job Title</label>
+                                            <input type="text" class="form-control" id="bsValidation1"
+                                                name="job_title" placeholder="job Title" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="bsValidation2" class="form-label">Job responsibilities</label>
-                                            <div class="position-relative input-icon">
-                                                <input type="text" class="form-control" id="bsValidation2"
-                                                    name="job_responsibilities" required>
-                                                <span class="position-absolute top-50 translate-middle-y"><i
-                                                        class="material-icons-outlined fs-5">person_outline</i></span>
-                                            </div>
-
-                                            <div class="valid-feedback">
-                                                Looks good!
+                                            <label for="bsValidation4" class="form-label fw-bold">Job Role</label>
+                                            <input type="text" class="form-control" id="bsValidation4"
+                                                name="job_role" placeholder="Job Role" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="bsValidation2" class="form-label fw-bold">Job Responsibilities</label>
+                                            <div class="form-floating">
+                                                <textarea class="form-control" rows="2" name="job_responsibilities" id="floatingTextarea"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation3" class="form-label">Job Mode (Online or
-                                                Offline)</label>
-                                            <div class="position-relative input-icon">
-                                                <input type="text" class="form-control" id="bsValidation3"
-                                                    name="job_mode" placeholder="Job Mode" required>
-                                                <span class="position-absolute top-50 translate-middle-y"><i
-                                                        class="material-icons-outlined fs-5">call</i></span>
-                                            </div>
+                                        <div class="col-md-4">
+                                            <label for="bsValidation3" class="form-label fw-bold">Job Mode</label>
+                                            <select name="job_mode" class="form-select"
+                                                aria-label="Default select example" required>
+                                                <option selected>Select Job Mode</option>
+                                                <option value="WFH">WFH</option>
+                                                <option value="WFO">WFO</option>
+                                                <option value="remote">remote</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation4" class="form-label">Job Role</label>
-                                            <div class="position-relative input-icon">
-                                                <input type="text" class="form-control" id="bsValidation4"
-                                                    name="job_role" placeholder="Job Role" required>
-                                                <span class="position-absolute top-50 translate-middle-y"><i
-                                                        class="material-icons-outlined fs-5">Job</i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label">Experience /
+                                        <div class="col-md-4">
+                                            <label for="bsValidation5" class="form-label fw-bold">Experience /
                                                 freshers</label>
-                                            <input type="number" class="form-control" id="bsValidation5"
-                                                name="experience" required>
-                                            <div class="invalid-feedback">
-                                            </div>
+                                            <select name="experience" class="form-select"
+                                                aria-label="Default select example" required>
+                                                <option selected>Experience</option>
+                                                <option value="Freshers">Freshers</option>
+                                                <option value="1 year">1 Year</option>
+                                                <option value="2 year">2 year</option>
+                                                <option value="3 year">3 year</option>
+                                                <option value="4 year">4 year</option>
+                                                <option value="5 year">5 year</option>
+                                                <option value="5 year +">5 year +</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation8" class="form-label">Number of candidate</label>
+                                        <div class="col-md-4">
+                                            <label for="bsValidation8" class="form-label fw-bold">Number of candidate</label>
                                             <input type="number" class="form-control" id="bsValidation8"
                                                 name="num_of_candidate" required>
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label">Qualification</label>
+                                            <label for="bsValidation5" class="form-label fw-bold">Qualification</label>
                                             <input type="text" class="form-control" id="bsValidation5"
                                                 name="qualification" required>
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label">Required skills</label>
-                                            <input type="text" class="form-control" id="bsValidation5"
-                                                name="required_skills" required>
-                                            <div class="invalid-feedback">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label">Min salary</label>
-                                            <input type="number" class="form-control" id="bsValidation5"
-                                                name="min_salary" placeholder="00000-99999" required>
-                                            <div class="invalid-feedback">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label">Max salary</label>
-                                            <input type="number" class="form-control" id="bsValidation5"
-                                                name="mex_salary" placeholder="00000-99999" required>
-                                            <div class="invalid-feedback">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label">Apply By (Expire
+                                            <label for="bsValidation5" class="form-label fw-bold">Apply By (Expire
                                                 date)</label>
                                             <input type="date" class="form-control" id="bsValidation5"
                                                 name="apply_by" placeholder="16" required>
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <label for="bsValidation5" class="form-label fw-bold">Required skills</label>
+                                            <div class="form-floating">
+                                                <textarea class="form-control" name="required_skills" id="floatingTextarea"></textarea>
+                                                <label for="floatingTextarea">Add Skills</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="bsValidation5" class="form-label fw-bold">Min salary</label>
+                                            <input type="number" class="form-control" id="bsValidation5"
+                                                name="min_salary" placeholder="00000-99999" required>
+                                            <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="bsValidation5" class="form-label fw-bold">Max salary</label>
+                                            <input type="number" class="form-control" id="bsValidation5"
+                                                name="mex_salary" placeholder="00000-99999" required>
+                                            <div class="invalid-feedback">
+                                            </div>
+                                        </div>
+
                                         <div class="col-12 col-lg-12">
                                             <button class="btn btn-primary px-3" type="submit"
                                                 name="button">Create</button>

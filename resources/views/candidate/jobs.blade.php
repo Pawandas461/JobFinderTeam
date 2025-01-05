@@ -106,7 +106,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('candidate')}}">Home</a>
+                            <a class="nav-link" href="{{ url('candidate') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Products</a>
@@ -170,38 +170,36 @@
     </nav>
     <!--end top header-->
 
-
     <!--start main wrapper-->
     <div class="">
-        <div class="container">
+        <div class="container pt-4">
             <!--end breadcrumb-->
-            <div class="row  pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
-                
-                    <div class="searching-header justify-content-end align-items-end col-md-4">
-                        <div>
-                            <h1 style="font-weight: 600">Find Jobs ....</h1>
-                        </div>
+            <div class="row  pb-4 " style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
+
+                <div class="searching-header justify-content-end align-items-start col-md-4">
+                    <div>
+                        <h1 style="font-weight: 600">Find Jobs ....</h1>
                     </div>
-                    <div class="col-md-8">
-                        <form action="" method="post">
-                            <div class="search-box">
-                                <div class="search-bar">
-                                    <div class="job-role">
-                                        <input type="text" class="form-control" name="job_role" id="job_role"
-                                            placeholder="Search By Job Role..." autocomplete="off">
-                                    </div>
-                                    <div class="job-location">
-                                        <input type="text" class="form-control" name="job_location"
-                                            id="job_location" placeholder="Search By Job Location..."
-                                            autocomplete="off">
-                                    </div>
-                                    <div class="search-btn">
-                                        <input type="submit" value="Search.." class="btn btn-outline-success">
-                                    </div>
+                </div>
+                <div class="col-md-8">
+                    <form action="" method="post">
+                        <div class="search-box">
+                            <div class="search-bar">
+                                <div class="job-role">
+                                    <input type="text" class="form-control" name="job_role" id="job_role"
+                                        placeholder="Search By Job Role..." autocomplete="off">
+                                </div>
+                                <div class="job-location">
+                                    <input type="text" class="form-control" name="job_location" id="job_location"
+                                        placeholder="Search By Job Location..." autocomplete="off">
+                                </div>
+                                <div class="search-btn">
+                                    <input type="submit" value="Search.." class="btn btn-outline-success">
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -282,35 +280,211 @@
                 <div class="col-md-8">
                     <div class="row row-cols-1">
                         @foreach ($jobs as $job)
-                            
-                        
-                        <div class="col">
-                            <div class="card">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="card-title">{{ $job->job_title }}</h5>
+                                            <div class="d-flex text-end align-items-center me-2">
+                                                Posted: <span
+                                                    class="material-symbols-outlined ms-1">history</span>{{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+                                            </div>
+                                        </div>
 
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$job->job_title}}</h5>
-                                    <p class="card-text">{{ $job->company_name}}</p>
-                                    <div class="title-info d-flex align-items-center">
-                                        <div class="location d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
-                                            location_on
-                                            </span> {{ $job->company_address}}</div>
-                                        <div class="experience  d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
-                                            trip
-                                            </span>{{ $job->experience }}</div>
-                                        <div class="salary  d-flex align-items-center me-4"><span class="material-symbols-outlined me-1">
-                                            payments
-                                            </span> <span class="material-symbols-outlined">
-                                                currency_rupee
-                                                </span> {{ $job->min_salary}} - {{ $job->mex_salary}} RS</div>
-                                    </div>
-                                    <div class="mt-4 d-flex align-items-center justify-content-between">
-                                        <button class="btn btn-primary d-flex gap-2 px-3"><span class="material-symbols-outlined">
-                                            approval_delegation
-                                            </span>Apply Now</button>
+
+                                        <div class="location d-flex align-items-center me-4 mb-4">
+
+                                            <div class="d-flex align-items-center me-2">
+                                                <span class="material-symbols-outlined me-1">apartment</span>
+                                                {{ $job->company_name }}
+                                            </div>
+                                            <span class="material-symbols-outlined me-1">location_on</span>
+                                            {{ $job->company_address }}
+                                        </div>
+
+                                        <div class="title-info d-flex align-items-center">
+                                            <div class="job_mode d-flex align-items-center me-4">
+                                                <span
+                                                    class="material-symbols-outlined me-1">mode_of_travel</span>{{ $job->job_mode }}
+                                            </div>
+                                            <div class="experience d-flex align-items-center me-4">
+                                                <span class="material-symbols-outlined me-1">trip</span>
+                                                @if ($job->experience == 'Freshers')
+                                                    {{ $job->experience }}
+                                                @else
+                                                    {{ $job->experience }} Years
+                                                @endif
+                                            </div>
+                                            <div class="salary d-flex align-items-center me-4">
+                                                <span class="material-symbols-outlined me-1">payments</span>
+                                                <span class="material-symbols-outlined">currency_rupee</span>
+                                                {{ $job->min_salary }} - {{ $job->mex_salary }} RS per month
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mt-4 d-flex align-items-center justify-content-between">
+                                            <button class="btn btn-primary d-flex gap-2 px-3" data-bs-toggle="modal"
+                                                data-bs-target="#modal-{{ $job->job_id }}">
+                                                <span class="material-symbols-outlined">approval_delegation</span>Apply
+                                                Now
+                                            </button>
+                                            <div class="modal fade" id="modal-{{ $job->job_id }}" tabindex="-1"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <img src="{{ asset('assets/images/bg.jpg') }}"
+                                                                class="rounded-circle me-3" height="50"
+                                                                width="50" alt="">
+                                                            <div class="mt-4">
+                                                                <h4 class="modal-title">{{ $job->company_name }}</h4>
+                                                                <div
+                                                                    class="location d-flex align-items-center me-4 mb-4">
+                                                                    <div class="d-flex align-items-center me-2">
+                                                                        <span
+                                                                            class="material-symbols-outlined me-1">apartment</span>
+                                                                        {{ $job->company_name }}
+                                                                    </div>
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">location_on</span>
+                                                                    {{ $job->company_address }}
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="d-flex align-items-center me-2 mb-1">
+                                                                <span
+                                                                    class="material-symbols-outlined me-1">history</span>Posted:
+                                                                {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+                                                            </div>
+                                                            <div class="d-flex align-items-center me-2 mb-1">
+                                                                @if ($job->job_mode == 'WFH')
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">home</span>Work
+                                                                    From Home
+                                                                @else
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">meeting_room</span>Work
+                                                                    From Office
+                                                                @endif
+                                                            </div>
+                                                            <div class="d-flex align-items-center me-2 mb-1">
+                                                                @if ($job->experience == 'Freshers')
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">trip</span>Experience:
+                                                                    <div class="apply-by text-end px-2 fs-11 fw-lighter"
+                                                                        style="border-radius: 10px; color:rgb(0, 255, 128); background-color:#F1FFE5;">
+                                                                        {{ $job->experience }}
+                                                                    </div>
+                                                                @else
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">trip</span>Experience:
+                                                                    <div class="apply-by text-end px-2 fs-11 fw-lighter"
+                                                                        style="border-radius: 10px; color:rgb(120, 0, 58); background-color:#ffffe5;">
+                                                                        {{ $job->experience }} Years
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                            <div class="d-flex align-items-center me-2 mb-1">
+                                                                <span
+                                                                    class="material-symbols-outlined me-1">atr</span>Job
+                                                                Role:
+                                                                <div class="text-end px-2 fs-11 fw-lighter"
+                                                                    style="border-radius: 10px; color:rgb(120, 0, 58); background-color:#ffffe5;">
+                                                                    {{ $job->job_role }}
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <h5>Job Descriptions</h5>
+                                                            <div class="mt-1 mb-2">
+                                                                <div class="d-flex align-items-center me-2 mb-1">
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">keep</span>
+                                                                    <div class="fw-bold" style="font-size: 14px">
+                                                                        Responsibilities : </div>
+                                                                </div>
+                                                                {{ $job->job_responsibilities }}
+                                                            </div>
+                                                            <div class="mb-2">
+
+                                                                <div class="d-flex align-items-center me-2 mb-1">
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">task</span>
+                                                                    <div class="fw-bold" style="font-size: 14px">
+                                                                        Qualifications : </div>
+                                                                </div>
+                                                                {{ $job->qualification }}
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <div class="d-flex align-items-center me-2 mb-1">
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">report</span>
+                                                                    <div class="fw-bold" style="font-size: 14px">
+                                                                        Required Skills : </div>
+                                                                </div>
+                                                                {{ $job->required_skills }}
+                                                            </div>
+                                                            <hr>
+
+                                                            <form action="">
+                                                                <div class="text-danger" id="resume_error"></div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="resume_type" value="resume" id="flexRadioDefault1">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault1">
+                                                                        Select Your Resume <a href="#">edit</a>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="resume_type" value="uploaded_resume" id="flexRadioDefault2">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault2">
+                                                                        Upload Your Custom Resume (Optional)
+                                                                    </label>
+                                                                </div>
+                                                                <div class=" uploaded_file_label d-flex align-items-center me-2 mb-1">
+                                                                    <span class="material-symbols-outlined me-1">description</span>
+                                                                    <div class="fw-bold" style="font-size: 14px"> Upload Your Custom Resume : </div>
+                                                                </div>
+                                                                <div class="uploaded_file d-flex input-group mb-3">
+                                                                    <input type="file" class="form-control"
+                                                                        name="uploaded_file" id="inputGroupFile02">
+                                                                    <label class="input-group-text"
+                                                                        for="inputGroupFile02">Upload</label>
+                                                                </div>
+                                                            </form>
+                                                            {{-- {{ $job->job_mode }},
+                                                            {{ $job->job_title }},
+                                                            {{ $job->job_role }},
+                                                            {{ $job->experience }},
+                                                            {{ $job->num_of_candidate }},
+                                                            {{ $job->qualification }},
+                                                            {{ $job->required_skills }} --}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <a href="" class="btn btn-primary">Apply Now</a>
+                                                            {{-- <button type="button"
+                                                                class="btn btn-primary">Apply</button> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="apply-by text-end px-3 py-1 fs-11 fw-lighter d-flex align-items-center me-2"
+                                                style="border-radius: 10px; color:rgb(0, 255, 128); background-color:#F1FFE5;">
+                                                <span
+                                                    class="material-symbols-outlined me-1">hourglass_bottom</span>Apply
+                                                By : <strong> {{ $job->apply_by }}</strong>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

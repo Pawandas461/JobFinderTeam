@@ -20,7 +20,7 @@ use App\Http\Controllers\Controller;
 use Faker\Provider\ar_EG\Company;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('candidate.index');
 });
 
 Route::get('/candidate', function(){

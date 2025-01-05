@@ -176,7 +176,7 @@ class CompanyController extends Controller
                         $req->session()->put('company_id', $companyId);
 
                         // Redirect to the company dashboard 
-                        return redirect()->route('/company')->with('message', 'Company registered successfully!');
+                        return redirect()->route('/company')->with('message', 'Company login successfully!');
                     } else {
                         return redirect('/company/login')->with('message', "Password Doesnot matched");
                     }
