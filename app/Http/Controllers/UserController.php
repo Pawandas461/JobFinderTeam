@@ -119,27 +119,24 @@ class UserController extends Controller
     }
     public function view_jobs_category($category_name)
     {
-        $jobs = DB::table('categories')
-            ->join('categories', 'jobs', '=', 'category_id')
-            ->where('categories.category_name', $category_name)
+        $jobs = DB::table('jobs')
+            ->join('companies', 'jobs.created_by', '=', 'companies.id')
+            ->join('categories', 'jobs.category_id', '=', 'categories.id')
+            ->leftJoin('resumes', 'resumes.candidate_id', '=', DB::raw('"' . session('user_id') . '"')) // Join with resumes table
+            ->where('jobs.status', 2)
+            ->where('categories.category_name',$category_name)
             ->select(
                 'jobs.id as job_id',
                 'jobs.*',
-                // 'jobs.job_title', 
-                // 'jobs.job_mode', 
-                // 'jobs.job_role', 
-                // 'jobs.num_of_candidate', 
-                // 'jobs.qualification', 
-                // 'jobs.required_skills', 
-                // 'jobs.experience', 
-                // 'jobs.min_salary', 
-                // 'jobs.mex_salary', 
-                // 'jobs.apply_by', 
-                // 'jobs.created_at', 
-                // 'jobs.status', 
                 'companies.id as company_id',
                 'companies.company_name',
-                'companies.company_address'
+                'companies.company_address',
+                'resumes.id as resume_id', // Add resume-specific columns
+                'resumes.pursuing_education_status',
+                'resumes.degree',
+                'resumes.stream',
+                'resumes.skills',
+                'resumes.created_at as resume_created_at'
             )
             ->get();
         $user_id = session('user_id');
