@@ -139,9 +139,32 @@ class UserController extends Controller
                 'resumes.created_at as resume_created_at'
             )
             ->get();
-            $user_id = session('user_id');
-    
+        $user_id = session('user_id');
+
         return view('candidate.jobs', compact('jobs'));
     }
-    
+
+    public function application(Request $request)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'job_id' => 'required|integer',
+            'candidate_id' => 'required|integer',
+            'resume_id' => 'nullable|integer',
+            'resume_type' => 'required|in:resume,uploaded_resume',
+        ]);
+
+        // Insert the application into the database
+        DB::table('applications')->insert([
+            'job_id' => $request->input('job_id'),
+            'candidate_id' => $request->input('candidate_id'),
+            'resume_id' => $request->input('resume_id'),
+            'resume_type' => $request->input('resume_type'),
+            'apply_date' => now(),
+            'status' => 1
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Application submitted successfully.');
+    }
 }
