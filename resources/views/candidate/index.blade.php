@@ -73,7 +73,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="{{ url('/candidate') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/candidate/jobs') }}">Jobs</a>
@@ -111,8 +111,8 @@
                                 height="45">
                         </a>
 
-                    @if(session('name') && session('user_id'))
-                    <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
+                        @if(session('name') && session('user_id'))
+                        <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                             <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                 <div class="text-center">
                                     <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
@@ -127,8 +127,8 @@
 
                             </a>
 
-                    @else
-                    <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
+                            @else
+                            <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
                                         <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
@@ -149,7 +149,7 @@
 
                                 @endif
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -206,62 +206,80 @@
             <h1 style="font-weight: 600" class="text-center">JOB CATAGORIES</h1>
             <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
                 <div class="col-lg-3 col-md-4 col-12">
-                    <a href="{{url('/candidate/jobs/technical_it_jobs')}}">
-                    <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
-                            <img src="assets/images/tech_job.png" class="position-absolute end-0 bottom-0"
-                                width="140" alt="">
+                    <a href="{{ url('/candidate/jobs/technical_it_jobs') }}">
+                        <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
+                                <img src="assets/images/tech_job.png" class="position-absolute end-0 bottom-0"
+                                    width="140" alt="">
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none bg-success mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Creative Jobs</h5>
-                            <img src="assets/images/creative_job.png" class="position-absolute end-0 bottom-0"
-                                width="130" alt="">
+
+                    <a href="{{ url('/candidate/jobs/creative_jobs') }}">
+                        <div class="card shadow-none bg-success mb-0" style="height: 160px;">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Creative Jobs</h5>
+                                <img src="assets/images/creative_job.png" class="position-absolute end-0 bottom-0"
+                                    width="130" alt="">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 145);">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Healthcare Jobs</h5>
-                            <img src="assets/images/helth.png" class="position-absolute end-0 bottom-0"
-                                width="120" alt="">
+
+                    <a href="{{ url('/candidate/jobs/healthcare_jobs') }}">
+                        <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 145);">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Healthcare Jobs</h5>
+                                <img src="assets/images/helth.png" class="position-absolute end-0 bottom-0"
+                                    width="120" alt="">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
-                    <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(224, 234, 21);">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Finance and Business</h5>
-                            <img src="assets/images/Finance_job.png" class="position-absolute end-0 bottom-0 m-2"
-                                width="130" alt="">
+                    <a href="{{ url('/candidate/jobs/finance_business') }}">
+
+                        <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(224, 234, 21);">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Finance and Business</h5>
+                                <img src="assets/images/Finance_job.png" class="position-absolute end-0 bottom-0 m-2"
+                                    width="130" alt="">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 216);">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Education and Training</h5>
-                            <img src="assets/images/education_job.png" class="position-absolute end-0 bottom-0"
-                                width="130" alt="">
+                    <a href="{{ url('/candidate/jobs/education_training') }}">
+
+                        <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 216);">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Education and Training</h5>
+                                <img src="assets/images/education_job.png" class="position-absolute end-0 bottom-0"
+                                    width="130" alt="">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <div class="card shadow-none bg-orange mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Sales and Marketing</h5>
-                            <img src="assets/images/sales_job.png" class="position-absolute end-0 bottom-0"
-                                width="130" alt="">
+
+                    <a href="{{ url('/candidate/jobs/sales_marketing') }}">
+
+                        <div class="card shadow-none bg-orange mb-0" style="height: 160px;">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Sales and Marketing</h5>
+                                <img src="assets/images/sales_job.png" class="position-absolute end-0 bottom-0"
+                                    width="130" alt="">
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
+                    <a href="http://"><a href="{{ url('/candidate/jobs/logistics_operations') }}">
+                        
                     <div class="card shadow-none bg-danger mb-0" style="height: 160px;">
                         <div class="card-body">
                             <h5 class="mb-0 text-white">Logistics and Operations</h5>
@@ -269,8 +287,11 @@
                                 width="130" alt="">
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
+                    <a href="{{ url('/candidate/jobs/engineering_jobs') }}">
+                        
                     <div class="card shadow-none bg-indigo mb-0" style="height: 160px;">
                         <div class="card-body">
                             <h5 class="mb-0 text-white">Engineering Jobs</h5>
@@ -278,6 +299,7 @@
                                 width="130" alt="">
                         </div>
                     </div>
+                    </a>
                 </div>
 
             </div>
