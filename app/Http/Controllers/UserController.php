@@ -121,10 +121,10 @@ class UserController extends Controller
     {
         $jobs = DB::table('categories')
             ->join('categories', 'jobs', '=', 'category_id')
-            ->where('categories.category_name',$category_name )
+            ->where('categories.category_name', $category_name)
             ->select(
-                'jobs.id as job_id', 
-                'jobs.*', 
+                'jobs.id as job_id',
+                'jobs.*',
                 // 'jobs.job_title', 
                 // 'jobs.job_mode', 
                 // 'jobs.job_role', 
@@ -137,14 +137,37 @@ class UserController extends Controller
                 // 'jobs.apply_by', 
                 // 'jobs.created_at', 
                 // 'jobs.status', 
-                'companies.id as company_id', 
-                'companies.company_name', 
+                'companies.id as company_id',
+                'companies.company_name',
                 'companies.company_address'
             )
             ->get();
-            $user_id = session('user_id');
-    
+        $user_id = session('user_id');
+
         return view('candidate.jobs', compact('jobs'));
     }
-    
+
+    public function application(Request $request)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'job_id' => 'required|integer',
+            'candidate_id' => 'required|integer',
+            'resume_id' => 'nullable|integer',
+            'resume_type' => 'required|in:resume,uploaded_resume',
+        ]);
+
+        // Insert the application into the database
+        DB::table('applications')->insert([
+            'job_id' => $request->input('job_id'),
+            'candidate_id' => $request->input('candidate_id'),
+            'resume_id' => $request->input('resume_id'),
+            'resume_type' => $request->input('resume_type'),
+            'apply_date' => now(),
+            'status' => 1
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Application submitted successfully.');
+    }
 }

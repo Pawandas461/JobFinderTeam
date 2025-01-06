@@ -86,6 +86,17 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <!--start header-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
@@ -127,8 +138,8 @@
                             <a class="nav-link" href="#">Offers</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Login/Signup
                             </a>
                             <ul class="dropdown-menu">
@@ -140,19 +151,21 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
-                                height="45">
+                            <img src="{{ asset('assets/images/avatars/01.png') }}" class="rounded-circle p-1 border"
+                                width="45" height="45">
                         </a>
                         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                             <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                 <div class="text-center">
-                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
-                                        width="90" height="90" alt="">
+                                    <img src="{{ asset('assets/images/avatars/01.png') }}"
+                                        class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+                                        alt="">
                                     <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
                                 </div>
                             </a>
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{url('/candidate/my_resume')}}">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                href="{{ url('/candidate/my_resume') }}">
                                 <span class="material-symbols-outlined">
                                     task
                                 </span> My Resume</a>
@@ -429,36 +442,56 @@
                                                             </div>
                                                             <hr>
 
-                                                            <form action="">
-                                                                <div class="text-danger" id="resume_error"></div>
+                                                            <form action="{{ url('/candidate/application') }}"
+                                                                method="post">
+                                                                @csrf
+
+                                                                <input type="hidden" name="job_id"
+                                                                    value="{{ $job->job_id }}">
+                                                                <input type="hidden" name="candidate_id"
+                                                                    value="{{ session('user_id') }}">
+                                                                <input type="hidden" name="resume_id"
+                                                                    value="{{ $job->resume_id }}">
                                                                 @if ($job->resume_id)
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="resume_type" value="resume" id="flexRadioDefault1">
-                                                                    <label class="form-check-label"
-                                                                        for="flexRadioDefault1">
-                                                                        Select Your Resume <a href="#">edit</a>
-                                                                    </label>
-                                                                </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="resume_type" value="resume"
+                                                                            id="flexRadioDefault1">
+                                                                        <label class="form-check-label"
+                                                                            for="flexRadioDefault1">
+                                                                            Select Your Resume <a
+                                                                                href="#">edit</a>
+                                                                        </label>
+                                                                    </div>
                                                                 @else
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="resume_type" value="resume" id="flexRadioDefault1">
-                                                                    <label class="form-check-label"
-                                                                        for="flexRadioDefault1">
-                                                                        Select Your Resume <a href="{{url()}}">Please Create Your Resume </a>
-                                                                    </label>
-                                                                </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="radio"
+                                                                            name="resume_type" value="resume"
+                                                                            id="flexRadioDefault1">
+                                                                        <label class="form-check-label"
+                                                                            for="flexRadioDefault1">
+                                                                            Select Your Resume <a
+                                                                                href="{{ url('/candidate/create_resume') }}">Please
+                                                                                Create Your Resume </a>
+                                                                        </label>
+                                                                    </div>
                                                                 @endif
-                                                               
+
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="resume_type" value="uploaded_resume" id="flexRadioDefault2">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="resume_type" value="uploaded_resume"
+                                                                        id="flexRadioDefault2">
                                                                     <label class="form-check-label"
                                                                         for="flexRadioDefault2">
                                                                         Upload Your Custom Resume (Optional)
                                                                     </label>
                                                                 </div>
-                                                                <div class=" uploaded_file_label d-flex align-items-center me-2 mb-1">
-                                                                    <span class="material-symbols-outlined me-1">description</span>
-                                                                    <div class="fw-bold" style="font-size: 14px"> Upload Your Custom Resume : </div>
+                                                                <div
+                                                                    class=" uploaded_file_label d-flex align-items-center me-2 mb-1">
+                                                                    <span
+                                                                        class="material-symbols-outlined me-1">description</span>
+                                                                    <div class="fw-bold" style="font-size: 14px">
+                                                                        Upload Your Custom Resume : </div>
                                                                 </div>
                                                                 <div class="uploaded_file d-flex input-group mb-3">
                                                                     <input type="file" class="form-control"
@@ -466,8 +499,8 @@
                                                                     <label class="input-group-text"
                                                                         for="inputGroupFile02">Upload</label>
                                                                 </div>
-                                                            </form>
-                                                            {{-- {{ $job->job_mode }},
+
+                                                                {{-- {{ $job->job_mode }},
                                                             {{ $job->job_title }},
                                                             {{ $job->job_role }},
                                                             {{ $job->experience }},
@@ -478,10 +511,13 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Close</button>
-                                                            <a href="" class="btn btn-primary">Apply Now</a>
+                                                            <input class="btn btn-primary" type="submit"
+                                                                value="Apply Now">
                                                             {{-- <button type="button"
                                                                 class="btn btn-primary">Apply</button> --}}
                                                         </div>
+
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
