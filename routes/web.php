@@ -20,6 +20,10 @@ use App\Http\Controllers\Controller;
 use Faker\Provider\ar_EG\Company;
 
 
+
+Route::get('/', function(){
+    return view('candidate.index');
+});
 Route::get('/candidate', function(){
     return view('candidate.index');
 });
@@ -33,6 +37,8 @@ Route::get('/login', function(){
 
 Route::get('/candidate/jobs', [UserController::class, 'view_jobs']);
 Route::get('/candidate/my_resume', [UserController::class, 'my_resume']);
+
+Route::post('/candidate/application', [UserController::class, 'application']);
 
 Route::get('/admin', [AdminController::class, 'admin_index']);
 Route::get('/admin/login', [AdminController::class, 'login_form']);
