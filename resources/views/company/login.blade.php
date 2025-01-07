@@ -103,7 +103,7 @@
                 <div class="col-12 col-xl-6 col-xxl-5 auth-cover-right align-items-center justify-content-center">
                     <div class="card rounded border-0 shadow-none m-4 wd-auth-box">
                         <div class="card-body p-sm-5">
-                            <h1 class="fw-bold">Login</h1>
+                            <h1 class="fw-bold">Company Login</h1>
                             <p class="mb-0">Enter your credentials to Login your account</p>
 
                             <div class="form-body mt-4">
