@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>Job Create Form</title>
     <!--favicon-->
     <link rel="icon" href="{{ asset('assets/images/jf_logo.jpg') }}" type="image/png">
 
@@ -29,6 +29,7 @@
     <link href="{{ asset('sass/semi-dark.css') }}" rel="stylesheet">
     <link href="{{ asset('sass/bordered-theme.css') }}" rel="stylesheet">
     <link href="{{ asset('sass/responsive.css') }}" rel="stylesheet">
+
 
 
     <style>
@@ -58,7 +59,6 @@
             min-height: 100vh;
         }
 
-
         .text-warning {
             color: #000 !important;
         }
@@ -74,23 +74,90 @@
             border: none;
         }
 
-        .btn {
+        .wd-logo-icon {
+            margin: 0px auto;
+            border-radius: 50%;
+            border: 3px solid rgb(255, 255, 255);
+            box-shadow: #000 1px 1px 10px;
+        }
+
+        .sidebar-wrapper .sidebar-nav .metismenu .mm-active>a {
+            background-color: #d6d3d3;
+            color: #000000;
+        }
+
+        .sidebar-wrapper .sidebar-nav .metismenu li:hover a {
+            background-color: #d6d3d3;
+        }
+
+        .sidebar-wrapper .sidebar-nav .metismenu li:hover a {
+            color: rgb(255, 255, 255) !important;
+        }
+
+        .logo-img {
+            width: 200px !important;
+        }
+
+        .text-warning {
+            color: #f7d92d !important;
+        }
+
+        .text-dark {
+            color: #000 !important;
+        }
+
+        .paginate_button a {
+            color: #ddd !important;
+        }
+
+        .bg-warning,
+        .paginate_button.active a {
+            background: #f7d92d !important;
+            color: #000 !important;
+            border: none;
+        }
+
+        button {
             width: 200px;
             color: #000 !important;
             background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
             padding: 10px 30px !important;
             border: none !important;
-            font-size: 14px !important;
+            font-size: 19px !important;
         }
 
-        .btn:hover {
+        /* .btn {
+            width: 200px;
+        } */
+
+        button:hover {
             color: #000 !important;
             background: linear-gradient(109.6deg, rgb(244, 253, 0) 10.2%, rgb(255, 219, 47) 100.2%);
             padding: 10px 30px !important;
             border: none !important;
-            font-size: 14px !important;
+            font-size: 19px !important;
         }
-       
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+        }
+
+        @media (max-width: 750px) {
+            .card {
+                padding: 30px 16px;
+            }
+        }
+
+        main {
+            min-height: 100vh;
+        }
+
+        .main-content {
+            position: relative;
+            color: #fff;
+        }
 
         .main-content::before {
             content: "";
@@ -107,17 +174,36 @@
             min-height: 100vh !important;
         }
 
+        /* .card {
+      overflow: hidden;
+    }
+
+    .card-img {
+      object-fit: cover;
+    }
+
+    .card-img-overlay.custom-overlay::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      z-index: 1;
+    }
+
+    .card-img-overlay * {
+      position: relative;
+
+      z-index: 2;
+    } */
     </style>
 
 </head>
 
 <body>
 
-    @if (session('message'))
-        <script>
-            alert("{{session('message')}}");
-        </script>
-    @endif
     <!--start header-->
     <header class="top-header">
         <nav class="navbar navbar-expand align-items-center gap-4">
@@ -324,7 +410,7 @@
 
                 <!-- Dashboard -->
                 <li>
-                    <a href="{{url('/company')}}">
+                    <a href="{{ url('/company') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">home</i></div>
                         <div class="menu-title">Dashboard</div>
                     </a>
@@ -332,7 +418,7 @@
 
                 <!-- Post a Job -->
                 <li>
-                    <a href="{{url('/company/create_job')}}">
+                    <a href="{{ url('/company/create_job') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">work</i></div>
                         <div class="menu-title">Create a Job</div>
                     </a>
@@ -348,7 +434,7 @@
 
                 <!-- Applications -->
                 <li>
-                    <a href="{{ url('/company/applications') }}">
+                    <a href="applications.html">
                         <div class="parent-icon"><i class="material-icons-outlined">assignment</i></div>
                         <div class="menu-title">Applications</div>
                     </a>
@@ -356,7 +442,7 @@
 
                 <!-- Approval Requests -->
                 <li>
-                    <a href="{{url('/company/approval_request')}}">
+                    <a href="{{ url('/company/approval_request') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">how_to_reg</i></div>
                         <div class="menu-title">Approval Requests</div>
                     </a>
@@ -364,7 +450,7 @@
 
                 <!-- Approved Jobs -->
                 <li>
-                    <a href="approved-jobs.html">
+                    <a href="{{ url('/company/approved_jobs') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">check_circle</i></div>
                         <div class="menu-title">Approved Jobs</div>
                     </a>
@@ -413,7 +499,6 @@
             </ul>
         </div>
     </aside>
-
     <!--end sidebar-->
 
 
@@ -421,6 +506,23 @@
     <main class="main-wrapper">
         <div class="main-content">
             <!--breadcrumb-->
+            <div class="container mt-3">
+                <!-- Success Message -->
+                @if (session('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            
+                <!-- Error Message -->
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            </div>
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                 <div class="breadcrumb-title pe-3">Home</div>
                 <div class="ps-3">
@@ -432,205 +534,123 @@
                         </ol>
                     </nav>
                 </div>
-
             </div>
             <!--end breadcrumb-->
 
-
-
-
             <div class="row">
-                <div class="col-12 col-xl-12 d-flex">
-                    <div class="card rounded-4 w-100">
+                <!-- Recent Approved and Posted Jobs -->
+                <div class="col-12  d-flex">
+                    <div class="card w-100 rounded-4 overflow-y-auto" style="max-height: 510px;">
                         <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-around flex-wrap gap-4 p-4">
-                                <!-- Posted Jobs -->
-                                <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="posted-jobs.html"
-                                        class="mb-2 wh-48 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="material-icons-outlined">work_outline</i>
-                                    </a>
-                                    <h3 class="mb-0">12</h3>
-                                    <p class="mb-0">Posted Jobs</p>
+                            <div class="d-flex align-items-start justify-content-between mb-3">
+                                <div class="">
+                                    <h5 class="mb-0 fw-bold">Recent Approved and Posted Jobs</h5>
                                 </div>
+                            </div>
+                            <div class="table-responsive">
+                                @if (isset($applications))
 
-                                <div class="vr"></div>
 
-                                <!-- Applications Received -->
-                                <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="applications.html"
-                                        class="mb-2 wh-48 bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="material-icons-outlined">assignment_ind</i>
-                                    </a>
-                                    <h3 class="mb-0">56</h3>
-                                    <p class="mb-0">Applications Received</p>
-                                </div>
+                                    <table id="example" class="table table-striped table-bordered"
+                                        style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl No</th>
+                                                <th>Applicant name</th>
+                                                <th>Position</th> {{-- jobrole --}}
+                                                <th>Applicant Email</th>
+                                                <th>Qualification</th>
+                                                <th>Application Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($applications as $application)
+                                                <tr>
+                                                    <td>{{ $application->application_id }}</td>
+                                                    <td>{{ $application->name }}</td>
+                                                    <td>{{ $application->job_role }}</td>
+                                                    <td>{{ $application->email }}</td>
+                                                    <td>{{ $application->degree }}</td>
+                                                    <td>{{ $application->apply_date }}</td>
+                                                    <td>@if ($application->status == 1)
+                                                        <div class="text-primary fw-bold">Applied</div>
+                                                    @elseif ($application->status == 2)
+                                                        <div class="text-success fw-bold">Sort Listed</div>
+                                                    @elseif ($application->status == 3)
+                                                        <div class="text-danger fw-bold">Rejected</div>
+                                                    @else
+                                                        <div class="text-muted fw-bold">Status Unknown</div>
+                                                    @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="col">
+                                                            <!-- Button trigger modal -->
+                                                            <div type="button" class="btn btn-success"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modal-{{ $application->application_id }}">
+                                                                View</div>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade"
+                                                                id="modal-{{ $application->application_id }}"
+                                                                tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <div class="d-flex flex-column">
+                                                                                <h5 class="modal-title"
+                                                                                    id="exampleModalLabel">
+                                                                                    {{ $application->name }}</h5>
+                                                                                {{ $application->email }}
+                                                                            </div>
 
-                                <div class="vr"></div>
+                                                                            <div type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></div>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="experience">
+                                                                                Experience:
+                                                                                @if ($application->experience == 'Freshers')
+                                                                                    {{ $application->experience }}
+                                                                                @else
+                                                                                    {{ $application->experience }}
+                                                                                    Years
+                                                                                @endif
 
-                                <!-- Pending Approval -->
-                                <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="pending-approval.html"
-                                        class="mb-2 wh-48 bg-danger text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="material-icons-outlined">pending_actions</i>
-                                    </a>
-                                    <h3 class="mb-0">3</h3>
-                                    <p class="mb-0">Pending Approval</p>
-                                </div>
-
-                                <div class="vr"></div>
-
-                                <!-- Approved Jobs -->
-                                <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="approved-jobs.html"
-                                        class="mb-2 wh-48 bg-success text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="material-icons-outlined">check_circle_outline</i>
-                                    </a>
-                                    <h3 class="mb-0">9</h3>
-                                    <p class="mb-0">Approved Jobs</p>
-                                </div>
-
-                                <div class="vr"></div>
-
-                                <!-- Denied Requests -->
-                                <div class="d-flex flex-column align-items-center justify-content-center gap-2">
-                                    <a href="denied-requests.html"
-                                        class="mb-2 wh-48 bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="material-icons-outlined">cancel</i>
-                                    </a>
-                                    <h3 class="mb-0">2</h3>
-                                    <p class="mb-0">Denied Requests</p>
-                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <div type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal">Close</div>
+                                                                            <a href="{{ url('company/application/sort_list/' . $application->application_id)}}"
+                                                                                class="btn btn-primary">Sort List</a>
+                                                                                <a href="{{ url('company/application/reject'. $application->application_id)}}"
+                                                                                class="btn btn-danger">Reject</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            <!-- Add more rows as needed -->
+                                        </tbody>
+                                    </table>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!--end row-->
-
-            <div class="row">
-              <!-- Create a Job Section -->
-              <div class="col-12 col-xl-5 col-xxl-4 d-flex">
-                  <div class="card rounded-4 w-100 shadow-none bg-transparent border-0">
-                      <div class="card-body p-0">
-                          <div class="row g-4">
-                              <div class="col-12 col-xl-12 d-flex">
-                                  <div class="card mb-0 rounded-4 w-100" style="overflow: hidden;">
-                                      <img src="../assets/images/bg-dashboard-consultant2.jpg" class="card-img rounded-4" alt="..." style="max-height: 230px;">
-                                      <div class="card-img-overlay custom-overlay">
-                                          <h3 class="card-title text-dark">Create a Job</h3>
-                                          <p class="mb-0 text-dark">
-                                              Post your job openings and reach potential candidates.<br>
-                                              Admin approval is required for jobs to be visible to candidates.
-                                          </p>
-                                          <div class="bottom-0 position-absolute mb-3">
-                                              <a href="{{url('/company/create_job')}}" class="btn text-dark px-3 bg-white d-flex gap-2">
-                                                  Create Job <span class="material-icons-outlined">east</span>
-                                              </a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-          
-                              <!-- Selected Applications -->
-                              <div class="col-12 col-xl-12 d-flex" style="max-height: 260px;">
-                                  <div class="card mb-0 rounded-4 w-100">
-                                      <div class="card-body">
-                                          <div class="d-flex align-items-start justify-content-between mb-1">
-                                              <div class="">
-                                                  <h4 class="mb-0">Selected Applications</h4>
-                                                  <p class="mb-0">Candidates selected for interviews</p>
-                                              </div>
-                                          </div>
-                                          <div class="chart-container2">
-                                              <div id="chart2"></div>
-                                          </div>
-                                          <div class="text-center">
-                                              <p class="mb-0">Review shortlisted candidates</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div><!-- End row -->
-                      </div>
-                  </div>
-              </div>
-          
-              <!-- Recent Approved and Posted Jobs -->
-              <div class="col-12 col-xl-7 col-xxl-8 d-flex">
-                  <div class="card w-100 rounded-4 overflow-y-auto" style="max-height: 510px;">
-                      <div class="card-body">
-                          <div class="d-flex align-items-start justify-content-between mb-3">
-                              <div class="">
-                                  <h5 class="mb-0 fw-bold">Recent Approved and Posted Jobs</h5>
-                              </div>
-                          </div>
-                          <div class="table-responsive">
-                              <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                  <thead>
-                                      <tr>
-                                          <th>Sl No</th>
-                                          <th>Job Title</th>
-                                          <th>Responsibilities</th>
-                                          <th>Mode</th>
-                                          <th>Role</th>
-                                          <th>Experience</th>
-                                          <th>No. of Candidates</th>
-                                          <th>Qualification</th>
-                                          <th>Required Skills</th>
-                                          <th>Min/Max Salary</th>
-                                          <th>Apply By</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td>01</td>
-                                          <td>Frontend Developer</td>
-                                          <td>Build responsive UIs</td>
-                                          <td>Online</td>
-                                          <td>Developer</td>
-                                          <td>Freshers</td>
-                                          <td>3</td>
-                                          <td>Bachelor's in CS</td>
-                                          <td>HTML, CSS, JavaScript</td>
-                                          <td>$3,000 - $5,000</td>
-                                          <td>2024-01-15</td>
-                                      </tr>
-                                      <tr>
-                                          <td>02</td>
-                                          <td>Backend Developer</td>
-                                          <td>Develop APIs</td>
-                                          <td>Offline</td>
-                                          <td>Developer</td>
-                                          <td>2+ years</td>
-                                          <td>2</td>
-                                          <td>Bachelor's in CS</td>
-                                          <td>PHP, MySQL</td>
-                                          <td>$4,000 - $6,000</td>
-                                          <td>2024-01-20</td>
-                                      </tr>
-                                      <!-- Add more rows as needed -->
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
-            <!--end row-->
-
+        </div>
         </div>
     </main>
     <!--end main wrapper-->
-
-
-    <!--start overlay-->
-    <div class="overlay btn-toggle"></div>
-    <!--end overlay-->
-
-
 
     <!--start footer-->
     <footer class="page-footer">
@@ -638,25 +658,22 @@
     </footer>
     <!--top footer-->
 
-
-
     <!--bootstrap js-->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
     <!--plugins-->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
     <!--plugins-->
-    <script src="../assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-    <script src="../assets/plugins/metismenu/metisMenu.min.js"></script>
-    <script src="../assets/plugins/apexchart/apexcharts.min.js"></script>
-    <script src="../assets/plugins/simplebar/js/simplebar.min.js"></script>
-    <script src="../assets/plugins/validation/jquery.validate.min.js"></script>
-    <script src="../assets/plugins/validation/validation-script.js"></script>
-    <script src="../assets/js/index.js"></script>
-    <script src="../assets/js/main.js"></script>
-
+    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/plugins/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/index.js') }}"></script>
+    <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script>
+        $(".data-attributes span").peity("donut")
+    </script>
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
@@ -673,8 +690,6 @@
                 .appendTo('#example2_wrapper .col-md-6:eq(0)');
         });
     </script>
-
-
 </body>
 
 </html>

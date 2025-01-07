@@ -18,17 +18,19 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\Controller;
 use Faker\Provider\ar_EG\Company;
+use App\Http\Middleware\CompanyAuth;
 
 
 
-Route::get('/', function(){
+
+Route::get('/', function () {
     return view('candidate.index');
 });
-Route::get('/candidate', function(){
+Route::get('/candidate', function () {
     return view('candidate.index');
 });
 
-Route::get('/login', function(){
+Route::get('/login', function () {
     return view('candidate.login');
 });
 
@@ -42,43 +44,44 @@ Route::post('/candidate/application', [UserController::class, 'application']);
 
 Route::get('/admin', [AdminController::class, 'admin_index']);
 Route::get('/admin/login', [AdminController::class, 'login_form']);
-Route::post('/admin_login',[AdminController::class, 'admin_login']);
+Route::post('/admin_login', [AdminController::class, 'admin_login']);
 
-Route::get('/company', [CompanyController::class, 'company_index'])->name('/company');
 
 Route::get('/company/login', [CompanyController::class, 'login_form']);
 Route::post('/login-company', [CompanyController::class, 'company_login']);
-
 Route::get('/company/register', [CompanyController::class, 'register_form']);
-Route::post('register-company',[CompanyController::class, 'company_register']);
+Route::post('register-company', [CompanyController::class, 'company_register']);
 
-Route::get('/company/approval_request', [JobController::class, 'approval_request']);
-Route::get('/company/approved_jobs', [JobController::class, 'approved_jobs']);
+Route::middleware([CompanyAuth::class])->group(function () {
+    Route::get('/company', [CompanyController::class, 'company_index'])->name('/company');
+    Route::get('/company/approval_request', [JobController::class, 'approval_request']);
+    Route::get('/company/approved_jobs', [JobController::class, 'approved_jobs']);
+    Route::get('/company/applications', [CompanyController::class, 'applications']);
+    Route::get('company/application/sort_list/{id}', [CompanyController::class, 'sortlist_resume']);
+    Route::get('company/application/reject/{id}', [CompanyController::class, 'reject_resume']);
+});
+
 
 
 
 
 
 //Debashis Route
-Route::get('/signup', function(){
+Route::get('/signup', function () {
     return view('candidate.signup');
 });
 Route::get('/company/create_job', [JobController::class, 'create_job_form']);
-Route::post('create_job_request',[JobController::class,'create_job_request']);
-Route::post('/register',[UserController::class,'user_signup']);
-Route::post('/user_login',[UserController::class,'user_login']);
-Route::get('/forgot_pass',[UserController::class,'forgot_pass']);
-Route::get('/candidate/jobs/{category_name}',[UserController::class,'view_jobs_category']);
+Route::post('create_job_request', [JobController::class, 'create_job_request']);
+Route::post('/register', [UserController::class, 'user_signup']);
+Route::post('/user_login', [UserController::class, 'user_login']);
+Route::get('/forgot_pass', [UserController::class, 'forgot_pass']);
+Route::get('/candidate/jobs/{category_name}', [UserController::class, 'view_jobs_category']);
 
-Route::get('/admin/user',[AdminController::class, 'view_user']);
+Route::get('/admin/user', [AdminController::class, 'view_user']);
 Route::get('/admin/users/status/{id}', [AdminController::class, 'updateStatus']);
 
-Route::get('/admin/job', function(){
+Route::get('/admin/job', function () {
     return view('admin.jobDisplay');
 });
-Route::get('/admin/job',[AdminController::class, 'view_job']);
+Route::get('/admin/job', [AdminController::class, 'view_job']);
 Route::get('/admin/job/status/{id}', [AdminController::class, 'update_jobStatus']);
-
-
-
-
