@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+
 header('cache-control: no-cache, no-store');
 
 
@@ -156,7 +157,7 @@ class CompanyController extends Controller
         // Redirect to the company dashboard or another page
         return redirect()->route('/company')->with('message', 'Company registered successfully!');
     }
-    
+
 
     public function company_login(Request $req)
     {
@@ -189,4 +190,38 @@ class CompanyController extends Controller
         }
     }
 
+    public function applications()
+    {
+        $applications = DB::table('applications')
+            ->join('jobs', 'applications.job_id', 'jobs.id')
+            ->join('users', 'applications.candidate_id', 'users.id')
+            ->join('resumes', 'applications.resume_id', 'resumes.id')
+            ->select('applications.id as application_id', 'applications.*', 'jobs.*', 'users.*', 'resumes.*')
+            ->get();
+        return view('company.applications_view', compact('applications'));
+    }
+    public function sortlist_resume($id)
+    {
+        $updated = DB::table('applications')
+            ->where('id', $id)
+            ->update(['status' => 2]);
+
+        if ($updated) {
+            return redirect()->back()->with('message', 'Application shortlisted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update application status.');
+        }
+    }
+    public function reject_resume($id)
+    {
+        $updated = DB::table('applications')
+            ->where('id', $id)
+            ->update(['status' => 3]);
+
+        if ($updated) {
+            return redirect()->back()->with('message', 'Application rejected successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update application status.');
+        }
+    }
 }
