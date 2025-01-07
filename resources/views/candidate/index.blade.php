@@ -84,10 +84,19 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="categories.php?category=mobile">Information Technology</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=laptop">Software Devlopment</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=headphone">Web Devlopment</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=tv">Digital Marketing</a></li>
+                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/{category_name}')}}">Technology IT Jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+
+                                
+
+
+
                             </ul>
                         </li>
                         <!-- <li class="nav-item">
@@ -122,7 +131,7 @@
                             </a>
 
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
                                 <i class="material-icons-outlined">logout</i>Logout
 
                             </a>
@@ -139,12 +148,12 @@
 
                                 <hr class="dropdown-divider">
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Login
+                                    <i class="material-icons-outlined">login</i>Candidate Login
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/signup')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Sign Up
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
+                                    <i class="material-icons-outlined">person_outline</i>Company Login
                                 </a>
 
                                 @endif
@@ -206,7 +215,8 @@
             <h1 style="font-weight: 600" class="text-center">JOB CATAGORIES</h1>
             <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
                 <div class="col-lg-3 col-md-4 col-12">
-                    <a href="{{ url('/candidate/jobs/technical_it_jobs') }}">
+
+                    <a href="{{ url('/candidate/jobs/technical_it_jobs')}}">
                         <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
@@ -218,7 +228,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
 
-                    <a href="{{ url('/candidate/jobs/creative_jobs') }}">
+                    <a href="{{ url('/candidate/jobs/creative_jobs')}}">
                         <div class="card shadow-none bg-success mb-0" style="height: 160px;">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Creative Jobs</h5>
@@ -230,7 +240,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
 
-                    <a href="{{ url('/candidate/jobs/healthcare_jobs') }}">
+                    <a href="{{ url('/candidate/jobs/healthcare_jobs')}}">
                         <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 145);">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Healthcare Jobs</h5>
@@ -241,7 +251,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
-                    <a href="{{ url('/candidate/jobs/finance_business') }}">
+                    <a href="{{ url('/candidate/jobs/finance_business')}}">
 
                         <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(224, 234, 21);">
                             <div class="card-body">
@@ -278,8 +288,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
-                    <a href="http://"><a href="{{ url('/candidate/jobs/logistics_operations') }}">
-                        
+                    <a href="{{ url('/candidate/jobs/logistics_operations') }}">
                     <div class="card shadow-none bg-danger mb-0" style="height: 160px;">
                         <div class="card-body">
                             <h5 class="mb-0 text-white">Logistics and Operations</h5>
@@ -389,7 +398,7 @@
                         <!-- Grid column -->
                         <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">About us</a>
+                                <a href="{{ url('/about-us') }}"class="text-dark">About us</a>
                             </h6>
                         </div>
                         <!-- Grid column -->
@@ -397,7 +406,7 @@
                         <!-- Grid column -->
                         <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">Jobs</a>
+                                <a href="{{ url('/candidate/jobs') }}" class="text-dark">Jobs</a>
                             </h6>
                         </div>
                         <!-- Grid column -->
@@ -405,17 +414,17 @@
                         <!-- Grid column -->
                         <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">Contact Us</a>
+                                <a href="{{ url('/contact-us') }}" class="text-dark">Contact Us</a>
                             </h6>
                         </div>
                         <!-- Grid column -->
 
                         <!-- Grid column -->
-                        <div class="col-md-2">
+                        <!-- <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
                                 <a href="#!" class="text-dark">Help</a>
                             </h6>
-                        </div>
+                        </div> -->
                         <!-- Grid column -->
 
 

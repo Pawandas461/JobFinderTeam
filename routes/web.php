@@ -85,3 +85,20 @@ Route::get('/admin/job', function () {
 });
 Route::get('/admin/job', [AdminController::class, 'view_job']);
 Route::get('/admin/job/status/{id}', [AdminController::class, 'update_jobStatus']);
+
+//user Logout
+Route::get('/logout',[UserController::class,'logout']);
+
+//subham route
+
+Route::get('/about-us', function(){
+    return view('candidate.aboutUs');
+});
+
+Route::get('/contact-us', function(){
+    return view('candidate.contactUs');
+});
+
+Route::get('/user-resume', function(){
+    return view('candidate.userResume');
+});
