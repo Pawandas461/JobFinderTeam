@@ -96,10 +96,15 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="categories.php?category=mobile">Information Technology</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=laptop">Software Devlopment</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=headphone">Web Devlopment</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=tv">Digital Marketing</a></li>
+                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+
                             </ul>
                         </li>
                         <!-- <li class="nav-item">
@@ -119,7 +124,7 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45"
+                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
                                 height="45">
                         </a>
 
@@ -127,14 +132,14 @@
                         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                             <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                 <div class="text-center">
-                                    <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
                                         width="90" height="90" alt="">
                                     <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                 </div>
                             </a>
 
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
                                 <i class="material-icons-outlined">logout</i>Logout
 
                             </a>
@@ -143,20 +148,23 @@
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
-                                        <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                        <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
                                             width="90" height="90" alt="">
                                         <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
                                     </div>
                                 </a>
 
                                 <hr class="dropdown-divider">
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
+                                    <i class="material-icons-outlined">task</i>My Resume
+                                </a>
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Login
+                                    <i class="material-icons-outlined">login</i>Candidate Login
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/signup')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Sign Up
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
+                                    <i class="material-icons-outlined">person_outline</i>Company Login
                                 </a>
 
                                 @endif
@@ -170,102 +178,95 @@
     </nav>
     <!--end top header-->
 
-
+    
     <!-- Form -->
-        <form class="row form g-3 mx-auto mt-4">
-            <!-- Other fields -->
-             <h3>Ceate Resume</h3>
-            <!-- Address -->
-            <div class="col-md-12">
-                <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" id="address" placeholder="Enter your address" rows="3"></textarea>
-            </div>
-
-            <!-- Degree -->
-            <div class="col-md-6">
-                <label for="degree" class="form-label">Degree</label>
-                <input type="text" class="form-control" id="degree" placeholder="Enter your degree">
-            </div>
-
-            <!-- Stream -->
-            <div class="col-md-6">
-                <label for="stream" class="form-label">Stream</label>
-                <input type="text" class="form-control" id="stream" placeholder="Enter your stream">
-            </div>
-
-            <!-- College -->
-            <div class="col-md-12">
-                <label for="college" class="form-label">College</label>
-                <input type="text" class="form-control" id="college" placeholder="Enter your college">
-            </div>
-
-            <!-- Pursuing Education -->
-            <div class="col-md-6">
-                <label class="form-label">Pursuing Education</label>
-                <div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pursuingEducation" id="pursuingYes" value="yes">
-                        <label class="form-check-label" for="pursuingYes">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="pursuingEducation" id="pursuingNo" value="no">
-                        <label class="form-check-label" for="pursuingNo">No</label>
-                    </div>
+    <form class="row form g-3 mx-auto mt-4" action="{{ url('/candidate/create_resume_action')}}" method="post">
+        @csrf
+        <h3>Create Resume</h3>
+    
+        <!-- Address -->
+        <div class="col-md-12">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" placeholder="Enter your address" rows="3"></textarea>
+        </div>
+    
+        <!-- Degree -->
+        <div class="col-md-6">
+            <label for="degree" class="form-label">Degree</label>
+            <input type="text" class="form-control" id="degree" name="degree" placeholder="Enter your degree">
+        </div>
+    
+        <!-- Stream -->
+        <div class="col-md-6">
+            <label for="stream" class="form-label">Stream</label>
+            <input type="text" class="form-control" id="stream" name="stream" placeholder="Enter your stream">
+        </div>
+    
+        <!-- College -->
+        <div class="col-md-12">
+            <label for="college" class="form-label">College</label>
+            <input type="text" class="form-control" id="college" name="college" placeholder="Enter your college">
+        </div>
+    
+        <!-- Pursuing Education -->
+        <div class="col-md-6">
+            <label class="form-label">Pursuing Education</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pursuing_education_status" id="pursuingYes" value="yes">
+                    <label class="form-check-label" for="pursuingYes">Yes</label>
                 </div>
-                <div class="col" id="pursuingEducationName" style="display: none;">
-                    <label for="educationName" class="form-label">Pursuing Education Name</label>
-                    <input type="text" class="form-control" id="educationName" placeholder="Enter the education name">
-                </div>
-
-            </div>
-
-            <!-- Pursuing Education Name -->
-
-            <!-- Experience Status -->
-            <div class="col-md-6">
-                <label class="form-label">Experience Status</label>
-                <div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="experienceStatus" id="experienceYes" value="yes">
-                        <label class="form-check-label" for="experienceYes">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="experienceStatus" id="experienceNo" value="no">
-                        <label class="form-check-label" for="experienceNo">No</label>
-                    </div>
-                </div>
-                <div class="col" id="experienceYears" style="display: none;">
-                    <label for="experience" class="form-label">Years of Experience</label>
-                    <input type="number" class="form-control" id="experience" placeholder="Enter years of experience">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="pursuing_education_status" id="pursuingNo" value="no">
+                    <label class="form-check-label" for="pursuingNo">No</label>
                 </div>
             </div>
-
-            <!-- Experience Years -->
-
-
-            <!-- Skills -->
-            <div class="col-md-12">
-                <label for="skills" class="form-label">Skills</label>
-                <textarea class="form-control" id="skills" placeholder="List your skills" rows="3"></textarea>
+            <div class="col" id="pursuingEducationName" style="display: none;">
+                <label for="educationName" class="form-label">Pursuing Education Name</label>
+                <input type="text" class="form-control" id="educationName" name="pursuing_education" placeholder="Enter the education name">
             </div>
-
-            <!-- Known Languages -->
-            <div class="col-md-12">
-                <label for="languages" class="form-label">Known Languages</label>
-                <textarea class="form-control" id="languages" placeholder="List the languages you know" rows="3"></textarea>
-            </div>
-
-            <!-- Buttons -->
-            <div class="col-md-12">
-                <div class="d-md-flex pb-3 d-grid align-items-center gap-3">
-                    <button type="submit" class="btn btn-primary px-4">Submit</button>
-                    <button type="reset" class="btn btn-secondary px-4">Cancel</button>
+        </div>
+    
+        <!-- Experience Status -->
+        <div class="col-md-6">
+            <label class="form-label">Experience Status</label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="experience_status" id="experienceYes" value="yes">
+                    <label class="form-check-label" for="experienceYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="experience_status" id="experienceNo" value="no">
+                    <label class="form-check-label" for="experienceNo">No</label>
                 </div>
             </div>
-
-            <!-- JavaScript for conditional fields -->
-
-        </form>
+            <div class="col" id="experienceYears" style="display: none;">
+                <label for="experience" class="form-label">Years of Experience</label>
+                <input type="number" class="form-control" id="experience" name="experience" placeholder="Enter years of experience">
+            </div>
+        </div>
+    
+        <!-- Skills -->
+        <div class="col-md-12">
+            <label for="skills" class="form-label">Skills</label>
+            <textarea class="form-control" id="skills" name="skills" placeholder="List your skills" rows="3"></textarea>
+        </div>
+    
+        <!-- Known Languages -->
+        <div class="col-md-12">
+            <label for="languages" class="form-label">Known Languages</label>
+            <textarea class="form-control" id="languages" name="known_languages" placeholder="List the languages you know" rows="3"></textarea>
+        </div>
+    
+        <!-- Buttons -->
+        <div class="col-md-12">
+            <div class="d-md-flex pb-3 d-grid align-items-center gap-3">
+                <button type="submit" class="btn btn-primary px-4">Submit</button>
+                <button type="reset" class="btn btn-secondary px-4">Cancel</button>
+            </div>
+        </div>
+    </form>
+    
 
     <footer class="text-center text-dark" style="background-color: rgb(44, 237, 141)">
         <!-- Grid container -->

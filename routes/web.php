@@ -41,6 +41,7 @@ Route::get('/candidate/jobs', [UserController::class, 'view_jobs']);
 Route::get('/candidate/my_resume', [UserController::class, 'my_resume']);
 
 Route::post('/candidate/application', [UserController::class, 'application']);
+Route::post('/candidate/create_resume_action', [UserController::class, 'create_resume_action']);
 
 Route::get('/admin', [AdminController::class, 'admin_index']);
 Route::get('/admin/login', [AdminController::class, 'login_form']);
@@ -60,6 +61,7 @@ Route::middleware([CompanyAuth::class])->group(function () {
     Route::get('company/application/sort_list/{id}', [CompanyController::class, 'sortlist_resume']);
     Route::get('company/application/reject/{id}', [CompanyController::class, 'reject_resume']);
 });
+
 
 
 
@@ -99,6 +101,6 @@ Route::get('/contact-us', function(){
     return view('candidate.contactUs');
 });
 
-Route::get('/user-resume', function(){
+Route::get('/candidate/create_resume', function(){
     return view('candidate.userResume');
 });

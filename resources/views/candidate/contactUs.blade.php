@@ -57,7 +57,7 @@
             <a class="navbar-brand m-0 p-0" href="#">
                 <!-- <img src="assets/images/logo1.png" class="mb-4" width="145" alt=""> -->
 
-                <img src="assets/images/jf_logo.jpg" style="border-radius: 40%" height="55" alt="">
+                <img src="{{asset('assets/images/jf_logo.jpg')}}" style="border-radius: 40%" height="55" alt="">
             </a>
             <!-- <a class="navbar-brand" href=" ">JobFinder</a> -->
             <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -84,10 +84,15 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="categories.php?category=mobile">Information Technology</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=laptop">Software Devlopment</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=headphone">Web Devlopment</a></li>
-                                <li><a class="dropdown-item" href="categories.php?category=tv">Digital Marketing</a></li>
+                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+
                             </ul>
                         </li>
                         <!-- <li class="nav-item">
@@ -107,7 +112,7 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45"
+                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
                                 height="45">
                         </a>
 
@@ -115,14 +120,17 @@
                         <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                             <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                 <div class="text-center">
-                                    <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
                                         width="90" height="90" alt="">
                                     <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                 </div>
                             </a>
 
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
+                                <i class="material-icons-outlined">task</i>My Resume
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
                                 <i class="material-icons-outlined">logout</i>Logout
 
                             </a>
@@ -131,7 +139,7 @@
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
-                                        <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                        <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
                                             width="90" height="90" alt="">
                                         <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
                                     </div>
@@ -139,12 +147,12 @@
 
                                 <hr class="dropdown-divider">
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Login
+                                    <i class="material-icons-outlined">login</i>Candidate Login
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/signup')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Sign Up
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
+                                    <i class="material-icons-outlined">person_outline</i>Company Login
                                 </a>
 
                                 @endif
