@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login Page</title>
   <!--favicon-->
-	<link rel="icon" href="assets/images/favicon.png" type="image/png">
+	<link rel="icon" href="{{asset('assets/images/jf_logo.jpg')}}" type="image/png">
 
   <!--plugins-->
   <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">

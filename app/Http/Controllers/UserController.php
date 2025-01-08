@@ -124,7 +124,7 @@ class UserController extends Controller
             ->join('categories', 'jobs.category_id', '=', 'categories.id')
             ->leftJoin('resumes', 'resumes.candidate_id', '=', DB::raw('"' . session('user_id') . '"')) // Join with resumes table
             ->where('jobs.status', 2)
-            ->where('categories.category_name',$category_name)
+            ->where('categories.category_name', $category_name)
             ->select(
                 'jobs.id as job_id',
                 'jobs.*',
@@ -168,10 +168,48 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Application submitted successfully.');
     }
     public function logout(Request $req)
+    {
+        // Clear the session variables manually
+        $req->session()->forget('user_id');
+        $req->session()->forget('email');
+        return redirect('/candidate')->with('message', 'You have successfully logged out.');
+    }
+
+    public function create_resume_action(Request $request)
 {
-    // Clear the session variables manually
-    $req->session()->forget('user_id');
-    $req->session()->forget('email');
-    return redirect('/candidate')->with('message', 'You have successfully logged out.');
+    // Validate form input
+    $validatedData = $request->validate([
+        'address' => 'required|string|max:255',
+        'degree' => 'nullable|string|max:100',
+        'stream' => 'nullable|string|max:100',
+        'college' => 'required|string|max:255',
+        'pursuing_education_status' => 'required|in:yes,no',
+        'pursuing_education' => 'nullable|string',
+        'experience_status' => 'required|in:yes,no',
+        'experience' => 'nullable|string',
+        'skills' => 'required|string',
+        'known_languages' => 'required|string',
+    ]);
+
+    // Insert data into resumes table
+    $candidateId = $request->session()->get('user_id');
+    DB::table('resumes')->insert([
+        'candidate_id' => $candidateId,
+        'address' => $validatedData['address'],
+        'degree' => $validatedData['degree'],
+        'stream' => $validatedData['stream'],
+        'college' => $validatedData['college'],
+        'pursuing_education_status' => $validatedData['pursuing_education_status'],
+        'pursuing_education' => $validatedData['pursuing_education'],
+        'experience_status' => $validatedData['experience_status'],
+        'experience' => $validatedData['experience'],
+        'skills' => $validatedData['skills'],
+        'known_languages' => $validatedData['known_languages'],
+        'created_at' => now(),
+    ]);
+
+    // Redirect with success message
+    return redirect('/candidate')->with('message', 'Resume created successfully!');
 }
+
 }

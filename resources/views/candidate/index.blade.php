@@ -84,7 +84,7 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/{category_name}')}}">Technology IT Jobs</a></li>
+                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
@@ -92,10 +92,6 @@
                                 <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
-
-                                
-
-
 
                             </ul>
                         </li>
@@ -131,9 +127,11 @@
                             </a>
 
                             <hr class="dropdown-divider">
+                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
+                                <i class="material-icons-outlined">task</i>My Resume
+                            </a>
                             <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
                                 <i class="material-icons-outlined">logout</i>Logout
-
                             </a>
 
                             @else
@@ -184,6 +182,7 @@
                     </div>
                     <div class="">
                         <form action="" method="post">
+                            @csrf
                             <div class="search-box">
                                 <div class="search-bar">
                                     <div class="job-role">
