@@ -342,6 +342,13 @@
             <div class="menu-title">USER</div>
           </a>
         </li>
+        <li>
+          <a href="{{url('/admin/company')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            </div>
+            <div class="menu-title">Company</div>
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -374,7 +381,7 @@
               </div>
               <div class="d-flex align-items-center justify-content-between mt-3">
                 <div class="">
-                  <h4 class="mb-0 fw-bold">87</h4>
+                  <h4 class="mb-0 fw-bold"></h4>
                   <div class="d-flex align-items-center justify-content-start gap-1 text-success mt-3">
                     <span class="material-icons-outlined fs-6">north</span>
                   </div>

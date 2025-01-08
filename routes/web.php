@@ -88,6 +88,9 @@ Route::get('/admin/job', function () {
 Route::get('/admin/job', [AdminController::class, 'view_job']);
 Route::get('/admin/job/status/{id}', [AdminController::class, 'update_jobStatus']);
 
+Route::get('/admin/company',[AdminController::class, 'view_company']);
+Route::get('/admin/company/status/{id}', [AdminController::class, 'update_companyStatus']);
+
 //user Logout
 Route::get('/logout',[UserController::class,'logout']);
 

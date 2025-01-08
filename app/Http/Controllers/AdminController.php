@@ -41,6 +41,7 @@ class AdminController extends Controller
     }
 
     public function admin_index(){
+        
         return view('admin.index');
     }
      public function view_user()
@@ -81,7 +82,28 @@ class AdminController extends Controller
              
              DB::table('jobs')->where('id', $id)->update(['status' => $newStatus]);
      
-             return redirect()->back()->with('status', 'User status updated successfully!');
+             return redirect()->back()->with('status', 'Job  status updated successfully!');
+         
+     } 
+     
+     public function view_company()
+     {
+        $companis=DB::table('companies')->get();
+        return view('admin.companyDisplay',compact('companis'));
+     }
+     
+    
+     public function update_companyStatus($id)
+     {
+         
+        $companis = DB::table('companies')->where('id', $id)->first(); 
+     
+             $newStatus = ($companis->auth == 1) ? 0 : 1;
+     
+             
+             DB::table('companies')->where('id', $id)->update(['auth' => $newStatus]);
+     
+             return redirect()->back()->with('status', 'Job  status updated successfully!');
          
      }  
 }
