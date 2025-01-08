@@ -25,7 +25,8 @@
     <link href="{{ asset('sass/responsive.css') }}" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
 
 
     <!-- Custom CSS File-->
@@ -46,6 +47,30 @@
 
         .navbar-brand {
             font-weight: 500;
+        }
+
+        .suggestions-box {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            /* Ensures it stays within the parent container */
+            background: #fff;
+            width: calc(100% - 2px);
+            /* Match the width of the input field */
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            /* Optional: Add shadow for better visibility */
+        }
+
+
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
@@ -84,14 +109,26 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/technical_it_jobs') }}">Technology IT Jobs</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs') }}">Creative
+                                        jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/healthcare_jobs') }}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/finance_business') }}">Finance and Business</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/education_training') }}">Education and
+                                        Training</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales
+                                        and Marketing</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics
+                                        Operations</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
 
                             </ul>
                         </li>
@@ -116,52 +153,56 @@
                                 height="45">
                         </a>
 
-                        @if(session('name') && session('user_id'))
-                        <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
-                            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
-                                <div class="text-center">
-                                    <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
-                                        width="90" height="90" alt="">
-                                    <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
-                                </div>
-                            </a>
-
-                            <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
-                                <i class="material-icons-outlined">task</i>My Resume
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
-                                <i class="material-icons-outlined">logout</i>Logout
-                            </a>
-
-                            @else
+                        @if (session('name') && session('user_id'))
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
                                         <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
                                             width="90" height="90" alt="">
-                                        <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                     </div>
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Candidate Login
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/candidate/my_resume') }}">
+                                    <i class="material-icons-outlined">task</i>My Resume
                                 </a>
-
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Company Login
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/logout') }}">
+                                    <i class="material-icons-outlined">logout</i>Logout
                                 </a>
+                            @else
+                                <div class="dropdown-menu dropdown-user dropdown-menu-end shadow"
+                                    style="width: 250px">
+                                    <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+                                        <div class="text-center">
+                                            <img src="assets/images/avatars/01.png"
+                                                class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+                                                alt="">
+                                            <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        </div>
+                                    </a>
 
-                                @endif
-                            </div>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/login') }}">
+                                        <i class="material-icons-outlined">login</i>Candidate Login
+                                    </a>
 
-                        </div>
-
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/company/login') }}">
+                                        <i class="material-icons-outlined">person_outline</i>Company Login
+                                    </a>
+                        @endif
                     </div>
+
                 </div>
+
             </div>
+        </div>
+        </div>
     </nav>
     <!--end top header-->
     <!--start main wrapper-->
@@ -171,7 +212,6 @@
             <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
 
                 <div class="container-fuild col-md-8 d-flex flex-column align-items-center">
-
 
                     <div class="searching-header">
                         <div>
@@ -185,14 +225,16 @@
                             @csrf
                             <div class="search-box">
                                 <div class="search-bar">
-                                    <div class="job-role">
+                                    <div class="job-role" style="position: relative;">
                                         <input type="text" class="form-control" name="job_role" id="job_role"
                                             placeholder="Search By Job Role..." autocomplete="off">
+                                        <div id="role_suggestions" class="suggestions-box"></div>
                                     </div>
-                                    <div class="job-location">
+                                    <div class="job-location" style="position: relative;">
                                         <input type="text" class="form-control" name="job_location"
                                             id="job_location" placeholder="Search By Job Location..."
                                             autocomplete="off">
+                                        <div id="location_suggestions" class="suggestions-box"></div>
                                     </div>
                                     <div class="search-btn">
                                         <input type="submit" value="Search.." class="btn btn-outline-success">
@@ -215,7 +257,7 @@
             <div class="row pt-5 pb-4" style="background-color:  rgba(255, 255, 255, 0.3); border-radius:10px;">
                 <div class="col-lg-3 col-md-4 col-12">
 
-                    <a href="{{ url('/candidate/jobs/technical_it_jobs')}}">
+                    <a href="{{ url('/candidate/jobs/technical_it_jobs') }}">
                         <div class="card shadow-none bg-voilet mb-0" style="height: 160px;">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Technical/IT Jobs</h5>
@@ -227,7 +269,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
 
-                    <a href="{{ url('/candidate/jobs/creative_jobs')}}">
+                    <a href="{{ url('/candidate/jobs/creative_jobs') }}">
                         <div class="card shadow-none bg-success mb-0" style="height: 160px;">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Creative Jobs</h5>
@@ -239,8 +281,9 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
 
-                    <a href="{{ url('/candidate/jobs/healthcare_jobs')}}">
-                        <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 145);">
+                    <a href="{{ url('/candidate/jobs/healthcare_jobs') }}">
+                        <div class="card shadow-none mb-0"
+                            style="height: 160px; background-color:  rgb(234, 21, 145);">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Healthcare Jobs</h5>
                                 <img src="assets/images/helth.png" class="position-absolute end-0 bottom-0"
@@ -250,9 +293,10 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12">
-                    <a href="{{ url('/candidate/jobs/finance_business')}}">
+                    <a href="{{ url('/candidate/jobs/finance_business') }}">
 
-                        <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(224, 234, 21);">
+                        <div class="card shadow-none mb-0"
+                            style="height: 160px; background-color:  rgb(224, 234, 21);">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Finance and Business</h5>
                                 <img src="assets/images/Finance_job.png" class="position-absolute end-0 bottom-0 m-2"
@@ -264,7 +308,8 @@
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
                     <a href="{{ url('/candidate/jobs/education_training') }}">
 
-                        <div class="card shadow-none mb-0" style="height: 160px; background-color:  rgb(234, 21, 216);">
+                        <div class="card shadow-none mb-0"
+                            style="height: 160px; background-color:  rgb(234, 21, 216);">
                             <div class="card-body">
                                 <h5 class="mb-0 text-white">Education and Training</h5>
                                 <img src="assets/images/education_job.png" class="position-absolute end-0 bottom-0"
@@ -288,25 +333,25 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
                     <a href="{{ url('/candidate/jobs/logistics_operations') }}">
-                    <div class="card shadow-none bg-danger mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Logistics and Operations</h5>
-                            <img src="assets/images/logical_job.png" class="position-absolute end-0 bottom-0 m-2"
-                                width="130" alt="">
+                        <div class="card shadow-none bg-danger mb-0" style="height: 160px;">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Logistics and Operations</h5>
+                                <img src="assets/images/logical_job.png" class="position-absolute end-0 bottom-0 m-2"
+                                    width="130" alt="">
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-12 mt-3">
                     <a href="{{ url('/candidate/jobs/engineering_jobs') }}">
-                        
-                    <div class="card shadow-none bg-indigo mb-0" style="height: 160px;">
-                        <div class="card-body">
-                            <h5 class="mb-0 text-white">Engineering Jobs</h5>
-                            <img src="assets/images/engineering_job.png" class="position-absolute end-0 bottom-0 m-2"
-                                width="130" alt="">
+
+                        <div class="card shadow-none bg-indigo mb-0" style="height: 160px;">
+                            <div class="card-body">
+                                <h5 class="mb-0 text-white">Engineering Jobs</h5>
+                                <img src="assets/images/engineering_job.png"
+                                    class="position-absolute end-0 bottom-0 m-2" width="130" alt="">
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
 
@@ -501,7 +546,70 @@
         </script>
         <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script>
+            // Static data for job roles and locations
+            const jobRoles = [
+                'Software Developer',
+                'Web Designer',
+                'Project Manager',
+                'Data Analyst',
+                'HR Specialist',
+                'Marketing Executive'
+            ];
 
+            const jobLocations = [
+                'New York',
+                'San Francisco',
+                'Chicago',
+                'Los Angeles',
+                'Seattle',
+                'Austin'
+            ];
+
+            function setupAutocomplete(inputId, suggestionsId, staticValues) {
+                const input = document.getElementById(inputId);
+                const suggestionsBox = document.getElementById(suggestionsId);
+
+                input.addEventListener('input', function() {
+                    const query = this.value.toLowerCase();
+                    suggestionsBox.innerHTML = '';
+
+                    if (query.length > 0) {
+                        const filteredValues = staticValues.filter(value =>
+                            value.toLowerCase().includes(query)
+                        );
+
+                        if (filteredValues.length > 0) {
+                            filteredValues.forEach(item => {
+                                const div = document.createElement('div');
+                                div.innerHTML = item;
+                                div.className = 'suggestion-item';
+                                div.onclick = () => {
+                                    input.value = item;
+                                    suggestionsBox.innerHTML = '';
+                                    console.log(div);
+                                    // Clear suggestions
+                                };
+                                suggestionsBox.appendChild(div);
+                            });
+                        } else {
+                            suggestionsBox.innerHTML = '<div class="suggestion-item">No matches found</div>';
+                        }
+                    }
+                });
+
+                // Hide suggestions on focusout
+                input.addEventListener('blur', function() {
+                    setTimeout(() => {
+                        suggestionsBox.innerHTML = '';
+                    }, 100);
+                });
+            }
+
+            // Apply autocomplete for job roles and locations
+            setupAutocomplete('job_role', 'role_suggestions', jobRoles);
+            setupAutocomplete('job_location', 'location_suggestions', jobLocations);
+        </script>
         <script>
             $(document).ready(function() {
                 $('.owl-carousel').owlCarousel({
