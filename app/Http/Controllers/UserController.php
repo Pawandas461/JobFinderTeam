@@ -70,6 +70,13 @@ class UserController extends Controller
                 $req->session()->put('user_id', $uid);
                 $req->session()->put('email', $email);
                 $req->session()->put('name', $name);
+                $resume = DB::table('users')->join('resumes','users.id','resumes.candidate_id')->where('resumes.id',$uid)->select('resumes.*','users.*')->first();
+                if($resume){
+                    $resume_id= $resume->id;
+                    $req->session()->put('resume_id',$resume_id);
+                    
+                }
+
 
                 return redirect('/candidate')->with('messsage', 'user login');
             } else {
@@ -172,6 +179,8 @@ class UserController extends Controller
         // Clear the session variables manually
         $req->session()->forget('user_id');
         $req->session()->forget('email');
+        $req->session()->forget('resume_id');
+
         return redirect('/candidate')->with('message', 'You have successfully logged out.');
     }
 
@@ -193,7 +202,7 @@ class UserController extends Controller
 
     // Insert data into resumes table
     $candidateId = $request->session()->get('user_id');
-    DB::table('resumes')->insert([
+    $resume_id = DB::table('resumes')->insertGetId([
         'candidate_id' => $candidateId,
         'address' => $validatedData['address'],
         'degree' => $validatedData['degree'],
@@ -207,8 +216,10 @@ class UserController extends Controller
         'known_languages' => $validatedData['known_languages'],
         'created_at' => now(),
     ]);
+    
+    // Store the last inserted ID in session
+    $request->session()->put('resume_id', $resume_id);
 
-    // Redirect with success message
     return redirect('/candidate')->with('message', 'Resume created successfully!');
 }
 

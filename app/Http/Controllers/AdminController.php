@@ -105,7 +105,15 @@ class AdminController extends Controller
      
              return redirect()->back()->with('status', 'Job  status updated successfully!');
          
-     }  
+     } 
+     public function logout(Request $req)
+    {
+        // Clear the session variables manually
+        $req->session()->forget('user_id');
+        $req->session()->forget('email');
+
+        return redirect('/candidate')->with('message', 'You have successfully logged out.');
+    } 
 }
 
 
