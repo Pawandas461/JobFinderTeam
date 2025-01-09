@@ -63,11 +63,6 @@ Route::middleware([CompanyAuth::class])->group(function () {
 });
 
 
-
-
-
-
-
 //Debashis Route
 Route::get('/signup', function () {
     return view('candidate.signup');
@@ -92,7 +87,12 @@ Route::get('/admin/company',[AdminController::class, 'view_company']);
 Route::get('/admin/company/status/{id}', [AdminController::class, 'update_companyStatus']);
 
 //user Logout
-Route::get('/logout',[UserController::class,'logout']);
+Route::get('/candidate/logout',[UserController::class,'logout']);
+//admin logout
+Route::get('/admin/logout',[AdminController::class,'logout']);
+//company logout
+Route::get('/company/logout',[CompanyController::class,'logout']);
+
 
 //subham route
 

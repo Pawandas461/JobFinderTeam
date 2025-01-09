@@ -164,12 +164,19 @@
                                 </a>
 
                                 <hr class="dropdown-divider">
+                                @if (session('resume_id'))
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2"
                                     href="{{ url('/candidate/my_resume') }}">
                                     <i class="material-icons-outlined">task</i>My Resume
                                 </a>
+                                @else 
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-                                    href="{{ url('/logout') }}">
+                                    href="{{ url('/candidate/create_resume') }}">
+                                    <i class="material-icons-outlined">task</i>Create  Resume
+                                </a>
+                                @endif
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/candidate/logout') }}">
                                     <i class="material-icons-outlined">logout</i>Logout
                                 </a>
                             @else
@@ -193,7 +200,13 @@
                                     <hr class="dropdown-divider">
                                     <a class="dropdown-item d-flex align-items-center gap-2 py-2"
                                         href="{{ url('/company/login') }}">
-                                        <i class="material-icons-outlined">person_outline</i>Company Login
+                                        <i class="material-icons-outlined">domain_disabled</i>Company Login
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/admin/login') }}">
+                                        <i class="material-icons-outlined">person_outline</i>Admin Login
                                     </a>
                         @endif
                     </div>

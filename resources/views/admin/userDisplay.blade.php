@@ -322,6 +322,13 @@
             <div class="menu-title">USER</div>
           </a>
         </li>
+        <li>
+        <a href="{{url('/admin/logout')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+            </div>
+            <div class="menu-title">Logout</div>
+          </a>
+        </li>
 
 
       </ul>

@@ -224,4 +224,12 @@ class CompanyController extends Controller
             return redirect()->back()->with('error', 'Failed to update application status.');
         }
     }
+    public function logout(Request $req)
+    {
+        // Clear the session variables manually
+        $req->session()->forget('company_email');
+        $req->session()->forget('company_id');
+
+        return redirect('/company/login')->with('message', 'You have successfully logged out.');
+    } 
 }

@@ -90,7 +90,7 @@
             border: none !important;
             font-size: 14px !important;
         }
-       
+
 
         .main-content::before {
             content: "";
@@ -106,7 +106,6 @@
             z-index: -2;
             min-height: 100vh !important;
         }
-
     </style>
 
 </head>
@@ -114,9 +113,9 @@
 <body>
 
     @if (session('message'))
-        <script>
-            alert("{{session('message')}}");
-        </script>
+    <script>
+        alert("{{session('message')}}");
+    </script>
     @endif
     <!--start header-->
     <header class="top-header">
@@ -296,8 +295,11 @@
                                 class="material-icons-outlined">person_outline</i>Profile</a>
 
                         <hr class="dropdown-divider">
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                                class="material-icons-outlined">power_settings_new</i>Logout</a>
+                        <a href="{{url('/company/logout')}}">
+                            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+                            </div>
+                            <div class="menu-title">Logout</div>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -404,10 +406,11 @@
 
                 <!-- Logout -->
                 <li>
-                    <a href="logout.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">logout</i></div>
-                        <div class="menu-title">Logout</div>
-                    </a>
+                <a href="{{url('/company/logout')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+            </div>
+            <div class="menu-title">Logout</div>
+          </a>
                 </li>
 
             </ul>
@@ -510,115 +513,115 @@
             <!--end row-->
 
             <div class="row">
-              <!-- Create a Job Section -->
-              <div class="col-12 col-xl-5 col-xxl-4 d-flex">
-                  <div class="card rounded-4 w-100 shadow-none bg-transparent border-0">
-                      <div class="card-body p-0">
-                          <div class="row g-4">
-                              <div class="col-12 col-xl-12 d-flex">
-                                  <div class="card mb-0 rounded-4 w-100" style="overflow: hidden;">
-                                      <img src="../assets/images/bg-dashboard-consultant2.jpg" class="card-img rounded-4" alt="..." style="max-height: 230px;">
-                                      <div class="card-img-overlay custom-overlay">
-                                          <h3 class="card-title text-dark">Create a Job</h3>
-                                          <p class="mb-0 text-dark">
-                                              Post your job openings and reach potential candidates.<br>
-                                              Admin approval is required for jobs to be visible to candidates.
-                                          </p>
-                                          <div class="bottom-0 position-absolute mb-3">
-                                              <a href="{{url('/company/create_job')}}" class="btn text-dark px-3 bg-white d-flex gap-2">
-                                                  Create Job <span class="material-icons-outlined">east</span>
-                                              </a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-          
-                              <!-- Selected Applications -->
-                              <div class="col-12 col-xl-12 d-flex" style="max-height: 260px;">
-                                  <div class="card mb-0 rounded-4 w-100">
-                                      <div class="card-body">
-                                          <div class="d-flex align-items-start justify-content-between mb-1">
-                                              <div class="">
-                                                  <h4 class="mb-0">Selected Applications</h4>
-                                                  <p class="mb-0">Candidates selected for interviews</p>
-                                              </div>
-                                          </div>
-                                          <div class="chart-container2">
-                                              <div id="chart2"></div>
-                                          </div>
-                                          <div class="text-center">
-                                              <p class="mb-0">Review shortlisted candidates</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div><!-- End row -->
-                      </div>
-                  </div>
-              </div>
-          
-              <!-- Recent Approved and Posted Jobs -->
-              <div class="col-12 col-xl-7 col-xxl-8 d-flex">
-                  <div class="card w-100 rounded-4 overflow-y-auto" style="max-height: 510px;">
-                      <div class="card-body">
-                          <div class="d-flex align-items-start justify-content-between mb-3">
-                              <div class="">
-                                  <h5 class="mb-0 fw-bold">Recent Approved and Posted Jobs</h5>
-                              </div>
-                          </div>
-                          <div class="table-responsive">
-                              <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                  <thead>
-                                      <tr>
-                                          <th>Sl No</th>
-                                          <th>Job Title</th>
-                                          <th>Responsibilities</th>
-                                          <th>Mode</th>
-                                          <th>Role</th>
-                                          <th>Experience</th>
-                                          <th>No. of Candidates</th>
-                                          <th>Qualification</th>
-                                          <th>Required Skills</th>
-                                          <th>Min/Max Salary</th>
-                                          <th>Apply By</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td>01</td>
-                                          <td>Frontend Developer</td>
-                                          <td>Build responsive UIs</td>
-                                          <td>Online</td>
-                                          <td>Developer</td>
-                                          <td>Freshers</td>
-                                          <td>3</td>
-                                          <td>Bachelor's in CS</td>
-                                          <td>HTML, CSS, JavaScript</td>
-                                          <td>$3,000 - $5,000</td>
-                                          <td>2024-01-15</td>
-                                      </tr>
-                                      <tr>
-                                          <td>02</td>
-                                          <td>Backend Developer</td>
-                                          <td>Develop APIs</td>
-                                          <td>Offline</td>
-                                          <td>Developer</td>
-                                          <td>2+ years</td>
-                                          <td>2</td>
-                                          <td>Bachelor's in CS</td>
-                                          <td>PHP, MySQL</td>
-                                          <td>$4,000 - $6,000</td>
-                                          <td>2024-01-20</td>
-                                      </tr>
-                                      <!-- Add more rows as needed -->
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          
+                <!-- Create a Job Section -->
+                <div class="col-12 col-xl-5 col-xxl-4 d-flex">
+                    <div class="card rounded-4 w-100 shadow-none bg-transparent border-0">
+                        <div class="card-body p-0">
+                            <div class="row g-4">
+                                <div class="col-12 col-xl-12 d-flex">
+                                    <div class="card mb-0 rounded-4 w-100" style="overflow: hidden;">
+                                        <img src="../assets/images/bg-dashboard-consultant2.jpg" class="card-img rounded-4" alt="..." style="max-height: 230px;">
+                                        <div class="card-img-overlay custom-overlay">
+                                            <h3 class="card-title text-dark">Create a Job</h3>
+                                            <p class="mb-0 text-dark">
+                                                Post your job openings and reach potential candidates.<br>
+                                                Admin approval is required for jobs to be visible to candidates.
+                                            </p>
+                                            <div class="bottom-0 position-absolute mb-3">
+                                                <a href="{{url('/company/create_job')}}" class="btn text-dark px-3 bg-white d-flex gap-2">
+                                                    Create Job <span class="material-icons-outlined">east</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Selected Applications -->
+                                <div class="col-12 col-xl-12 d-flex" style="max-height: 260px;">
+                                    <div class="card mb-0 rounded-4 w-100">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-start justify-content-between mb-1">
+                                                <div class="">
+                                                    <h4 class="mb-0">Selected Applications</h4>
+                                                    <p class="mb-0">Candidates selected for interviews</p>
+                                                </div>
+                                            </div>
+                                            <div class="chart-container2">
+                                                <div id="chart2"></div>
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="mb-0">Review shortlisted candidates</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- End row -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Approved and Posted Jobs -->
+                <div class="col-12 col-xl-7 col-xxl-8 d-flex">
+                    <div class="card w-100 rounded-4 overflow-y-auto" style="max-height: 510px;">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start justify-content-between mb-3">
+                                <div class="">
+                                    <h5 class="mb-0 fw-bold">Recent Approved and Posted Jobs</h5>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl No</th>
+                                            <th>Job Title</th>
+                                            <th>Responsibilities</th>
+                                            <th>Mode</th>
+                                            <th>Role</th>
+                                            <th>Experience</th>
+                                            <th>No. of Candidates</th>
+                                            <th>Qualification</th>
+                                            <th>Required Skills</th>
+                                            <th>Min/Max Salary</th>
+                                            <th>Apply By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>Frontend Developer</td>
+                                            <td>Build responsive UIs</td>
+                                            <td>Online</td>
+                                            <td>Developer</td>
+                                            <td>Freshers</td>
+                                            <td>3</td>
+                                            <td>Bachelor's in CS</td>
+                                            <td>HTML, CSS, JavaScript</td>
+                                            <td>$3,000 - $5,000</td>
+                                            <td>2024-01-15</td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>Backend Developer</td>
+                                            <td>Develop APIs</td>
+                                            <td>Offline</td>
+                                            <td>Developer</td>
+                                            <td>2+ years</td>
+                                            <td>2</td>
+                                            <td>Bachelor's in CS</td>
+                                            <td>PHP, MySQL</td>
+                                            <td>$4,000 - $6,000</td>
+                                            <td>2024-01-20</td>
+                                        </tr>
+                                        <!-- Add more rows as needed -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!--end row-->
 
         </div>
