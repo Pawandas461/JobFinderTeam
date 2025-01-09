@@ -136,10 +136,7 @@
       </div>
       <ul class="navbar-nav gap-1 nav-right-links align-items-center">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" data-bs-auto-close="outside"
-            data-bs-toggle="dropdown" href="javascript:;"><i class="material-icons-outlined">notifications</i>
-            <span class="badge-notify">5</span>
-          </a>
+          
           <div class="dropdown-menu dropdown-notify dropdown-menu-end shadow">
             <div class="px-3 py-1 d-flex align-items-center justify-content-between border-bottom">
               <h5 class="notiy-title mb-0">Notifications</h5>
@@ -273,33 +270,7 @@
             </div>
           </div>
         </li> 
-        <li class="nav-item dropdown">
-          <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
-            <img src="../assets/images/avatars/04.png" class="rounded-circle p-1 border" width="45" height="45">
-          </a>
-          <div class="dropdown-menu dropdown-user dropdown-menu-end shadow">
-            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
-              <div class="text-center">
-                <img src="../assets/images/avatars/04.png" class="rounded-circle p-1 shadow mb-3" width="90" height="90"
-                  alt="">
-                <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
-              </div>
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="my_profile.html"><i
-                class="material-icons-outlined">person_outline</i>Profile</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">local_bar</i>Setting</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">dashboard</i>Dashboard</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">redeem</i>Rewards</a>
-
-            <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">power_settings_new</i>Logout</a>
-          </div>
-        </li>
+        
       </ul>
 
     </nav>
@@ -344,11 +315,16 @@
         </li>
         <li>
           <a href="{{url('/admin/company')}}">
-            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            <div class="parent-icon"><i class="material-icons-outlined">domain_disabled</i>
             </div>
             <div class="menu-title">Company</div>
           </a>
         </li>
+        <a href="{{url('/admin/logout')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+            </div>
+            <div class="menu-title">Logout</div>
+          </a>
       </ul>
     </div>
   </aside>

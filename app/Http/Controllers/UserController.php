@@ -70,6 +70,13 @@ class UserController extends Controller
                 $req->session()->put('user_id', $uid);
                 $req->session()->put('email', $email);
                 $req->session()->put('name', $name);
+                $resume = DB::table('users')->join('resumes','users.id','resumes.candidate_id')->where('resumes.id',$uid)->select('resumes.*','users.*')->first();
+                if($resume){
+                    $resume_id= $resume->id;
+                    $req->session()->put('resume_id',$resume_id);
+                    
+                }
+
 
                 return redirect('/candidate')->with('messsage', 'user login');
             } else {
@@ -186,45 +193,49 @@ class UserController extends Controller
         // Clear the session variables manually
         $req->session()->forget('user_id');
         $req->session()->forget('email');
+        $req->session()->forget('resume_id');
+
         return redirect('/candidate')->with('message', 'You have successfully logged out.');
     }
 
     public function create_resume_action(Request $request)
-    {
-        // Validate form input
-        $validatedData = $request->validate([
-            'address' => 'required|string|max:255',
-            'degree' => 'nullable|string|max:100',
-            'stream' => 'nullable|string|max:100',
-            'college' => 'required|string|max:255',
-            'pursuing_education_status' => 'required|in:yes,no',
-            'pursuing_education' => 'nullable|string',
-            'experience_status' => 'required|in:yes,no',
-            'experience' => 'nullable|string',
-            'skills' => 'required|string',
-            'known_languages' => 'required|string',
-        ]);
+{
+    // Validate form input
+    $validatedData = $request->validate([
+        'address' => 'required|string|max:255',
+        'degree' => 'nullable|string|max:100',
+        'stream' => 'nullable|string|max:100',
+        'college' => 'required|string|max:255',
+        'pursuing_education_status' => 'required|in:yes,no',
+        'pursuing_education' => 'nullable|string',
+        'experience_status' => 'required|in:yes,no',
+        'experience' => 'nullable|string',
+        'skills' => 'required|string',
+        'known_languages' => 'required|string',
+    ]);
 
-        // Insert data into resumes table
-        $candidateId = $request->session()->get('user_id');
-        DB::table('resumes')->insert([
-            'candidate_id' => $candidateId,
-            'address' => $validatedData['address'],
-            'degree' => $validatedData['degree'],
-            'stream' => $validatedData['stream'],
-            'college' => $validatedData['college'],
-            'pursuing_education_status' => $validatedData['pursuing_education_status'],
-            'pursuing_education' => $validatedData['pursuing_education'],
-            'experience_status' => $validatedData['experience_status'],
-            'experience' => $validatedData['experience'],
-            'skills' => $validatedData['skills'],
-            'known_languages' => $validatedData['known_languages'],
-            'created_at' => now(),
-        ]);
+    // Insert data into resumes table
+    $candidateId = $request->session()->get('user_id');
+    $resume_id = DB::table('resumes')->insertGetId([
+        'candidate_id' => $candidateId,
+        'address' => $validatedData['address'],
+        'degree' => $validatedData['degree'],
+        'stream' => $validatedData['stream'],
+        'college' => $validatedData['college'],
+        'pursuing_education_status' => $validatedData['pursuing_education_status'],
+        'pursuing_education' => $validatedData['pursuing_education'],
+        'experience_status' => $validatedData['experience_status'],
+        'experience' => $validatedData['experience'],
+        'skills' => $validatedData['skills'],
+        'known_languages' => $validatedData['known_languages'],
+        'created_at' => now(),
+    ]);
+    
+    // Store the last inserted ID in session
+    $request->session()->put('resume_id', $resume_id);
 
-        // Redirect with success message
-        return redirect('/candidate')->with('message', 'Resume created successfully!');
-    }
+    return redirect('/candidate')->with('message', 'Resume created successfully!');
+}
 
     public function job_searching(Request $request)
     {
