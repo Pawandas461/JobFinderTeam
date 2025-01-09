@@ -234,7 +234,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <form action="" method="post">
+                        <form action="{{ url('/candidate/jobs/search') }}" method="post">
                             @csrf
                             <div class="search-box">
                                 <div class="search-bar">
@@ -245,7 +245,7 @@
                                     </div>
                                     <div class="job-location" style="position: relative;">
                                         <input type="text" class="form-control" name="job_location"
-                                            id="job_location" placeholder="Search By Job Location..."
+                                            id="job_location" placeholder="Search By Job Mode (WFH, WFO, remote)..."
                                             autocomplete="off">
                                         <div id="location_suggestions" class="suggestions-box"></div>
                                     </div>
@@ -567,16 +567,20 @@
                 'Project Manager',
                 'Data Analyst',
                 'HR Specialist',
-                'Marketing Executive'
+                'Marketing Executive',
+                'Backend Development',
+                'sales',
+                'finance officer',
+                'Frontend developer',
+                'Java developer',
+                'python developer',
+                'web developer'
             ];
 
             const jobLocations = [
-                'New York',
-                'San Francisco',
-                'Chicago',
-                'Los Angeles',
-                'Seattle',
-                'Austin'
+                'WFH',
+                'WFO',
+                'remote'
             ];
 
             function setupAutocomplete(inputId, suggestionsId, staticValues) {
@@ -584,12 +588,12 @@
                 const suggestionsBox = document.getElementById(suggestionsId);
 
                 input.addEventListener('input', function() {
-                    const query = this.value.toLowerCase();
+                    const query = this.value;
                     suggestionsBox.innerHTML = '';
 
                     if (query.length > 0) {
                         const filteredValues = staticValues.filter(value =>
-                            value.toLowerCase().includes(query)
+                            value.includes(query)
                         );
 
                         if (filteredValues.length > 0) {

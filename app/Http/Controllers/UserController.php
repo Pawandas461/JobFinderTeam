@@ -153,26 +153,40 @@ class UserController extends Controller
 
     public function application(Request $request)
     {
-        // Validate the incoming request
-        $request->validate([
-            'job_id' => 'required|integer',
-            'candidate_id' => 'required|integer',
-            'resume_id' => 'nullable|integer',
-            'resume_type' => 'required|in:resume,uploaded_resume',
-        ]);
 
-        // Insert the application into the database
-        DB::table('applications')->insert([
-            'job_id' => $request->input('job_id'),
-            'candidate_id' => $request->input('candidate_id'),
-            'resume_id' => $request->input('resume_id'),
-            'resume_type' => $request->input('resume_type'),
-            'apply_date' => now(),
-            'status' => 1
-        ]);
+        if (session('user_id') && session('email')) {
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Application submitted successfully.');
+            // Validate the incoming request
+            $request->validate([
+                'job_id' => 'required|integer',
+                'candidate_id' => 'required|integer',
+                'resume_id' => 'nullable|integer',
+                'resume_type' => 'required|in:resume,uploaded_resume',
+            ], [
+                'resume_type.required' => 'Please select a resume type.'
+            ]);
+
+            if ($request->input('resume_type') == 'resume') {
+                if (session('resume_id')) {
+                    // Insert the application into the database
+                    DB::table('applications')->insert([
+                        'job_id' => $request->input('job_id'),
+                        'candidate_id' => $request->input('candidate_id'),
+                        'resume_id' => $request->input('resume_id'),
+                        'resume_type' => $request->input('resume_type'),
+                        'apply_date' => now(),
+                        'status' => 1
+                    ]);
+
+                    // Redirect back with a success message
+                    return redirect()->back()->with('success', 'Application submitted successfully.');
+                }else{
+                    return redirect()->back()->with('error', 'Before Apply please create your resume.');
+                }
+            }
+        } else {
+            return redirect('/login')->with('error', 'Please Login Before apply for any jobs.');
+        }
     }
     public function logout(Request $req)
     {
@@ -223,4 +237,46 @@ class UserController extends Controller
     return redirect('/candidate')->with('message', 'Resume created successfully!');
 }
 
+    public function job_searching(Request $request)
+    {
+        $job_role = $request->input('job_role');
+        $job_mode = $request->input('job_location');
+        $user_id = session('user_id'); // Get the logged-in user's ID from the session
+    
+        // Build the query
+        $query = DB::table('jobs')
+            ->join('companies', 'jobs.created_by', '=', 'companies.id')
+            ->leftJoin('resumes', 'resumes.candidate_id', '=', DB::raw('"' . $user_id . '"')) // Join resumes table
+            ->where('jobs.status', 2)
+            ->select(
+                'jobs.id as job_id',
+                'jobs.*',
+                'companies.id as company_id',
+                'companies.company_name',
+                'companies.company_address',
+                'resumes.id as resume_id',
+                'resumes.pursuing_education_status',
+                'resumes.degree',
+                'resumes.stream',
+                'resumes.skills',
+                'resumes.created_at as resume_created_at'
+            );
+    
+        // Add conditions for job_role and job_location if they are not empty
+        if (!empty($job_role)) {
+            $query->where('jobs.job_role', 'LIKE', '%' . $job_role . '%');
+        }
+    
+        if (!empty($job_mode)) {
+            $query->where('jobs.job_mode', 'LIKE', '%' . $job_mode . '%');
+        }
+    
+        // Execute the query and get the results
+        $jobs = $query->get();
+    
+        // Return the results to a view
+        return view('candidate.jobs', ['jobs' => $jobs]);
+    }
+    
+    
 }

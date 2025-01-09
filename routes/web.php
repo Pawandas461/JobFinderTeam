@@ -39,6 +39,7 @@ Route::get('/login', function () {
 
 Route::get('/candidate/jobs', [UserController::class, 'view_jobs']);
 Route::get('/candidate/my_resume', [UserController::class, 'my_resume']);
+Route::post('/candidate/jobs/search', [UserController::class, 'job_searching']);
 
 Route::post('/candidate/application', [UserController::class, 'application']);
 Route::post('/candidate/create_resume_action', [UserController::class, 'create_resume_action']);
