@@ -86,6 +86,9 @@
 </head>
 
 <body>
+    @error('resume_type')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -131,14 +134,27 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/technical_it_jobs') }}">Technology IT Jobs</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs') }}">Creative
+                                        jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/healthcare_jobs') }}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/finance_business') }}">Finance and Business</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/education_training') }}">Education and
+                                        Training</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics
+                                        Operations</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
 
                             </ul>
                         </li>
@@ -159,57 +175,62 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
-                                height="45">
+                            <img src="{{ asset('assets/images/avatars/01.png') }}" class="rounded-circle p-1 border"
+                                width="45" height="45">
                         </a>
 
-                        @if(session('name') && session('user_id'))
-                        <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
-                            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
-                                <div class="text-center">
-                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
-                                        width="90" height="90" alt="">
-                                    <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
-                                </div>
-                            </a>
-
-                            <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
-                                <i class="material-icons-outlined">task</i>My Resume
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
-                                <i class="material-icons-outlined">logout</i>Logout
-
-                            </a>
-
-                            @else
+                        @if (session('name') && session('user_id'))
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
-                                        <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
-                                            width="90" height="90" alt="">
-                                        <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        <img src="{{ asset('assets/images/avatars/01.png') }}"
+                                            class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+                                            alt="">
+                                        <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                     </div>
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Candidate Login
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/candidate/my_resume') }}">
+                                    <i class="material-icons-outlined">task</i>My Resume
                                 </a>
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/logout') }}">
+                                    <i class="material-icons-outlined">logout</i>Logout
 
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Company Login
                                 </a>
+                            @else
+                                <div class="dropdown-menu dropdown-user dropdown-menu-end shadow"
+                                    style="width: 250px">
+                                    <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+                                        <div class="text-center">
+                                            <img src="{{ asset('assets/images/avatars/01.png') }}"
+                                                class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+                                                alt="">
+                                            <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        </div>
+                                    </a>
 
-                                @endif
-                            </div>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/login') }}">
+                                        <i class="material-icons-outlined">login</i>Candidate Login
+                                    </a>
 
-                        </div>
-
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/company/login') }}">
+                                        <i class="material-icons-outlined">person_outline</i>Company Login
+                                    </a>
+                        @endif
                     </div>
+
                 </div>
+
             </div>
+        </div>
+        </div>
     </nav>
     <!--end top header-->
 
@@ -643,7 +664,7 @@
         <!--end overlay-->
 
         <!--start footer-->
-        <footer class="text-center text-white" style="background-color: rgb(44, 237, 141)">
+        <footer class="text-center text-dark" style="background-color: rgb(44, 237, 141)">
             <!-- Grid container -->
             <div class="container">
                 <!-- Section: Links -->
@@ -653,7 +674,7 @@
                         <!-- Grid column -->
                         <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-white">About us</a>
+                                <a href="{{ url('/about-us') }}"class="text-dark">About us</a>
                             </h6>
                         </div>
                         <!-- Grid column -->
@@ -661,7 +682,7 @@
                         <!-- Grid column -->
                         <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-white">Products</a>
+                                <a href="{{ url('/candidate/jobs') }}" class="text-dark">Jobs</a>
                             </h6>
                         </div>
                         <!-- Grid column -->
@@ -669,26 +690,20 @@
                         <!-- Grid column -->
                         <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-white">Awards</a>
+                                <a href="{{ url('/contact-us') }}" class="text-dark">Contact Us</a>
                             </h6>
                         </div>
                         <!-- Grid column -->
 
                         <!-- Grid column -->
-                        <div class="col-md-2">
+                        <!-- <div class="col-md-2">
                             <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-white">Help</a>
+                                <a href="#!" class="text-dark">Help</a>
                             </h6>
-                        </div>
+                        </div> -->
                         <!-- Grid column -->
 
-                        <!-- Grid column -->
-                        <div class="col-md-2">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-white">Contact</a>
-                            </h6>
-                        </div>
-                        <!-- Grid column -->
+
                     </div>
                     <!-- Grid row-->
                 </section>
@@ -738,8 +753,8 @@
 
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-                © 2020 Copyright:
-                <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                © 2024 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">jobfinder.com</a>
             </div>
             <!-- Copyright -->
         </footer>
