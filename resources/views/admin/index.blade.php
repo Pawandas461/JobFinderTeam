@@ -315,13 +315,13 @@
         </li>
         <li>
           <a href="{{url('/admin/company')}}">
-            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            <div class="parent-icon"><i class="material-icons-outlined">domain_disabled</i>
             </div>
             <div class="menu-title">Company</div>
           </a>
         </li>
         <a href="{{url('/admin/logout')}}">
-            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+            <div class="parent-icon"><i class="material-icons-outlined">logout</i>
             </div>
             <div class="menu-title">Logout</div>
           </a>

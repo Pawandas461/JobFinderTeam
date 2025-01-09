@@ -382,9 +382,14 @@
                                 class="material-icons-outlined">person_outline</i>Profile</a>
 
                         <hr class="dropdown-divider">
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                                class="material-icons-outlined">power_settings_new</i>Logout</a>
-                    </div>
+                <li>
+                    <a href="{{url('/company/logout')}}">
+                        <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+                        </div>
+                        <div class="menu-title">Logout</div>
+                    </a>
+                </li>
+                </div>
                 </li>
             </ul>
 
@@ -534,38 +539,38 @@
                                 @if (isset($requested_jobs))
 
 
-                                    <table id="example" class="table table-striped table-bordered"
-                                        style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Sl No</th>
-                                                <th>Job Title</th>
-                                                <th>Mode</th>
-                                                <th>Role</th>
-                                                <th>No. of Candidates</th>
-                                                <th>Min Salary</th>
-                                                <th>Max Salary</th>
-                                                <th>Apply By</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($requested_jobs as $requested_job)
-                                                <tr>
-                                                    <td>{{ $requested_job->id }}</td>
-                                                    <td>{{ $requested_job->job_title }}</td>
-                                                    <td>{{ $requested_job->job_mode }}</td>
-                                                    <td>{{ $requested_job->job_role }}</td>
-                                                    <td>{{ $requested_job->num_of_candidate }}</td>
-                                                    <td>{{ $requested_job->min_salary }}</td>
-                                                    <td>{{ $requested_job->mex_salary }}</td>
-                                                    <td>{{ $requested_job->apply_by }}</td>
-                                                    <td class="text-success fw-bold">Approved</td>
-                                                </tr>
-                                            @endforeach
-                                            <!-- Add more rows as needed -->
-                                        </tbody>
-                                    </table>
+                                <table id="example" class="table table-striped table-bordered"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl No</th>
+                                            <th>Job Title</th>
+                                            <th>Mode</th>
+                                            <th>Role</th>
+                                            <th>No. of Candidates</th>
+                                            <th>Min Salary</th>
+                                            <th>Max Salary</th>
+                                            <th>Apply By</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($requested_jobs as $requested_job)
+                                        <tr>
+                                            <td>{{ $requested_job->id }}</td>
+                                            <td>{{ $requested_job->job_title }}</td>
+                                            <td>{{ $requested_job->job_mode }}</td>
+                                            <td>{{ $requested_job->job_role }}</td>
+                                            <td>{{ $requested_job->num_of_candidate }}</td>
+                                            <td>{{ $requested_job->min_salary }}</td>
+                                            <td>{{ $requested_job->mex_salary }}</td>
+                                            <td>{{ $requested_job->apply_by }}</td>
+                                            <td class="text-success fw-bold">Approved</td>
+                                        </tr>
+                                        @endforeach
+                                        <!-- Add more rows as needed -->
+                                    </tbody>
+                                </table>
                                 @endif
                             </div>
                         </div>

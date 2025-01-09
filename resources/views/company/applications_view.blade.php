@@ -378,13 +378,15 @@
                             </div>
                         </a>
                         <hr class="dropdown-divider">
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="my_profile.html"><i
-                                class="material-icons-outlined">person_outline</i>Profile</a>
+                <li>
+                    <a href="{{url('/company/logout')}}">
+                        <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+                        </div>
+                        <div class="menu-title">Logout</div>
+                    </a>
+                </li>
 
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                                class="material-icons-outlined">power_settings_new</i>Logout</a>
-                    </div>
+                </div>
                 </li>
             </ul>
 
@@ -509,18 +511,18 @@
             <div class="container mt-3">
                 <!-- Success Message -->
                 @if (session('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('message') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
-            
+
                 <!-- Error Message -->
                 @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
             </div>
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -551,96 +553,97 @@
                                 @if (isset($applications))
 
 
-                                    <table id="example" class="table table-striped table-bordered"
-                                        style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Sl No</th>
-                                                <th>Applicant name</th>
-                                                <th>Position</th> {{-- jobrole --}}
-                                                <th>Applicant Email</th>
-                                                <th>Qualification</th>
-                                                <th>Application Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($applications as $application)
-                                                <tr>
-                                                    <td>{{ $application->application_id }}</td>
-                                                    <td>{{ $application->name }}</td>
-                                                    <td>{{ $application->job_role }}</td>
-                                                    <td>{{ $application->email }}</td>
-                                                    <td>{{ $application->degree }}</td>
-                                                    <td>{{ $application->apply_date }}</td>
-                                                    <td>@if ($application->status == 1)
-                                                        <div class="text-primary fw-bold">Applied</div>
-                                                    @elseif ($application->status == 2)
-                                                        <div class="text-success fw-bold">Sort Listed</div>
-                                                    @elseif ($application->status == 3)
-                                                        <div class="text-danger fw-bold">Rejected</div>
-                                                    @else
-                                                        <div class="text-muted fw-bold">Status Unknown</div>
-                                                    @endif
-                                                    </td>
-                                                    <td>
-                                                        <div class="col">
-                                                            <!-- Button trigger modal -->
-                                                            <div type="button" class="btn btn-success"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#modal-{{ $application->application_id }}">
-                                                                View</div>
-                                                            <!-- Modal -->
-                                                            <div class="modal fade"
-                                                                id="modal-{{ $application->application_id }}"
-                                                                tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                                aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <div class="d-flex flex-column">
-                                                                                <h5 class="modal-title"
-                                                                                    id="exampleModalLabel">
-                                                                                    {{ $application->name }}</h5>
-                                                                                {{ $application->email }}
-                                                                            </div>
-
-                                                                            <div type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></div>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div class="experience">
-                                                                                Experience:
-                                                                                @if ($application->experience == 'Freshers')
-                                                                                    {{ $application->experience }}
-                                                                                @else
-                                                                                    {{ $application->experience }}
-                                                                                    Years
-                                                                                @endif
-
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <div type="button"
-                                                                                class="btn btn-secondary"
-                                                                                data-bs-dismiss="modal">Close</div>
-                                                                            <a href="{{ url('company/application/sort_list/' . $application->application_id)}}"
-                                                                                class="btn btn-primary">Sort List</a>
-                                                                                <a href="{{ url('company/application/reject'. $application->application_id)}}"
-                                                                                class="btn btn-danger">Reject</a>
-                                                                        </div>
+                                <table id="example" class="table table-striped table-bordered"
+                                    style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl No</th>
+                                            <th>Applicant name</th>
+                                            <th>Position</th> {{-- jobrole --}}
+                                            <th>Applicant Email</th>
+                                            <th>Qualification</th>
+                                            <th>Application Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($applications as $application)
+                                        <tr>
+                                            <td>{{ $application->application_id }}</td>
+                                            <td>{{ $application->name }}</td>
+                                            <td>{{ $application->job_role }}</td>
+                                            <td>{{ $application->email }}</td>
+                                            <td>{{ $application->degree }}</td>
+                                            <td>{{ $application->apply_date }}</td>
+                                            <td>@if ($application->status == 1)
+                                                <div class="text-primary fw-bold">Applied</div>
+                                                @elseif ($application->status == 2)
+                                                <div class="text-success fw-bold">Sort Listed</div>
+                                                @elseif ($application->status == 3)
+                                                <div class="text-danger fw-bold">Rejected</div>
+                                                @else
+                                                <div class="text-muted fw-bold">Status Unknown</div>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="col">
+                                                    <!-- Button trigger modal -->
+                                                    <div type="button" class="btn btn-success"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modal-{{ $application->application_id }}">
+                                                        View</div>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade"
+                                                        id="modal-{{ $application->application_id }}"
+                                                        tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <div class="d-flex flex-column">
+                                                                        <h5 class="modal-title"
+                                                                            id="exampleModalLabel">
+                                                                            {{ $application->name }}
+                                                                        </h5>
+                                                                        {{ $application->email }}
                                                                     </div>
+
+                                                                    <div type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></div>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="experience">
+                                                                        Experience:
+                                                                        @if ($application->experience == 'Freshers')
+                                                                        {{ $application->experience }}
+                                                                        @else
+                                                                        {{ $application->experience }}
+                                                                        Years
+                                                                        @endif
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <div type="button"
+                                                                        class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</div>
+                                                                    <a href="{{ url('company/application/sort_list/' . $application->application_id)}}"
+                                                                        class="btn btn-primary">Sort List</a>
+                                                                    <a href="{{ url('company/application/reject'. $application->application_id)}}"
+                                                                        class="btn btn-danger">Reject</a>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            <!-- Add more rows as needed -->
-                                        </tbody>
-                                    </table>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        <!-- Add more rows as needed -->
+                                    </tbody>
+                                </table>
                                 @endif
                             </div>
                         </div>

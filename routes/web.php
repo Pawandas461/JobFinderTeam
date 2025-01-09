@@ -90,6 +90,8 @@ Route::get('/admin/company/status/{id}', [AdminController::class, 'update_compan
 Route::get('/candidate/logout',[UserController::class,'logout']);
 //admin logout
 Route::get('/admin/logout',[AdminController::class,'logout']);
+//company logout
+Route::get('/company/logout',[CompanyController::class,'logout']);
 
 
 //subham route
