@@ -152,7 +152,6 @@
                             <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45"
                                 height="45">
                         </a>
-
                         @if (session('name') && session('user_id'))
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
