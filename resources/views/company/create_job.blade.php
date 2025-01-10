@@ -408,7 +408,7 @@
 
                 <!-- Dashboard -->
                 <li>
-                    <a href="{{url('/company')}}">
+                    <a href="{{ url('/company') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">home</i></div>
                         <div class="menu-title">Dashboard</div>
                     </a>
@@ -416,7 +416,7 @@
 
                 <!-- Post a Job -->
                 <li>
-                    <a href="{{url('/company/create_job')}}">
+                    <a href="{{ url('/company/create_job') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">work</i></div>
                         <div class="menu-title">Create a Job</div>
                     </a>
@@ -440,7 +440,7 @@
 
                 <!-- Approval Requests -->
                 <li>
-                    <a href="{{url('/company/approval_request')}}">
+                    <a href="{{ url('/company/approval_request') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">how_to_reg</i></div>
                         <div class="menu-title">Approval Requests</div>
                     </a>
@@ -456,11 +456,11 @@
 
                 <!-- Logout -->
                 <li>
-                <a href="{{url('/company/logout')}}">
-            <div class="parent-icon"><i class="material-icons-outlined">logout</i>
-            </div>
-            <div class="menu-title">Logout</div>
-          </a>
+                    <a href="{{ url('/company/logout') }}">
+                        <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+                        </div>
+                        <div class="menu-title">Logout</div>
+                    </a>
                 </li>
 
             </ul>
@@ -508,7 +508,8 @@
                                                 name="job_role" placeholder="Job Role" required>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="bsValidation2" class="form-label fw-bold">Job Responsibilities</label>
+                                            <label for="bsValidation2" class="form-label fw-bold">Job
+                                                Responsibilities</label>
                                             <div class="form-floating">
                                                 <textarea class="form-control" rows="2" name="job_responsibilities" id="floatingTextarea"></textarea>
                                             </div>
@@ -539,14 +540,16 @@
                                             </select>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="bsValidation8" class="form-label fw-bold">Number of candidate</label>
+                                            <label for="bsValidation8" class="form-label fw-bold">Number of
+                                                candidate</label>
                                             <input type="number" class="form-control" id="bsValidation8"
                                                 name="num_of_candidate" required>
                                             <div class="invalid-feedback">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="bsValidation5" class="form-label fw-bold">Qualification</label>
+                                            <label for="bsValidation5"
+                                                class="form-label fw-bold">Qualification</label>
                                             <input type="text" class="form-control" id="bsValidation5"
                                                 name="qualification" required>
                                             <div class="invalid-feedback">
@@ -561,7 +564,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label for="bsValidation5" class="form-label fw-bold">Required skills</label>
+                                            <label for="bsValidation5" class="form-label fw-bold">Required
+                                                skills</label>
                                             <div class="form-floating">
                                                 <textarea class="form-control" name="required_skills" id="floatingTextarea"></textarea>
                                                 <label for="floatingTextarea">Add Skills</label>
@@ -580,6 +584,17 @@
                                                 name="mex_salary" placeholder="00000-99999" required>
                                             <div class="invalid-feedback">
                                             </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="bsValidation6" class="form-label fw-bold">Select
+                                                Category</label>
+                                            <select name="category" class="form-select"
+                                                aria-label="Default select example" required>
+                                                <option value="" selected>Select Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="col-12 col-lg-12">

@@ -22,12 +22,14 @@ class JobController extends Controller
         $required_skills = $req->input('required_skills');
         $min_salary = $req->input('min_salary');
         $mex_salary = $req->input('mex_salary');
+        $category = $req->input('category');
         $apply_by = $req->input('apply_by');
         $created_by = session('company_id');
         $status = 1;
 
         // Prepare the data array
         $data = [
+            'category_id' => $category,
             'job_title' => $job_title,
             'job_responsibilities' => $job_responsibilities,
             'job_mode' => $job_mode,
@@ -54,7 +56,8 @@ class JobController extends Controller
 
     public function create_job_form()
     {
-        return view('company.create_job');
+        $categories = DB::table('categories')->get();
+        return view('company.create_job', compact('categories'));
     }
 
     public function approval_request()
