@@ -117,27 +117,6 @@
             border: none;
         }
 
-        button {
-            width: 200px;
-            color: #000 !important;
-            background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
-            padding: 10px 30px !important;
-            border: none !important;
-            font-size: 19px !important;
-        }
-
-        /* .btn {
-            width: 200px;
-        } */
-
-        button:hover {
-            color: #000 !important;
-            background: linear-gradient(109.6deg, rgb(244, 253, 0) 10.2%, rgb(255, 219, 47) 100.2%);
-            padding: 10px 30px !important;
-            border: none !important;
-            font-size: 19px !important;
-        }
-
         .card {
             background: white;
             border-radius: 30px;
@@ -214,11 +193,6 @@
             </div>
             <ul class="navbar-nav gap-1 nav-right-links align-items-center">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative"
-                        data-bs-auto-close="outside" data-bs-toggle="dropdown" href="javascript:;"><i
-                            class="material-icons-outlined">notifications</i>
-                        <span class="badge-notify">5</span>
-                    </a>
                     <div class="dropdown-menu dropdown-notify dropdown-menu-end shadow">
                         <div class="px-3 py-1 d-flex align-items-center justify-content-between border-bottom">
                             <h5 class="notiy-title mb-0">Notifications</h5>
@@ -364,7 +338,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                         <img src="../assets/images/avatars/04.png" class="rounded-circle p-1 border" width="45"
                             height="45">
@@ -378,16 +352,17 @@
                             </div>
                         </a>
                         <hr class="dropdown-divider">
-                <li>
-                    <a href="{{url('/company/logout')}}">
-                        <div class="parent-icon"><i class="material-icons-outlined">logout</i>
-                        </div>
-                        <div class="menu-title">Logout</div>
-                    </a>
-                </li>
+                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="my_profile.html"><i
+                                class="material-icons-outlined">person_outline</i>Profile</a>
 
-                </div>
-                </li>
+                        <hr class="dropdown-divider">
+                        <a href="{{url('/company/logout')}}">
+                            <div class="parent-icon"><i class="material-icons-outlined">person</i>
+                            </div>
+                            <div class="menu-title">Logout</div>
+                        </a>
+                    </div>
+                </li> --}}
             </ul>
 
         </nav>
@@ -412,7 +387,7 @@
 
                 <!-- Dashboard -->
                 <li>
-                    <a href="{{ url('/company') }}">
+                    <a href="{{url('/company')}}">
                         <div class="parent-icon"><i class="material-icons-outlined">home</i></div>
                         <div class="menu-title">Dashboard</div>
                     </a>
@@ -420,7 +395,7 @@
 
                 <!-- Post a Job -->
                 <li>
-                    <a href="{{ url('/company/create_job') }}">
+                    <a href="{{url('/company/create_job')}}">
                         <div class="parent-icon"><i class="material-icons-outlined">work</i></div>
                         <div class="menu-title">Create a Job</div>
                     </a>
@@ -436,7 +411,7 @@
 
                 <!-- Applications -->
                 <li>
-                    <a href="applications.html">
+                    <a href="{{ url('/company/applications') }}">
                         <div class="parent-icon"><i class="material-icons-outlined">assignment</i></div>
                         <div class="menu-title">Applications</div>
                     </a>
@@ -444,7 +419,7 @@
 
                 <!-- Approval Requests -->
                 <li>
-                    <a href="{{ url('/company/approval_request') }}">
+                    <a href="{{url('/company/approval_request')}}">
                         <div class="parent-icon"><i class="material-icons-outlined">how_to_reg</i></div>
                         <div class="menu-title">Approval Requests</div>
                     </a>
@@ -452,55 +427,25 @@
 
                 <!-- Approved Jobs -->
                 <li>
-                    <a href="{{ url('/company/approved_jobs') }}">
+                    <a href="approved-jobs.html">
                         <div class="parent-icon"><i class="material-icons-outlined">check_circle</i></div>
                         <div class="menu-title">Approved Jobs</div>
                     </a>
                 </li>
 
-                <!-- Denied Jobs -->
-                <li>
-                    <a href="denied-jobs.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">cancel</i></div>
-                        <div class="menu-title">Denied Jobs</div>
-                    </a>
-                </li>
-
-                <!-- Notifications -->
-                <li>
-                    <a href="notifications.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">notifications</i></div>
-                        <div class="menu-title">Notifications</div>
-                    </a>
-                </li>
-
-                <!-- Profile Settings -->
-                <li>
-                    <a href="profile-settings.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">person</i></div>
-                        <div class="menu-title">Profile Settings</div>
-                    </a>
-                </li>
-
-                <!-- Help -->
-                <li>
-                    <a href="help.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">help_outline</i></div>
-                        <div class="menu-title">Help</div>
-                    </a>
-                </li>
-
                 <!-- Logout -->
                 <li>
-                    <a href="logout.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">logout</i></div>
-                        <div class="menu-title">Logout</div>
-                    </a>
+                <a href="{{url('/company/logout')}}">
+            <div class="parent-icon"><i class="material-icons-outlined">logout</i>
+            </div>
+            <div class="menu-title">Logout</div>
+          </a>
                 </li>
 
             </ul>
         </div>
     </aside>
+
     <!--end sidebar-->
 
 
@@ -576,11 +521,11 @@
                                             <td>{{ $application->email }}</td>
                                             <td>{{ $application->degree }}</td>
                                             <td>{{ $application->apply_date }}</td>
-                                            <td>@if ($application->status == 1)
+                                            <td>@if ($application->applications_status == 1)
                                                 <div class="text-primary fw-bold">Applied</div>
-                                                @elseif ($application->status == 2)
+                                                @elseif ($application->applications_status == 2)
                                                 <div class="text-success fw-bold">Sort Listed</div>
-                                                @elseif ($application->status == 3)
+                                                @elseif ($application->applications_status == 3)
                                                 <div class="text-danger fw-bold">Rejected</div>
                                                 @else
                                                 <div class="text-muted fw-bold">Status Unknown</div>
@@ -631,7 +576,7 @@
                                                                         data-bs-dismiss="modal">Close</div>
                                                                     <a href="{{ url('company/application/sort_list/' . $application->application_id)}}"
                                                                         class="btn btn-primary">Sort List</a>
-                                                                    <a href="{{ url('company/application/reject'. $application->application_id)}}"
+                                                                    <a href="{{ url('company/application/reject/'. $application->application_id)}}"
                                                                         class="btn btn-danger">Reject</a>
                                                                 </div>
                                                             </div>
@@ -662,21 +607,22 @@
     <!--top footer-->
 
     <!--bootstrap js-->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
     <!--plugins-->
-    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
     <!--plugins-->
-    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('assets/plugins/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/js/index.js') }}"></script>
-    <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
-    <script>
-        $(".data-attributes span").peity("donut")
-    </script>
-    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="../assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="../assets/plugins/metismenu/metisMenu.min.js"></script>
+    <script src="../assets/plugins/apexchart/apexcharts.min.js"></script>
+    <script src="../assets/plugins/simplebar/js/simplebar.min.js"></script>
+    <script src="../assets/plugins/validation/jquery.validate.min.js"></script>
+    <script src="../assets/plugins/validation/validation-script.js"></script>
+    <script src="../assets/js/index2.js"></script>
+    <script src="../assets/js/main.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#example').DataTable();

@@ -107,7 +107,8 @@
             <a class="navbar-brand m-0 p-0" href="#">
                 <!-- <img src="assets/images/logo1.png" class="mb-4" width="145" alt=""> -->
 
-                <img src="assets/images/jf_logo.jpg" style="border-radius: 40%" height="55" alt="">
+                <img src="{{ asset('assets/images/jf_logo.jpg') }}" style="border-radius: 40%" height="55"
+                    alt="">
             </a>
             <!-- <a class="navbar-brand" href=" ">JobFinder</a> -->
             <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -148,8 +149,8 @@
                                         href="{{ url('/candidate/jobs/education_training') }}">Education and
                                         Training</a></li>
                                 <li><a class="dropdown-item"
-                                        href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a>
-                                </li>
+                                        href="{{ url('/candidate/jobs/sales_marketing') }}">Sales
+                                        and Marketing</a></li>
                                 <li><a class="dropdown-item"
                                         href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics
                                         Operations</a></li>
@@ -157,6 +158,12 @@
                                         href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
 
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#">Offers</a>
@@ -178,34 +185,38 @@
                             <img src="{{ asset('assets/images/avatars/01.png') }}" class="rounded-circle p-1 border"
                                 width="45" height="45">
                         </a>
-
                         @if (session('name') && session('user_id'))
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
-                                        <img src="{{ asset('assets/images/avatars/01.png') }}"
-                                            class="rounded-circle p-1 shadow mb-3" width="90" height="90"
-                                            alt="">
+                                        <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
+                                            width="90" height="90" alt="">
                                         <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                     </div>
                                 </a>
 
                                 <hr class="dropdown-divider">
+                                @if (session('resume_id'))
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/my_resume') }}">
+                                        <i class="material-icons-outlined">task</i>My Resume
+                                    </a>
+                                @else
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/create_resume') }}">
+                                        <i class="material-icons-outlined">task</i>Create Resume
+                                    </a>
+                                @endif
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-                                    href="{{ url('/candidate/my_resume') }}">
-                                    <i class="material-icons-outlined">task</i>My Resume
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-                                    href="{{ url('/logout') }}">
+                                    href="{{ url('/candidate/logout') }}">
                                     <i class="material-icons-outlined">logout</i>Logout
-
                                 </a>
                             @else
                                 <div class="dropdown-menu dropdown-user dropdown-menu-end shadow"
                                     style="width: 250px">
                                     <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                         <div class="text-center">
-                                            <img src="{{ asset('assets/images/avatars/01.png') }}"
+                                            <img src="assets/images/avatars/01.png"
                                                 class="rounded-circle p-1 shadow mb-3" width="90" height="90"
                                                 alt="">
                                             <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
@@ -221,7 +232,13 @@
                                     <hr class="dropdown-divider">
                                     <a class="dropdown-item d-flex align-items-center gap-2 py-2"
                                         href="{{ url('/company/login') }}">
-                                        <i class="material-icons-outlined">person_outline</i>Company Login
+                                        <i class="material-icons-outlined">domain_disabled</i>Company Login
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/admin/login') }}">
+                                        <i class="material-icons-outlined">person_outline</i>Admin Login
                                     </a>
                         @endif
                     </div>
@@ -246,23 +263,29 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <form action="" method="post">
-                        <div class="search-box">
-                            <div class="search-bar">
-                                <div class="job-role">
-                                    <input type="text" class="form-control" name="job_role" id="job_role"
-                                        placeholder="Search By Job Role..." autocomplete="off">
-                                </div>
-                                <div class="job-location">
-                                    <input type="text" class="form-control" name="job_location" id="job_location"
-                                        placeholder="Search By Job Location..." autocomplete="off">
-                                </div>
-                                <div class="search-btn">
-                                    <input type="submit" value="Search.." class="btn btn-outline-success">
+                    <div class="">
+                        <form action="{{ url('/candidate/jobs/search') }}" method="post">
+                            @csrf
+                            <div class="search-box">
+                                <div class="search-bar">
+                                    <div class="job-role" style="position: relative;">
+                                        <input type="text" class="form-control" name="job_role" id="job_role"
+                                            placeholder="Search By Job Role..." autocomplete="off">
+                                        <div id="role_suggestions" class="suggestions-box"></div>
+                                    </div>
+                                    <div class="job-location" style="position: relative;">
+                                        <input type="text" class="form-control" name="job_location"
+                                            id="job_location" placeholder="Search By Job Mode (WFH, WFO, remote)..."
+                                            autocomplete="off">
+                                        <div id="location_suggestions" class="suggestions-box"></div>
+                                    </div>
+                                    <div class="search-btn">
+                                        <input type="submit" value="Search.." class="btn btn-outline-success">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -778,7 +801,74 @@
         </script>
         <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script>
+            // Static data for job roles and locations
+            const jobRoles = [
+                'Software Developer',
+                'Web Designer',
+                'Project Manager',
+                'Data Analyst',
+                'HR Specialist',
+                'Marketing Executive',
+                'Backend Development',
+                'sales',
+                'finance officer',
+                'Frontend developer',
+                'Java developer',
+                'python developer',
+                'web developer'
+            ];
 
+            const jobLocations = [
+                'WFH',
+                'WFO',
+                'remote'
+            ];
+
+            function setupAutocomplete(inputId, suggestionsId, staticValues) {
+                const input = document.getElementById(inputId);
+                const suggestionsBox = document.getElementById(suggestionsId);
+
+                input.addEventListener('input', function() {
+                    const query = this.value;
+                    suggestionsBox.innerHTML = '';
+
+                    if (query.length > 0) {
+                        const filteredValues = staticValues.filter(value =>
+                            value.includes(query)
+                        );
+
+                        if (filteredValues.length > 0) {
+                            filteredValues.forEach(item => {
+                                const div = document.createElement('div');
+                                div.innerHTML = item;
+                                div.className = 'suggestion-item';
+                                div.onclick = () => {
+                                    input.value = item;
+                                    suggestionsBox.innerHTML = '';
+                                    console.log(div);
+                                    // Clear suggestions
+                                };
+                                suggestionsBox.appendChild(div);
+                            });
+                        } else {
+                            suggestionsBox.innerHTML = '<div class="suggestion-item">No matches found</div>';
+                        }
+                    }
+                });
+
+                // Hide suggestions on focusout
+                input.addEventListener('blur', function() {
+                    setTimeout(() => {
+                        suggestionsBox.innerHTML = '';
+                    }, 100);
+                });
+            }
+
+            // Apply autocomplete for job roles and locations
+            setupAutocomplete('job_role', 'role_suggestions', jobRoles);
+            setupAutocomplete('job_location', 'location_suggestions', jobLocations);
+        </script>
         <script>
             const salaryInput = document.getElementById('salary');
             const salaryValue = document.getElementById('value');
