@@ -196,7 +196,7 @@ class CompanyController extends Controller
             ->join('jobs', 'applications.job_id', 'jobs.id')
             ->join('users', 'applications.candidate_id', 'users.id')
             ->join('resumes', 'applications.resume_id', 'resumes.id')
-            ->select('applications.id as application_id', 'applications.*', 'jobs.*', 'users.*', 'resumes.*')
+            ->select('applications.id as application_id', 'applications.status as applications_status', 'applications.*', 'jobs.*', 'users.*', 'resumes.*')
             ->get();
         return view('company.applications_view', compact('applications'));
     }

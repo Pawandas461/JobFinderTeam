@@ -25,7 +25,8 @@
     <link href="{{ asset('sass/responsive.css') }}" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
 
 
     <!-- Custom CSS File-->
@@ -48,15 +49,16 @@
             font-weight: 500;
         }
 
-        .form{
+        .form {
             background: rgba(255, 255, 255, 0.5);
 
         }
+
         @media (min-width: 780px) {
             .form {
                 width: 500px;
                 padding: 10px;
-                
+
             }
         }
     </style>
@@ -96,16 +98,34 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/technical_it_jobs') }}">Technology IT Jobs</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs') }}">Creative
+                                        jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/healthcare_jobs') }}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/finance_business') }}">Finance and Business</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/education_training') }}">Education and
+                                        Training</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales
+                                        and Marketing</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics
+                                        Operations</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
 
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#">Offers</a>
@@ -124,140 +144,165 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
+                            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45"
                                 height="45">
                         </a>
-
-                        @if(session('name') && session('user_id'))
-                        <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
-                            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
-                                <div class="text-center">
-                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
-                                        width="90" height="90" alt="">
-                                    <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
-                                </div>
-                            </a>
-
-                            <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
-                                <i class="material-icons-outlined">logout</i>Logout
-
-                            </a>
-
-                            @else
+                        @if (session('name') && session('user_id'))
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
-                                        <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
+                                        <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
                                             width="90" height="90" alt="">
-                                        <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                     </div>
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
-                                    <i class="material-icons-outlined">task</i>My Resume
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Candidate Login
-                                </a>
-
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Company Login
-                                </a>
-
+                                @if (session('resume_id'))
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/my_resume') }}">
+                                        <i class="material-icons-outlined">task</i>My Resume
+                                    </a>
+                                @else
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/create_resume') }}">
+                                        <i class="material-icons-outlined">task</i>Create Resume
+                                    </a>
                                 @endif
-                            </div>
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/candidate/logout') }}">
+                                    <i class="material-icons-outlined">logout</i>Logout
+                                </a>
+                            @else
+                                <div class="dropdown-menu dropdown-user dropdown-menu-end shadow"
+                                    style="width: 250px">
+                                    <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+                                        <div class="text-center">
+                                            <img src="assets/images/avatars/01.png"
+                                                class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+                                                alt="">
+                                            <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        </div>
+                                    </a>
 
-                        </div>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/login') }}">
+                                        <i class="material-icons-outlined">login</i>Candidate Login
+                                    </a>
 
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/company/login') }}">
+                                        <i class="material-icons-outlined">domain_disabled</i>Company Login
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/admin/login') }}">
+                                        <i class="material-icons-outlined">person_outline</i>Admin Login
+                                    </a>
+                        @endif
                     </div>
+
                 </div>
+
             </div>
+        </div>
+        </div>
     </nav>
     <!--end top header-->
 
-    
+
     <!-- Form -->
-    <form class="row form g-3 mx-auto mt-4" action="{{ url('/candidate/create_resume_action')}}" method="post">
+    <form class="row form g-3 mx-auto mt-4" action="{{ url('/candidate/create_resume_action') }}" method="post">
         @csrf
         <h3>Create Resume</h3>
-    
+
         <!-- Address -->
         <div class="col-md-12">
             <label for="address" class="form-label">Address</label>
             <textarea class="form-control" id="address" name="address" placeholder="Enter your address" rows="3"></textarea>
         </div>
-    
+
         <!-- Degree -->
         <div class="col-md-6">
             <label for="degree" class="form-label">Degree</label>
-            <input type="text" class="form-control" id="degree" name="degree" placeholder="Enter your degree">
+            <input type="text" class="form-control" id="degree" name="degree"
+                placeholder="Enter your degree">
         </div>
-    
+
         <!-- Stream -->
         <div class="col-md-6">
             <label for="stream" class="form-label">Stream</label>
-            <input type="text" class="form-control" id="stream" name="stream" placeholder="Enter your stream">
+            <input type="text" class="form-control" id="stream" name="stream"
+                placeholder="Enter your stream">
         </div>
-    
+
         <!-- College -->
         <div class="col-md-12">
             <label for="college" class="form-label">College</label>
-            <input type="text" class="form-control" id="college" name="college" placeholder="Enter your college">
+            <input type="text" class="form-control" id="college" name="college"
+                placeholder="Enter your college">
         </div>
-    
+
         <!-- Pursuing Education -->
         <div class="col-md-6">
             <label class="form-label">Pursuing Education</label>
             <div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="pursuing_education_status" id="pursuingYes" value="yes">
+                    <input class="form-check-input" type="radio" name="pursuing_education_status" id="pursuingYes"
+                        value="yes">
                     <label class="form-check-label" for="pursuingYes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="pursuing_education_status" id="pursuingNo" value="no">
+                    <input class="form-check-input" type="radio" name="pursuing_education_status" id="pursuingNo"
+                        value="no">
                     <label class="form-check-label" for="pursuingNo">No</label>
                 </div>
             </div>
             <div class="col" id="pursuingEducationName" style="display: none;">
                 <label for="educationName" class="form-label">Pursuing Education Name</label>
-                <input type="text" class="form-control" id="educationName" name="pursuing_education" placeholder="Enter the education name">
+                <input type="text" class="form-control" id="educationName" name="pursuing_education"
+                    placeholder="Enter the education name">
             </div>
         </div>
-    
+
         <!-- Experience Status -->
         <div class="col-md-6">
             <label class="form-label">Experience Status</label>
             <div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="experience_status" id="experienceYes" value="yes">
+                    <input class="form-check-input" type="radio" name="experience_status" id="experienceYes"
+                        value="yes">
                     <label class="form-check-label" for="experienceYes">Yes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="experience_status" id="experienceNo" value="no">
+                    <input class="form-check-input" type="radio" name="experience_status" id="experienceNo"
+                        value="no">
                     <label class="form-check-label" for="experienceNo">No</label>
                 </div>
             </div>
             <div class="col" id="experienceYears" style="display: none;">
                 <label for="experience" class="form-label">Years of Experience</label>
-                <input type="number" class="form-control" id="experience" name="experience" placeholder="Enter years of experience">
+                <input type="number" class="form-control" id="experience" name="experience"
+                    placeholder="Enter years of experience">
             </div>
         </div>
-    
+
         <!-- Skills -->
         <div class="col-md-12">
             <label for="skills" class="form-label">Skills</label>
             <textarea class="form-control" id="skills" name="skills" placeholder="List your skills" rows="3"></textarea>
         </div>
-    
+
         <!-- Known Languages -->
         <div class="col-md-12">
             <label for="languages" class="form-label">Known Languages</label>
-            <textarea class="form-control" id="languages" name="known_languages" placeholder="List the languages you know" rows="3"></textarea>
+            <textarea class="form-control" id="languages" name="known_languages" placeholder="List the languages you know"
+                rows="3"></textarea>
         </div>
-    
+
         <!-- Buttons -->
         <div class="col-md-12">
             <div class="d-md-flex pb-3 d-grid align-items-center gap-3">
@@ -266,7 +311,7 @@
             </div>
         </div>
     </form>
-    
+
 
     <footer class="text-center text-dark" style="background-color: rgb(44, 237, 141)">
         <!-- Grid container -->
@@ -278,7 +323,7 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-dark">About us</a>
+                            <a href="{{ url('/about-us') }}"class="text-dark">About us</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
@@ -286,7 +331,7 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-dark">Jobs</a>
+                            <a href="{{ url('/candidate/jobs') }}" class="text-dark">Jobs</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
@@ -294,17 +339,17 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-dark">Contact Us</a>
+                            <a href="{{ url('/contact-us') }}" class="text-dark">Contact Us</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
 
                     <!-- Grid column -->
-                    <div class="col-md-2">
+                    <!-- <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
                             <a href="#!" class="text-dark">Help</a>
                         </h6>
-                    </div>
+                    </div> -->
                     <!-- Grid column -->
 
 
@@ -358,7 +403,7 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
             © 2024 Copyright:
-            <a class="text-white" href="{{ url('/candidate') }}">jobfinder.com</a>
+            <a class="text-white" href="https://mdbootstrap.com/">jobfinder.com</a>
         </div>
         <!-- Copyright -->
     </footer>

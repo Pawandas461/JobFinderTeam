@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\AdminAuth;
 use Faker\Provider\ar_EG\Company;
 use App\Http\Middleware\CompanyAuth;
 
@@ -44,7 +45,7 @@ Route::post('/candidate/jobs/search', [UserController::class, 'job_searching']);
 Route::post('/candidate/application', [UserController::class, 'application']);
 Route::post('/candidate/create_resume_action', [UserController::class, 'create_resume_action']);
 
-Route::get('/admin', [AdminController::class, 'admin_index']);
+
 Route::get('/admin/login', [AdminController::class, 'login_form']);
 Route::post('/admin_login', [AdminController::class, 'admin_login']);
 
@@ -75,36 +76,41 @@ Route::post('/user_login', [UserController::class, 'user_login']);
 Route::get('/forgot_pass', [UserController::class, 'forgot_pass']);
 Route::get('/candidate/jobs/{category_name}', [UserController::class, 'view_jobs_category']);
 
-Route::get('/admin/user', [AdminController::class, 'view_user']);
-Route::get('/admin/users/status/{id}', [AdminController::class, 'updateStatus']);
+Route::middleware([AdminAuth::class])->group(function () {
+    Route::get('/admin', [AdminController::class, 'admin_index']);
+    Route::get('/admin/user', [AdminController::class, 'view_user']);
+    Route::get('/admin/users/status/{id}', [AdminController::class, 'updateStatus']);
 
-Route::get('/admin/job', function () {
-    return view('admin.jobDisplay');
+    Route::get('/admin/job', function () {
+        return view('admin.jobDisplay');
+    });
+    Route::get('/admin/job', [AdminController::class, 'view_job']);
+    Route::get('/admin/job/status/{id}', [AdminController::class, 'update_jobStatus']);
+
+    Route::get('/admin/company', [AdminController::class, 'view_company']);
+    Route::get('/admin/company/status/{id}', [AdminController::class, 'update_companyStatus']);
+    //admin logout
+    Route::get('/admin/logout', [AdminController::class, 'logout']);
 });
-Route::get('/admin/job', [AdminController::class, 'view_job']);
-Route::get('/admin/job/status/{id}', [AdminController::class, 'update_jobStatus']);
 
-Route::get('/admin/company',[AdminController::class, 'view_company']);
-Route::get('/admin/company/status/{id}', [AdminController::class, 'update_companyStatus']);
 
 //user Logout
-Route::get('/candidate/logout',[UserController::class,'logout']);
-//admin logout
-Route::get('/admin/logout',[AdminController::class,'logout']);
+Route::get('/candidate/logout', [UserController::class, 'logout']);
+
 //company logout
-Route::get('/company/logout',[CompanyController::class,'logout']);
+Route::get('/company/logout', [CompanyController::class, 'logout']);
 
 
 //subham route
 
-Route::get('/about-us', function(){
+Route::get('/about-us', function () {
     return view('candidate.aboutUs');
 });
 
-Route::get('/contact-us', function(){
+Route::get('/contact-us', function () {
     return view('candidate.contactUs');
 });
 
-Route::get('/candidate/create_resume', function(){
+Route::get('/candidate/create_resume', function () {
     return view('candidate.userResume');
 });

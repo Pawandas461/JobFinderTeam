@@ -25,7 +25,8 @@
     <link href="{{ asset('sass/responsive.css') }}" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=login" />
 
 
     <!-- Custom CSS File-->
@@ -57,7 +58,7 @@
             <a class="navbar-brand m-0 p-0" href="#">
                 <!-- <img src="assets/images/logo1.png" class="mb-4" width="145" alt=""> -->
 
-                <img src="{{asset('assets/images/jf_logo.jpg')}}" style="border-radius: 40%" height="55" alt="">
+                <img src="assets/images/jf_logo.jpg" style="border-radius: 40%" height="55" alt="">
             </a>
             <!-- <a class="navbar-brand" href=" ">JobFinder</a> -->
             <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -84,16 +85,34 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{url('/candidate/jobs/technical_it_jobs')}}">Technology IT Jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs')}}">Creative jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/healthcare_jobs')}}">Healthcare jobs</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/finance_business')}}">Finance and Business</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/education_training')}}">Education and Training</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales and Marketing</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics Operations</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/technical_it_jobs') }}">Technology IT Jobs</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/creative_jobs') }}">Creative
+                                        jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/healthcare_jobs') }}">Healthcare jobs</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/finance_business') }}">Finance and Business</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/education_training') }}">Education and
+                                        Training</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/candidate/jobs/sales_marketing') }}">Sales
+                                        and Marketing</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/logistics_operations') }}">Logistics
+                                        Operations</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/candidate/jobs/engineering_jobs') }}">Engineering jobs</a></li>
 
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#">Offers</a>
@@ -112,73 +131,93 @@
                     <div class="nav-item dropdown">
                         <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown">
-                            <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 border" width="45"
+                            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45"
                                 height="45">
                         </a>
-
-                        @if(session('name') && session('user_id'))
-                        <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
-                            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
-                                <div class="text-center">
-                                    <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
-                                        width="90" height="90" alt="">
-                                    <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
-                                </div>
-                            </a>
-
-                            <hr class="dropdown-divider">
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/candidate/my_resume')}}">
-                                <i class="material-icons-outlined">task</i>My Resume
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/logout')}}">
-                                <i class="material-icons-outlined">logout</i>Logout
-
-                            </a>
-
-                            @else
+                        @if (session('name') && session('user_id'))
                             <div class="dropdown-menu dropdown-user dropdown-menu-end shadow" style="width: 250px">
                                 <a class="dropdown-item  gap-2 py-2" href="javascript:;">
                                     <div class="text-center">
-                                        <img src="{{asset('assets/images/avatars/01.png')}}" class="rounded-circle p-1 shadow mb-3"
+                                        <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3"
                                             width="90" height="90" alt="">
-                                        <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        <h5 class="user-name mb-0 fw-bold">{{ session('name') }}</h5>
                                     </div>
                                 </a>
 
                                 <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/login')}}">
-                                    <i class="material-icons-outlined">login</i>Candidate Login
-                                </a>
-
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{{ url('/company/login')}}">
-                                    <i class="material-icons-outlined">person_outline</i>Company Login
-                                </a>
-
+                                @if (session('resume_id'))
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/my_resume') }}">
+                                        <i class="material-icons-outlined">task</i>My Resume
+                                    </a>
+                                @else
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/create_resume') }}">
+                                        <i class="material-icons-outlined">task</i>Create Resume
+                                    </a>
                                 @endif
-                            </div>
+                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                    href="{{ url('/candidate/logout') }}">
+                                    <i class="material-icons-outlined">logout</i>Logout
+                                </a>
+                            @else
+                                <div class="dropdown-menu dropdown-user dropdown-menu-end shadow"
+                                    style="width: 250px">
+                                    <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+                                        <div class="text-center">
+                                            <img src="assets/images/avatars/01.png"
+                                                class="rounded-circle p-1 shadow mb-3" width="90" height="90"
+                                                alt="">
+                                            <h5 class="user-name mb-0 fw-bold">Wellcome</h5>
+                                        </div>
+                                    </a>
 
-                        </div>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/login') }}">
+                                        <i class="material-icons-outlined">login</i>Candidate Login
+                                    </a>
 
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/company/login') }}">
+                                        <i class="material-icons-outlined">domain_disabled</i>Company Login
+                                    </a>
+
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/admin/login') }}">
+                                        <i class="material-icons-outlined">person_outline</i>Admin Login
+                                    </a>
+                        @endif
                     </div>
+
                 </div>
+
             </div>
+        </div>
+        </div>
     </nav>
     <!--end top header-->
-    
+
     <!-- About Us Section -->
     <div class="about-section">
         <div class="container">
             <h2>About Us</h2>
-            <p>Welcome to <strong>JobFinder</strong>, your trusted platform for finding the best job opportunities. Our mission is to empower individuals by connecting them with their dream jobs and aiding employers in discovering top talent.</p>
+            <p>Welcome to <strong>JobFinder</strong>, your trusted platform for finding the best job opportunities. Our
+                mission is to empower individuals by connecting them with their dream jobs and aiding employers in
+                discovering top talent.</p>
 
             <h2>Our Mission</h2>
-            <p>Our mission is to bridge the gap between job seekers and employers through innovation, technology, and exceptional service. We strive to make job searching and hiring a seamless experience for everyone involved.</p>
+            <p>Our mission is to bridge the gap between job seekers and employers through innovation, technology, and
+                exceptional service. We strive to make job searching and hiring a seamless experience for everyone
+                involved.</p>
 
             <h2>Our Values</h2>
             <ul>
                 <li><strong>Integrity:</strong> Maintaining transparency and honesty in all interactions.</li>
-                <li><strong>Innovation:</strong> Continuously improving our platform to deliver cutting-edge solutions.</li>
+                <li><strong>Innovation:</strong> Continuously improving our platform to deliver cutting-edge solutions.
+                </li>
                 <li><strong>Community:</strong> Building a supportive ecosystem for job seekers and employers.</li>
                 <li><strong>Excellence:</strong> Striving to exceed expectations at every step.</li>
             </ul>
@@ -186,158 +225,159 @@
             <h2>Why Choose Us?</h2>
             <ul>
                 <li><strong>User-Friendly Platform:</strong> Navigate through jobs and applications with ease.</li>
-                <li><strong>Personalized Matching:</strong> Get job recommendations tailored to your skills and preferences.</li>
+                <li><strong>Personalized Matching:</strong> Get job recommendations tailored to your skills and
+                    preferences.</li>
                 <li><strong>Trusted Network:</strong> Collaborate with verified employers and candidates.</li>
             </ul>
         </div>
     </div>
 
-     <!--start footer-->
-     <footer class="text-center text-dark" style="background-color: rgb(44, 237, 141)">
-            <!-- Grid container -->
-            <div class="container">
-                <!-- Section: Links -->
-                <section class="mt-5">
-                    <!-- Grid row-->
-                    <div class="row text-center d-flex justify-content-center pt-5">
-                        <!-- Grid column -->
-                        <div class="col-md-2">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">About us</a>
-                            </h6>
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-2">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">Jobs</a>
-                            </h6>
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-2">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">Contact Us</a>
-                            </h6>
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-2">
-                            <h6 class="text-uppercase font-weight-bold">
-                                <a href="#!" class="text-dark">Help</a>
-                            </h6>
-                        </div>
-                        <!-- Grid column -->
-
-
+    <!--start footer-->
+    <footer class="text-center text-dark" style="background-color: rgb(44, 237, 141)">
+        <!-- Grid container -->
+        <div class="container">
+            <!-- Section: Links -->
+            <section class="mt-5">
+                <!-- Grid row-->
+                <div class="row text-center d-flex justify-content-center pt-5">
+                    <!-- Grid column -->
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                            <a href="{{ url('/about-us') }}"class="text-dark">About us</a>
+                        </h6>
                     </div>
-                    <!-- Grid row-->
-                </section>
-                <!-- Section: Links -->
+                    <!-- Grid column -->
 
-                <hr class="my-5" />
-
-                <!-- Section: Text -->
-                <section class="mb-5">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                                distinctio earum repellat quaerat voluptatibus placeat nam,
-                                commodi optio pariatur est quia magnam eum harum corrupti
-                                dicta, aliquam sequi voluptate quas.
-                            </p>
-                        </div>
+                    <!-- Grid column -->
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                            <a href="{{ url('/candidate/jobs') }}" class="text-dark">Jobs</a>
+                        </h6>
                     </div>
-                </section>
-                <!-- Section: Text -->
+                    <!-- Grid column -->
 
-                <!-- Section: Social -->
-                <section class="text-center mb-5">
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </section>
-                <!-- Section: Social -->
-            </div>
-            <!-- Grid container -->
+                    <!-- Grid column -->
+                    <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                            <a href="{{ url('/contact-us') }}" class="text-dark">Contact Us</a>
+                        </h6>
+                    </div>
+                    <!-- Grid column -->
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-                © 2024 Copyright:
-                <a class="text-white" href="{{ url('/candidate') }}">jobfinder.com</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!--top footer-->
+                    <!-- Grid column -->
+                    <!-- <div class="col-md-2">
+                        <h6 class="text-uppercase font-weight-bold">
+                            <a href="#!" class="text-dark">Help</a>
+                        </h6>
+                    </div> -->
+                    <!-- Grid column -->
 
 
+                </div>
+                <!-- Grid row-->
+            </section>
+            <!-- Section: Links -->
 
-        <!--bootstrap js-->
-        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+            <hr class="my-5" />
 
-        <!--plugins-->
-        {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
-        <!--plugins-->
-        <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
-        <script src="{{ asset('assets/plugins/metismenu/metisMenu.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('assets/js/index.js') }}"></script>
-        <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
-        <script>
-            $(".data-attributes span").peity("donut")
-        </script>
-        <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+            <!-- Section: Text -->
+            <section class="mb-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                            distinctio earum repellat quaerat voluptatibus placeat nam,
+                            commodi optio pariatur est quia magnam eum harum corrupti
+                            dicta, aliquam sequi voluptate quas.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Text -->
 
-        <script>
-            $(document).ready(function() {
-                $('.owl-carousel').owlCarousel({
-                    loop: true,
-                    margin: 10,
-                    nav: true,
-                    center: true,
-                    autoplay: true,
-                    autoplayTimeout: 1500,
-                    autoplayHoverPause: true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        344: {
-                            items: 2
-                        },
-                        600: {
-                            items: 3
-                        },
-                        1000: {
-                            items: 4
-                        },
-                        1200: {
-                            items: 5
-                        }
+            <!-- Section: Social -->
+            <section class="text-center mb-5">
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-github"></i>
+                </a>
+            </section>
+            <!-- Section: Social -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2024 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">jobfinder.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!--top footer-->
+
+
+
+    <!--bootstrap js-->
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!--plugins-->
+    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
+    <!--plugins-->
+    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/plugins/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/apexchart/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/index.js') }}"></script>
+    <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script>
+        $(".data-attributes span").peity("donut")
+    </script>
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                center: true,
+                autoplay: true,
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    344: {
+                        items: 2
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 4
+                    },
+                    1200: {
+                        items: 5
                     }
-                });
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 
 </html>

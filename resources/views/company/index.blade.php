@@ -127,11 +127,6 @@
             </div>
             <ul class="navbar-nav gap-1 nav-right-links align-items-center">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative"
-                        data-bs-auto-close="outside" data-bs-toggle="dropdown" href="javascript:;"><i
-                            class="material-icons-outlined">notifications</i>
-                        <span class="badge-notify">5</span>
-                    </a>
                     <div class="dropdown-menu dropdown-notify dropdown-menu-end shadow">
                         <div class="px-3 py-1 d-flex align-items-center justify-content-between border-bottom">
                             <h5 class="notiy-title mb-0">Notifications</h5>
@@ -277,7 +272,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
                         <img src="../assets/images/avatars/04.png" class="rounded-circle p-1 border" width="45"
                             height="45">
@@ -301,7 +296,7 @@
                             <div class="menu-title">Logout</div>
                         </a>
                     </div>
-                </li>
+                </li> --}}
             </ul>
 
         </nav>
@@ -369,38 +364,6 @@
                     <a href="approved-jobs.html">
                         <div class="parent-icon"><i class="material-icons-outlined">check_circle</i></div>
                         <div class="menu-title">Approved Jobs</div>
-                    </a>
-                </li>
-
-                <!-- Denied Jobs -->
-                <li>
-                    <a href="denied-jobs.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">cancel</i></div>
-                        <div class="menu-title">Denied Jobs</div>
-                    </a>
-                </li>
-
-                <!-- Notifications -->
-                <li>
-                    <a href="notifications.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">notifications</i></div>
-                        <div class="menu-title">Notifications</div>
-                    </a>
-                </li>
-
-                <!-- Profile Settings -->
-                <li>
-                    <a href="profile-settings.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">person</i></div>
-                        <div class="menu-title">Profile Settings</div>
-                    </a>
-                </li>
-
-                <!-- Help -->
-                <li>
-                    <a href="help.html">
-                        <div class="parent-icon"><i class="material-icons-outlined">help_outline</i></div>
-                        <div class="menu-title">Help</div>
                     </a>
                 </li>
 

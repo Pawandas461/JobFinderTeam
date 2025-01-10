@@ -132,6 +132,12 @@
 
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
+                        </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#">Offers</a>
                         </li> -->
@@ -164,15 +170,15 @@
 
                                 <hr class="dropdown-divider">
                                 @if (session('resume_id'))
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-                                    href="{{ url('/candidate/my_resume') }}">
-                                    <i class="material-icons-outlined">task</i>My Resume
-                                </a>
-                                @else 
-                                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
-                                    href="{{ url('/candidate/create_resume') }}">
-                                    <i class="material-icons-outlined">task</i>Create  Resume
-                                </a>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/my_resume') }}">
+                                        <i class="material-icons-outlined">task</i>My Resume
+                                    </a>
+                                @else
+                                    <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                                        href="{{ url('/candidate/create_resume') }}">
+                                        <i class="material-icons-outlined">task</i>Create Resume
+                                    </a>
                                 @endif
                                 <a class="dropdown-item d-flex align-items-center gap-2 py-2"
                                     href="{{ url('/candidate/logout') }}">
