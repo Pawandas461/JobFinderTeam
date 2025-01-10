@@ -820,7 +820,7 @@
                                     <tbody>
                                         @foreach ($requested_jobs as $requested_job)
                                         <tr>
-                                            <td>{{ $requested_job->id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $requested_job->job_title }}</td>
                                             <td>{{ $requested_job->job_mode }}</td>
                                             <td>{{ $requested_job->job_role }}</td>
